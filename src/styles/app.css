@@ -1735,44 +1735,45 @@ html.is-ready .hero-photo {
 }
 
 .cine.is-live.cine-pan {
-  animation: cine-pan 34s var(--ease) alternate infinite;
+  animation: cine-pan 12s var(--ease) alternate infinite;
 }
 
 .cine.is-live.cine-zoom {
-  animation: cine-zoom 26s var(--ease) alternate infinite;
+  animation: cine-zoom 14s var(--ease) alternate infinite;
 }
 
 .cine.is-live.cine-depth .cine-back {
-  animation: cine-back 30s var(--ease) alternate infinite;
+  animation: cine-back 22s var(--ease) alternate infinite;
 }
 
 .cine.is-live .cine-light {
-  animation: cine-light 7s var(--ease) 0.6s 1 both;
+  animation: cine-light 12s var(--ease) 0.4s infinite;
 }
 
 .depth.is-live .depth-front {
-  animation: cine-zoom 30s var(--ease) alternate infinite;
+  animation: cine-zoom 20s var(--ease) alternate infinite;
 }
 
 @keyframes cine-pan {
-  from { transform: scale(1.06) translate3d(-1.4%, 0, 0); }
-  to { transform: scale(1.06) translate3d(1.4%, 0, 0); }
+  from { transform: scale(1.08) translate3d(-3%, 1%, 0); }
+  to { transform: scale(1.15) translate3d(3%, -1%, 0); }
 }
 
 @keyframes cine-zoom {
-  from { transform: scale(1.03); }
-  to { transform: scale(1.1) translate3d(0, -1%, 0); }
+  from { transform: scale(1.04); }
+  to { transform: scale(1.14) translate3d(0, -1.5%, 0); }
 }
 
 @keyframes cine-back {
-  from { transform: translate3d(0, 1.2%, 0); }
-  to { transform: translate3d(0, -1.2%, 0); }
+  from { transform: translate3d(0, 3%, 0) scale(1.05); }
+  to { transform: translate3d(0, -3%, 0) scale(1.05); }
 }
 
 @keyframes cine-light {
-  from { opacity: 0; transform: translateX(-30%); }
-  30% { opacity: 1; }
-  to { opacity: 0; transform: translateX(30%); }
+  0% { opacity: 0; transform: translateX(-35%); }
+  12% { opacity: 1; }
+  30% { opacity: 0; transform: translateX(35%); }
+  100% { opacity: 0; transform: translateX(35%); }
 }
 
 /* control del film: aparece si el SO pide reduced-motion (reproducción solo

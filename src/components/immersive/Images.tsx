@@ -73,6 +73,37 @@ export function CinematicImage({
     return () => io.disconnect();
   }, []);
 
+  // Parallax al scroll: la imagen se desplaza verticalmente (hasta ±4%) según
+  // su posición en el viewport — cine perceptible, ligado al gesto. Reduced
+  // motion: nada. La cámara vive en el wrapper, esto en el medio: no pisan.
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const media = el.querySelector<HTMLElement>(".cine-media");
+    if (!media) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      if (rect.bottom < -80 || rect.top > vh + 80) return;
+      const centro = (rect.top + rect.height / 2 - vh / 2) / vh;
+      media.style.transform = `translate3d(0, ${(-centro * 8).toFixed(2)}%, 0) scale(1.08)`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
   return (
     <div
       ref={ref}

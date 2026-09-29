@@ -6,6 +6,22 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 07 — CINE PERCEPTIBLE (devolución de la persona: "sigue todo igual")
+
+**Causa.** La cámara del loop 03 era correcta pero invisible: ±1.4 % en 34 s no se
+percibe en pantalla chica — y lo pedido era cine visible, no micro-movimiento.
+
+**Qué se construyó.** Ken Burns visible en toda escena: pan combina desplazamiento ±3 %
+con respiración de zoom 1.08→1.15 en 12 s; zoom hasta 1.14 en 14 s; capa de profundidad
+±3 %/22 s; luz en ciclo 12 s; y **parallax ligado al scroll** (el medio se desplaza hasta
+±4 % según la posición del bloque en el viewport). Reduced-motion: todo estático (§40).
+
+**Verificado.** Móvil: matriz cambia en Ingeniería (panel móvil), Proyectos, Productos;
+parallax responde al scroll; hero film reproduciéndose; escritorio ídem. Delta medido
+post-refino: 0.36 % de zoom cada 1.5 s — perceptible y sin sobresaltos.
+
+---
+
 ## LOOP 06 — FILM ROBUSTO EN TÁCTIL (hallazgo de la persona: "no se ve video, solo animación")
 
 **Causa.** En táctil, Chrome Android degrada `preload="auto"` en datos móviles y bloquea
