@@ -33,8 +33,11 @@ const index = readFileSync("dist/index.html", "utf8");
 const shells = [
   ...categories.map((slug) => [`productos/${slug}`, `SENDER Chile | ${slug}`]),
   ...products.map((slug) => [`producto/${slug}`, `SENDER Chile | ${slug}`]),
+  ...categories.map((slug) => [`en/productos/${slug}`, `SENDER Chile | ${slug}`]),
+  ...products.map((slug) => [`en/producto/${slug}`, `SENDER Chile | ${slug}`]),
   ["productos", "SENDER Chile | Catálogo"],
   ["en", "SENDER Chile | RF Engineering, Broadcasting & Transmission Systems"],
+  ["en/productos", "SENDER Chile | RF Engineering, Broadcasting & Transmission Systems"],
 ];
 
 shells.forEach(([route, title]) => {

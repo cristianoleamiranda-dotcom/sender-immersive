@@ -3,13 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <title>SENDER</title>
+    <meta name="robots" content="noindex" />
     <script>
       (function () {
         var path = location.pathname;
-        var marker = "/scroll-craft/";
+        var marker = "/sender-immersive/";
         var base = path.indexOf(marker) === 0 ? marker : "/";
-        var rest = path.slice(base.length);
-        location.replace(base + "?redirect=" + encodeURIComponent(rest + location.search + location.hash));
+        var rest = path.slice(base.length).replace(/^\/+|\/+$/g, "");
+        if (rest === "soluciones") { location.replace(base + "productos/"); return; }
+        if (rest === "en/soluciones") { location.replace(base + "en/productos/"); return; }
+        location.replace(base);
       })();
     </script>
   </head>
