@@ -35,7 +35,7 @@ export function Projects() {
       {projects.map((project) => (
         <article key={project.id} className="project-spread">
           <div className="project-visual">
-            <CinematicImage src={project.image} alt={tx(project.alt, lang)} depth drift="pan" />
+            <CinematicImage src={project.image} alt={tx(project.alt, lang)} depth drift="pan" video={project.film} />
           </div>
           <div className="project-copy">
             <p className="mono">

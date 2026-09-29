@@ -139,7 +139,7 @@ export function CinematicImage({
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           onPlaying={(event) => event.currentTarget.classList.add("is-on")}
           aria-hidden="true"
           style={{ objectPosition: position }}

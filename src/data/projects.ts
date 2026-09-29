@@ -1,5 +1,5 @@
 import type { Project } from "@/data/types";
-import { images } from "@/data/images";
+import { films, images } from "@/data/images";
 
 /**
  * Solo instalaciones publicadas por Sender o cubiertas por prensa especializada.
@@ -24,6 +24,7 @@ export const projects: Project[] = [
       en: "Installation of a Sender transmitter at Radio Colosal in Ambato, documented by international trade press covering the broadcasting sector.",
     },
     image: images.capBroadcast,
+    film: films.capBroadcast,
     alt: {
       es: "Sala de transmisión con racks de equipos de radiodifusión",
       en: "Transmission hall with broadcast equipment racks",
@@ -51,6 +52,7 @@ export const projects: Project[] = [
       en: "High-complexity telecommunications project: dismantling of a 60-metre self-supporting tower for the Chilean Navy.",
     },
     image: images.capAntennas,
+    film: films.capAntennas,
     alt: {
       es: "Torre de telecomunicaciones con arreglo de antenas",
       en: "Telecommunications tower with antenna array",
@@ -74,6 +76,7 @@ export const projects: Project[] = [
       en: "Long-range HF communications solution for strategic environments, installed and operated on Easter Island.",
     },
     image: images.hero,
+    film: films.hero,
     alt: {
       es: "Torre contraventada y caseta de transmisión en un sitio costero",
       en: "Guyed tower and transmitter shelter on a coastal site",
@@ -120,6 +123,7 @@ export const projects: Project[] = [
       en: "High-efficiency HF antenna solutions for professional communications, installed in defense and broadcasting projects.",
     },
     image: images.capRf,
+    film: films.capRf,
     alt: {
       es: "Módulo amplificador de radiofrecuencia con bobinas de cobre",
       en: "Radio-frequency amplifier module with copper coils",

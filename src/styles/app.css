@@ -1699,6 +1699,15 @@ html.is-ready .hero-photo {
   to { opacity: 1; transform: none; }
 }
 
+/* los contenedores de media jamás muestran blanco: gris técnico mientras
+   carga la imagen (data-saver móvil) */
+.cine,
+.project-visual,
+.depth,
+.facts + .about-grid .depth {
+  background: var(--field);
+}
+
 /* pipeline imagen→cine (DNA §6/§9, brief §13): cámara lenta sobre fotos reales.
    La cámara vive en el wrapper .cine (se compone con transforms de contexto).
    Fuera de pantalla no hay animación (is-live). Reduced-motion: kill global. */

@@ -6,6 +6,24 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 09 — COBERTURA TOTAL DE FILMS + CONTENEDORES SIN BLANCO (preguntas de la persona)
+
+«¿El fondo blanco sólido lo ves? ¿Qué pasó con el video de fondo?» — Análisis de la
+grabación con freezedetect: **ni el hero ni los films de escena se congelaron** (movimiento
+continuo en ambas ventanas). Las observaciones apuntan a percepción del conjunto: secciones
+de papel blanco muy extensas (DNA editorial) y, en data-saver, imágenes perezosas que
+tardan y dejan bloques blancos.
+
+**Acciones.**
+1. Films del pipeline §13 ahora también en **Proyectos** (4 de 6: racks, torre, hero, placa).
+2. Contenedores de media con `background: var(--field)`: jamás blanco mientras carga
+   (bloque técnico gris, nunca hueco).
+3. Films de escena `preload="metadata"`: arranque inmediato aunque el data-saver frene.
+Verificado: tsc/QA/build; films servidos. Pendiente de decisión de dirección: tratamiento
+del blanco editorial (mantener vs. mundo oscuro) — ver FLUJO-OPTIMIZADO G5.
+
+---
+
 ## VALIDACIÓN EXTERNA — Grabación real del S24 de la persona (11:27, post ?v=11)
 
 Grabación de pantalla (10.6 s, frames en `auditoria/grab/`) analizada frame a frame:

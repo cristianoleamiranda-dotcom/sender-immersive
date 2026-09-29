@@ -12,6 +12,7 @@ function media(file: string): string {
     (profundidad + cámara + luz). Pipeline §13 ya ejecutado; el film no altera la
     identidad factual de la escena. */
 export const films = {
+  hero: media("sender-hero.mp4"),
   capRf: media("film-rf.mp4"),
   capBroadcast: media("film-broadcast.mp4"),
   capAntennas: media("film-antennas.mp4"),

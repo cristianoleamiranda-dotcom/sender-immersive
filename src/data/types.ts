@@ -60,6 +60,7 @@ export interface Project {
   technology: Loc;
   summary: Loc;
   image: string;
+  film?: string;
   alt: Loc;
   source?: { label: Loc; url: string };
 }
