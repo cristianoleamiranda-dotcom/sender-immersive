@@ -30,6 +30,8 @@ export interface UiCopy {
     place: string;
     scroll: string;
     videoLabel: string;
+    playFilm: string;
+    pauseFilm: string;
   };
   signal: {
     index: string;

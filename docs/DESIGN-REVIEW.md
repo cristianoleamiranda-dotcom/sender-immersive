@@ -6,6 +6,31 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 05 — MÓVIL REAL (hallazgos de la persona: capturas S24 10:20/10:32)
+
+**Tres hallazgos de las capturas.**
+1. *Texto aplastado una palabra por línea en la cadena (A Onda, B Frecuencia…)*:
+   faltaba `text-size-adjust: 100%` — el font boosting de Chrome Android infla el
+   texto dentro de las columnas. Añadido. Verificado: párrafo de la cadena a 286 px
+   en viewport 390.
+2. *Texto visible a través del nav claro*: `is-light` tenía fondo alfa 0.92. Ahora
+   sólido (`--paper`).
+3. *«Ni videos ni animación»*: el S24 con «Quitar animaciones» (Android) reporta
+   `prefers-reduced-motion: reduce` y el sitio —cumpliendo §40— lo apagaba todo,
+   film incluido. Punto medio §28/§40: el film **siempre** está montado; con
+   reduced-motion o autoplay bloqueado aparece un control mono «Reproducir film»
+   (reproducción por decisión de la persona; el botón conmuta a «Pausar film»).
+   Verificado en loop: reduced → botón → reproduce (t avanza, etiqueta conmuta);
+   móvil normal → autoplay sin botón; cine de escenas sigue estático bajo
+   reduced-motion (correcto por accesibilidad).
+
+**Nota para la persona.** Si en el S24 quieres ver además las animaciones lentas de
+cámara en todas las escenas, desactiva Ajustes → Accesibilidad → Mejoras de
+visibilidad → «Quitar animaciones»: es una decisión del sistema operativo que el
+sitio respeta.
+
+---
+
 ## LOOP 04 — NAV/ÍNDICE EN PRODUCCIÓN (hallazgo de la persona: "no se despliega" + 404)
 
 **Hallazgo.** En Pages, los anchors crudos del nav usaban `path()` (ruta Router sin base):

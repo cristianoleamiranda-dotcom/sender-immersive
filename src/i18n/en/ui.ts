@@ -34,6 +34,8 @@ export const en: UiCopy = {
     place: "Chile · Latin America",
     scroll: "Move through the system",
     videoLabel: "Cinematic pass over the transmission site. No audio.",
+    playFilm: "Play film",
+    pauseFilm: "Pause film",
   },
   signal: {
     index: "01",

@@ -34,6 +34,8 @@ export const es: UiCopy = {
     place: "Chile · Latinoamérica",
     scroll: "Avanzar por el sistema",
     videoLabel: "Recorrido cinematográfico del sitio de transmisión. Sin audio.",
+    playFilm: "Reproducir film",
+    pauseFilm: "Pausar film",
   },
   signal: {
     index: "01",

@@ -9,12 +9,15 @@ export function Hero() {
   const { ui } = useI18n();
   const [progress, setProgress] = useState(0);
   // El film real de SENDER es el fondo del entorno de transmisión en todos los
-  // viewports (brief §28: en móvil, video nativo en vez de desactivar todo).
-  // Reduced-motion: solo fotografía, sin reproducción.
-  const [videoOn] = useState(
-    () => typeof window === "undefined" || !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  // viewports (brief §28). Con reduced-motion (SO con «quitar animaciones») el
+  // film NO se auto-reproduce: queda un control para verlo por decisión propia
+  // (§40). Si el navegador bloquea el autoplay, el mismo control aparece.
+  const [reducedMotion] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
   const [videoReady, setVideoReady] = useState(false);
+  const [filmPlaying, setFilmPlaying] = useState(false);
+  const [showFilmToggle, setShowFilmToggle] = useState(reducedMotion);
   // Secuencia de entrada (DNA §9 / brief §17): señal → campo → SENDER → líneas.
   // Estado natural "done" = secuencia ya ocurrida; solo se anima cuando el
   // dispositivo no pide reduced-motion. El primer scroll la salta.
@@ -72,20 +75,41 @@ export function Hero() {
   return (
     <section id="inicio" className="hero" data-theme="dark" data-hero data-intro={intro}>
       <div className="hero-pin">
-        {videoOn ? (
-          <video
-            className={`hero-video${videoReady ? " is-on" : ""}`}
-            poster={posters.lg}
-            autoPlay
-            muted
-            playsInline
-            loop
-            preload="auto"
-            onCanPlay={() => setVideoReady(true)}
-            aria-label={ui.hero.videoLabel}
+        <video
+          className={`hero-video${videoReady ? " is-on" : ""}`}
+          poster={posters.lg}
+          autoPlay={!reducedMotion}
+          muted
+          playsInline
+          loop
+          preload="auto"
+          onCanPlay={(event) => {
+            setVideoReady(true);
+            const video = event.currentTarget;
+            window.setTimeout(() => {
+              if (video.paused && !reducedMotion) setShowFilmToggle(true);
+            }, 450);
+          }}
+          onPlay={() => setFilmPlaying(true)}
+          onPause={() => setFilmPlaying(false)}
+          aria-label={ui.hero.videoLabel}
+        >
+          <source src={images.heroVideo} type="video/mp4" />
+        </video>
+        {showFilmToggle ? (
+          <button
+            type="button"
+            className={`film-toggle${filmPlaying ? " is-playing" : ""}`}
+            aria-pressed={filmPlaying}
+            onClick={() => {
+              const video = document.querySelector<HTMLVideoElement>(".hero-video");
+              if (!video) return;
+              if (video.paused) void video.play().catch(() => {});
+              else video.pause();
+            }}
           >
-            <source src={images.heroVideo} type="video/mp4" />
-          </video>
+            {filmPlaying ? ui.hero.pauseFilm : ui.hero.playFilm}
+          </button>
         ) : null}
         <img
           data-hero-photo
