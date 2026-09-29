@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { projects } from "@/data/projects";
 import { tx, type Project } from "@/data/types";
 import { useI18n } from "@/i18n/context";
-import { EditorialImage } from "@/components/immersive/Images";
+import { CinematicImage } from "@/components/immersive/Images";
 
 export function Projects() {
   const { ui, lang } = useI18n();
@@ -35,7 +35,7 @@ export function Projects() {
       {projects.map((project) => (
         <article key={project.id} className="project-spread">
           <div className="project-visual">
-            <EditorialImage src={project.image} alt={tx(project.alt, lang)} />
+            <CinematicImage src={project.image} alt={tx(project.alt, lang)} depth drift="pan" />
           </div>
           <div className="project-copy">
             <p className="mono">
@@ -56,7 +56,7 @@ export function Projects() {
       <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-dialog-title" onClose={close}>
         {open ? (
           <div className="project-scene">
-            <EditorialImage src={open.image} alt={tx(open.alt, lang)} priority />
+            <CinematicImage src={open.image} alt={tx(open.alt, lang)} priority drift="zoom" />
             <div className="sheet">
               <button type="button" className="close-x" onClick={close}>
                 {copy.close}

@@ -6,6 +6,33 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 03 — CINE EN TODAS LAS ESCENAS (pipeline §13, pedido de la persona)
+
+**Hallazgo.** El film vivía solo en el Hero; Ingeniería, Proyectos y Productos eran
+fotos estáticas. El brief §13 define el pipeline (imagen real → profundidad → cámara →
+luz → cine) y §11 autoriza animar las fotos reales sin alterar su identidad.
+
+**Qué se construyó.** `CinematicImage` implementado de verdad (era passthrough vacío del
+§30): wrapper `.cine` con cámara lenta —pan 34 s / zoom 26 s—, capa de profundidad
+opcional (`.cine-back`, la capa lejana derivada de la misma foto real), barrido de luz
+único al entrar en escena, y `IntersectionObserver` que **apaga la cámara fuera de
+pantalla**. `DepthImage` (Nosotros) también respira. Slot `video` preparado: cuando
+existan micro-videos reales derivados (§13 con tooling de video), se montan sin tocar
+nada más. Ingeniería en pan (ambos viewports), Productos en zoom, Proyectos con
+profundidad + portada en zoom.
+
+**Verificación dura (loop renderizado).** Escritorio: la matriz de transformación cambia
+con el tiempo en las tres zonas (cámara viva) · off-screen apaga la cámara (true→false
+con salto instantáneo; la primera medición fue un artefacto del scroll suave de Lenis) ·
+reduced-motion: estático (kill global existente) · móvil: cámara activa · 0 errores.
+Capturas `auditoria/cine-*.png`. **Aprobado.**
+
+**DNA.** Sin violaciones: fotos reales sin alteración factual (solo crop/zoom/capa, §11),
+sin gradientes de color (la luz es blanco al 7 % en alfa), paleta intacta, movimiento
+lento y con propósito.
+
+---
+
 ## LOOP 02 — VIDEO COMO ENTORNO (corrección de la persona, captura S24)
 
 **Hallazgo.** En el S24 real nunca había video: el código solo lo montaba en escritorio y

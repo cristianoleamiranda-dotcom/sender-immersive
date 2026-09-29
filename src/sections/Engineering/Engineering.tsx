@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { engineeringStates, transmissionChain } from "@/data/engineering";
 import { tx } from "@/data/types";
 import { useI18n } from "@/i18n/context";
-import { EditorialImage } from "@/components/immersive/Images";
+import { CinematicImage } from "@/components/immersive/Images";
 import { drawEngineeringDiagram } from "@/three/scenes/EngineeringScene";
 
 export function Engineering() {
@@ -86,7 +86,7 @@ export function Engineering() {
                 aria-hidden={index !== active}
               >
                 <div className="eng-visual">
-                  <EditorialImage src={state.image} alt={tx(state.alt, lang)} position="center" />
+                  <CinematicImage src={state.image} alt={tx(state.alt, lang)} position="center" drift="pan" />
                   <canvas className="eng-diagram" data-eng-draw={index === active ? "1" : undefined} />
                 </div>
                 <div className="eng-copy">
@@ -113,7 +113,7 @@ export function Engineering() {
         <div className="eng-flow">
           {engineeringStates.map((state) => (
             <article key={state.id}>
-              <EditorialImage src={state.image} alt={tx(state.alt, lang)} />
+              <CinematicImage src={state.image} alt={tx(state.alt, lang)} drift="pan" />
               <div>
                 <p className="eng-range">
                   {state.index} · {state.code} · {tx(state.range, lang)}

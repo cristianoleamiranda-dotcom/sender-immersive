@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { categories, products } from "@/data/catalog";
 import { tx } from "@/data/types";
 import { useI18n } from "@/i18n/context";
-import { EditorialImage } from "@/components/immersive/Images";
+import { CinematicImage } from "@/components/immersive/Images";
 
 const FEATURED = ["serie-sender-ss", "serie-fm", "antena-hf-2-30", "sistema-navtex-490-518"];
 
@@ -26,7 +26,7 @@ export function Products() {
           return (
             <article key={product.slug} className="object">
               <div className="object-visual">
-                <EditorialImage src={product.image} alt={tx(product.alt, lang)} />
+                <CinematicImage src={product.image} alt={tx(product.alt, lang)} drift="zoom" />
               </div>
               <div>
                 <p className="object-meta">

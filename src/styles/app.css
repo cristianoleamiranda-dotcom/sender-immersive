@@ -1694,3 +1694,79 @@ html.is-ready .hero-photo {
   from { opacity: 0; transform: translateY(0.4em); }
   to { opacity: 1; transform: none; }
 }
+
+/* pipeline imagen→cine (DNA §6/§9, brief §13): cámara lenta sobre fotos reales.
+   La cámara vive en el wrapper .cine (se compone con transforms de contexto).
+   Fuera de pantalla no hay animación (is-live). Reduced-motion: kill global. */
+.cine {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cine .cine-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cine .cine-back {
+  position: absolute;
+  inset: 8% -6% auto auto;
+  width: 72%;
+  height: 78%;
+  opacity: 0.45;
+  filter: saturate(0.7);
+  object-fit: cover;
+}
+
+.cine-light {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.07) 50%, transparent 58%);
+  opacity: 0;
+  transform: translateX(-30%);
+}
+
+.cine.is-live.cine-pan {
+  animation: cine-pan 34s var(--ease) alternate infinite;
+}
+
+.cine.is-live.cine-zoom {
+  animation: cine-zoom 26s var(--ease) alternate infinite;
+}
+
+.cine.is-live.cine-depth .cine-back {
+  animation: cine-back 30s var(--ease) alternate infinite;
+}
+
+.cine.is-live .cine-light {
+  animation: cine-light 7s var(--ease) 0.6s 1 both;
+}
+
+.depth.is-live .depth-front {
+  animation: cine-zoom 30s var(--ease) alternate infinite;
+}
+
+@keyframes cine-pan {
+  from { transform: scale(1.06) translate3d(-1.4%, 0, 0); }
+  to { transform: scale(1.06) translate3d(1.4%, 0, 0); }
+}
+
+@keyframes cine-zoom {
+  from { transform: scale(1.03); }
+  to { transform: scale(1.1) translate3d(0, -1%, 0); }
+}
+
+@keyframes cine-back {
+  from { transform: translate3d(0, 1.2%, 0); }
+  to { transform: translate3d(0, -1.2%, 0); }
+}
+
+@keyframes cine-light {
+  from { opacity: 0; transform: translateX(-30%); }
+  30% { opacity: 1; }
+  to { opacity: 0; transform: translateX(30%); }
+}
