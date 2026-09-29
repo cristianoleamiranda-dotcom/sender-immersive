@@ -66,16 +66,30 @@ Para probar el build local como Pages: `VITE_BASE_PATH=/sender-immersive/ npm ru
 
 ## Referencias de movimiento (los 4 videos de YouTube)
 
-Estudiados como **principios, no como copia** (véase `docs/SKILLS.md`):
+**Qué son** (verificado vía oEmbed de YouTube, 2026-09-29): demos de sitios y escenas 3D
+construidas con IA — «Claude Opus 5.5 Might Be The Best!!! (3D, Web Design, Animation)»
+(Codex Community), «I Built This Interactive 3D Website With AI (Gemini 3.8 Flash)»
+(MiladiCode), «Claude Opus 5.5 is Insane (3D Game + Website)» (Kyle Skelly), «Claude
+Design 3.0 (3D Scrolling Animations)» (Louis Borrego).
 
-| Video | Principio que aporta | Dónde vive en el sitio |
-|---|---|---|
-| youtu.be/Da7ZuhyWACg | la cámara avanza con el scroll | Hero: clip-path + escala + `progress` del SignalField |
-| youtu.be/y1pM7bS6IY8 | transición = cambio de estado | Signal → About: la señal cambia de trabajo |
-| youtu.be/3yQttz-UKjA | profundidad por capas | Engineering: pin + paneles con dibujo técnico |
-| youtu.be/3eExfC63uSc | convergencia editorial | Projects/Contact: archivo fotográfico a escena |
+**Su rol en el encargo es doble:**
+1. **Prohibido copiarlos** — el prompt inicial los lista junto a sender-onair y open-design.
+2. **Fuente de principios** — la sesión de construcción los estudió como principios, no
+   como copia (`docs/SKILLS.md`): la cámara avanza con el scroll, la imagen no se
+   deforma, y cada transición tiene un trabajo distinto — **apertura de señal, cambio
+   de estado, archivo a escena, convergencia** (una por video, en el orden del encargo).
 
-Regla: la imagen no se deforma, cada transición tiene un trabajo distinto.
+Dónde quedaron esos principios en el sitio:
+
+| Principio (según `docs/SKILLS.md`) | Implementación |
+|---|---|
+| Apertura de señal (video 1) | Entrada del Hero: la señal se abre con el progreso del scroll |
+| Cambio de estado (video 2) | Signal → About → Engineering: la señal cambia de trabajo por escena |
+| Archivo a escena (video 3) | Projects: el archivo fotográfico real entra a la escena |
+| Convergencia (video 4) | Cierre hacia Contact: la narrativa converge en conexión/contacto |
+
+**Cumplimiento verificado:** cero assets, código o estética de esos videos en este repo.
+El único video del sitio es `sender-hero.mp4`, real y preexistente de SENDER.
 
 ## Pendientes conocidos
 
