@@ -6,6 +6,16 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## VALIDACIÓN EXTERNA — Grabación real del S24 de la persona (11:27, post ?v=11)
+
+Grabación de pantalla (10.6 s, frames en `auditoria/grab/`) analizada frame a frame:
+hero con film en reproducción + señal + control «Pausar film» · Nosotros con texto sano
+(font boosting derrotado) · Ingeniería con el film de la placa RF corriendo · estado ANTENAS
+con film de torre en movimiento. **El dispositivo real de la persona confirma producción.**
+Cobertura no grabada (para próxima ronda): Proyectos, Productos, Contacto, índice, ES⇄EN.
+
+---
+
 ## LOOP 07 — CINE PERCEPTIBLE (devolución de la persona: "sigue todo igual")
 
 **Causa.** La cámara del loop 03 era correcta pero invisible: ±1.4 % en 34 s no se
