@@ -64,9 +64,13 @@ Para probar el build local como Pages: `VITE_BASE_PATH=/sender-immersive/ npm ru
 3. Revocar el PAT al terminar. Pages despliega solo.
 4. Verificar en vivo: home + una ruta profunda ES y una EN.
 
-## Referencias de movimiento (los 4 videos de YouTube)
+## Referencias de movimiento (los 5 videos de YouTube)
 
-**Qué son** (verificado vía oEmbed de YouTube, 2026-09-29): demos de sitios y escenas 3D
+**El método (ICKAMsw4ENs — «Astra 6», Viktor Oddy):** Design DNA + Design Loop — DNA
+documentado, prototipo, crítica en loop contra el DNA, refinamiento, sistema reutilizable.
+Es el flujo oficial de este proyecto: `docs/SENDER-DESIGN-DNA.md` + `docs/DESIGN-REVIEW.md`.
+
+**Qué son los otros 4** (verificado vía oEmbed de YouTube, 2026-09-29): demos de sitios y escenas 3D
 construidas con IA — «Claude Opus 5.5 Might Be The Best!!! (3D, Web Design, Animation)»
 (Codex Community), «I Built This Interactive 3D Website With AI (Gemini 3.8 Flash)»
 (MiladiCode), «Claude Opus 5.5 is Insane (3D Game + Website)» (Kyle Skelly), «Claude
