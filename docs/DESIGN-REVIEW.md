@@ -6,6 +6,24 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 04 — NAV/ÍNDICE EN PRODUCCIÓN (hallazgo de la persona: "no se despliega" + 404)
+
+**Hallazgo.** En Pages, los anchors crudos del nav usaban `path()` (ruta Router sin base):
+`href="/#nosotros"` en vez de `/sender-immersive/#nosotros` → cada entrada del índice
+caía al raíz del dominio → 404. En dev (base `/`) era invisible.
+
+**Qué se construyó.** `fullPath()` en el contexto i18n (base del deploy + idioma) para los
+anchors crudos del nav/marca/índice — los `<Link>/<NavLink>` de React Router siguen con
+`path()` (el Router ya trae `basename`). `HashScroll` en App: al montar con hash, lleva la
+vista a la sección (90 ms post-render, `scroll-margin-top` existente evita el nav tape).
+
+**Verificación dura.** Bajo `/sender-immersive/`: diálogo INDICE `open:true` y visible;
+enlace 02 Nosotros → URL correcta + sección a 73 px (bajo nav fijo, sin 404); nav
+escritorio 04 Productos → ídem; marca SENDER desde una ficha → home. 0 requests fallidos.
+Captura `auditoria/nav-movil-abierto.png`. **Aprobado.**
+
+---
+
 ## LOOP 03 — CINE EN TODAS LAS ESCENAS (pipeline §13, pedido de la persona)
 
 **Hallazgo.** El film vivía solo en el Hero; Ingeniería, Proyectos y Productos eran

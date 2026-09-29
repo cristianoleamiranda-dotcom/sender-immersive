@@ -8,7 +8,10 @@ import { en } from "@/i18n/en/ui";
 interface I18nValue {
   lang: Lang;
   ui: UiCopy;
+  /** ruta para Router (Link/NavLink): sin base */
   path: (bare: string) => string;
+  /** ruta para <a> crudos: incluye la base del deploy (evita 404 en Pages) */
+  fullPath: (bare: string) => string;
   switchTo: (next: Lang) => void;
 }
 
@@ -31,6 +34,8 @@ export function withLang(bare: string, lang: Lang): string {
   return clean === "/" ? "/en" : `/en${clean}`;
 }
 
+const BASE = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
+
 export function I18nProvider({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -42,6 +47,7 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
       lang,
       ui,
       path: (bare: string) => withLang(bare, lang),
+      fullPath: (bare: string) => `${BASE}${withLang(bare, lang)}`,
       switchTo: (next: Lang) => {
         const hash = location.hash;
         const search = location.search;

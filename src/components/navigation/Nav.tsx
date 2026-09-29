@@ -12,7 +12,7 @@ const LINKS = [
 ] as const;
 
 export function Nav() {
-  const { ui, lang, path, switchTo } = useI18n();
+  const { ui, lang, fullPath, path, switchTo } = useI18n();
   const labels = [ui.nav.inicio, ui.nav.nosotros, ui.nav.ingenieria, ui.nav.productos, ui.nav.proyectos, ui.nav.contacto];
   const dialogRef = useRef<HTMLDialogElement>(null);
   const location = useLocation();
@@ -40,12 +40,12 @@ export function Nav() {
 
   return (
     <header className={overDark ? "nav" : "nav is-light"} data-theme-nav>
-      <a className="nav-mark" href={path("/#inicio")}>
+      <a className="nav-mark" href={fullPath("/#inicio")}>
         SENDER
       </a>
       <nav className="nav-links" aria-label={ui.a11y.nav}>
         {LINKS.map((link, index) => (
-          <a key={link.id} href={path(link.bare)}>
+          <a key={link.id} href={fullPath(link.bare)}>
             {String(index + 1).padStart(2, "0")} {labels[index]}
           </a>
         ))}
@@ -86,7 +86,7 @@ export function Nav() {
           <ol>
             {LINKS.map((link, index) => (
               <li key={link.id}>
-                <a href={path(link.bare)} onClick={close}>
+                <a href={fullPath(link.bare)} onClick={close}>
                   <span>{String(index + 1).padStart(2, "0")}</span>
                   {labels[index]}
                 </a>

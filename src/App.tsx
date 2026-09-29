@@ -1,5 +1,5 @@
-import { Component, type ReactNode } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Component, useEffect, type ReactNode } from "react";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { I18nProvider } from "@/i18n/context";
 import { Nav } from "@/components/navigation/Nav";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
@@ -28,6 +28,21 @@ class Boundary extends Component<{ children: ReactNode }, { failed: boolean }> {
     }
     return this.props.children;
   }
+}
+
+/** El SPA recibe hashes (/sender-immersive/#productos): al montar, llevar la
+    vista a la sección pedida (el navegador no puede hacerlo solo en un render asíncrono). */
+function HashScroll() {
+  const location = useLocation();
+  useEffect(() => {
+    if (!location.hash) return;
+    const id = decodeURIComponent(location.hash.slice(1));
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
+    }, 90);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname, location.hash]);
+  return null;
 }
 
 function Skip() {
@@ -69,6 +84,8 @@ function Shell() {
 export function App() {
   return (
     <I18nProvider>
+
+      <HashScroll />
       <Shell />
     </I18nProvider>
   );
