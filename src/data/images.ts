@@ -8,6 +8,16 @@ function media(file: string): string {
   return `${base}media/${file}`;
 }
 
+/** Films reales del proyecto (sender-design-ops): las fotos del sitio animadas
+    (profundidad + cámara + luz). Pipeline §13 ya ejecutado; el film no altera la
+    identidad factual de la escena. */
+export const films = {
+  capRf: media("film-rf.mp4"),
+  capBroadcast: media("film-broadcast.mp4"),
+  capAntennas: media("film-antennas.mp4"),
+  projAm: media("film-am.mp4"),
+};
+
 export const images = {
   hero: media("hero.jpg"),
   heroWide: media("hero-wide.jpg"),

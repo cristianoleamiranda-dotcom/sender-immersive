@@ -1,5 +1,5 @@
 import type { Loc } from "@/data/types";
-import { images } from "@/data/images";
+import { films, images } from "@/data/images";
 
 export interface EngineeringState {
   id: string;
@@ -10,6 +10,7 @@ export interface EngineeringState {
   text: Loc;
   note: Loc;
   image: string;
+  film?: string;
   alt: Loc;
 }
 
@@ -33,6 +34,7 @@ export const engineeringStates: EngineeringState[] = [
       en: "Radiating-system calculation, matching and protections.",
     },
     image: images.capRf,
+    film: films.capRf,
     alt: {
       es: "Módulo amplificador RF de estado sólido con transistores y bobinas de cobre",
       en: "Solid-state RF amplifier module with transistors and copper coils",
@@ -53,6 +55,7 @@ export const engineeringStates: EngineeringState[] = [
       en: "Continuous 24/7 operation. Modular Class D architecture and digital PLL.",
     },
     image: images.capBroadcast,
+    film: films.capBroadcast,
     alt: {
       es: "Sala de transmisión con racks de equipos de radiodifusión",
       en: "Transmission hall with broadcast equipment racks",
@@ -73,6 +76,7 @@ export const engineeringStates: EngineeringState[] = [
       en: "Design, manufacture, deployment and support.",
     },
     image: images.projAm,
+    film: films.projAm,
     alt: {
       es: "Gabinete de transmisor AM de estado sólido Serie SENDER SS",
       en: "SENDER SS series solid-state AM transmitter cabinet",
@@ -93,6 +97,7 @@ export const engineeringStates: EngineeringState[] = [
       en: "Continuous duty. Installed in broadcasting and defense.",
     },
     image: images.capAntennas,
+    film: films.capAntennas,
     alt: {
       es: "Torre de telecomunicaciones con arreglo de antenas",
       en: "Telecommunications tower with antenna array",

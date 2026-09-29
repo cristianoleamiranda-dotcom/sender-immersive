@@ -86,7 +86,7 @@ export function Engineering() {
                 aria-hidden={index !== active}
               >
                 <div className="eng-visual">
-                  <CinematicImage src={state.image} alt={tx(state.alt, lang)} position="center" drift="pan" />
+                  <CinematicImage src={state.image} alt={tx(state.alt, lang)} position="center" drift="pan" video={state.film} />
                   <canvas className="eng-diagram" data-eng-draw={index === active ? "1" : undefined} />
                 </div>
                 <div className="eng-copy">
@@ -113,7 +113,7 @@ export function Engineering() {
         <div className="eng-flow">
           {engineeringStates.map((state) => (
             <article key={state.id}>
-              <CinematicImage src={state.image} alt={tx(state.alt, lang)} drift="pan" />
+              <CinematicImage src={state.image} alt={tx(state.alt, lang)} drift="pan" video={state.film} />
               <div>
                 <p className="eng-range">
                   {state.index} · {state.code} · {tx(state.range, lang)}

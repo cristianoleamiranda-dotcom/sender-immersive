@@ -62,10 +62,10 @@ export function CinematicImage({
     const io = new IntersectionObserver(
       ([entry]) => {
         el.classList.toggle("is-live", entry.isIntersecting);
-        const media = el.querySelector("video");
-        if (!media) return;
-        if (entry.isIntersecting) void media.play().catch(() => {});
-        else media.pause();
+        const film = el.querySelector("video");
+        if (!film) return;
+        if (entry.isIntersecting) void film.play().catch(() => {});
+        else film.pause();
       },
       { threshold: 0.22 },
     );
@@ -80,8 +80,8 @@ export function CinematicImage({
     const el = ref.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const media = el.querySelector<HTMLElement>(".cine-media");
-    if (!media) return;
+    const medias = [...el.querySelectorAll<HTMLElement>(".cine-media, .cine-film")];
+    if (medias.length === 0) return;
     let raf = 0;
     const update = () => {
       raf = 0;
@@ -89,7 +89,9 @@ export function CinematicImage({
       const vh = window.innerHeight;
       if (rect.bottom < -80 || rect.top > vh + 80) return;
       const centro = (rect.top + rect.height / 2 - vh / 2) / vh;
-      media.style.transform = `translate3d(0, ${(-centro * 8).toFixed(2)}%, 0) scale(1.08)`;
+      for (const media of medias) {
+        media.style.transform = `translate3d(0, ${(-centro * 8).toFixed(2)}%, 0) scale(1.08)`;
+      }
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -109,42 +111,39 @@ export function CinematicImage({
       ref={ref}
       className={`cine cine-${drift}${depth ? " cine-depth" : ""}${className ? ` ${className}` : ""}`}
     >
-      {video ? (
+      {depth && (
+        <img
+          className="cine-back"
+          src={src}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: position }}
+        />
+      )}
+      <img
+        className="cine-media"
+        src={src}
+        srcSet={pictureProps(src)?.srcSet}
+        sizes={pictureProps(src)?.sizes}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        style={{ objectPosition: position, ...style }}
+      />
+      {video && (
         <video
-          className="cine-media"
+          className="cine-film"
           src={video}
-          autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
-          aria-label={alt}
-          style={{ objectPosition: position, ...style }}
+          preload="none"
+          onPlaying={(event) => event.currentTarget.classList.add("is-on")}
+          aria-hidden="true"
+          style={{ objectPosition: position }}
         />
-      ) : (
-        <>
-          {depth && (
-            <img
-              className="cine-back"
-              src={src}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              style={{ objectPosition: position }}
-            />
-          )}
-          <img
-            className="cine-media"
-            src={src}
-            srcSet={pictureProps(src)?.srcSet}
-            sizes={pictureProps(src)?.sizes}
-            alt={alt}
-            loading={priority ? "eager" : "lazy"}
-            decoding="async"
-            style={{ objectPosition: position, ...style }}
-          />
-        </>
       )}
       <span className="cine-light" aria-hidden="true" />
     </div>
