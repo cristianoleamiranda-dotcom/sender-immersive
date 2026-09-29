@@ -20,6 +20,10 @@ function canUseWebGL() {
 export function SignalField({ className, mode, progress = 0, state = 0, active = true }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const handleRef = useRef<SignalHandle | null>(null);
+  // La escena monta async: los pushes durante la carga se pierden (handle null).
+  // Al resolver el import se aplican los últimos valores renderizados.
+  const latestRef = useRef({ mode, progress, state });
+  latestRef.current = { mode, progress, state };
 
   useEffect(() => {
     if (!active || !canUseWebGL()) return;
@@ -32,9 +36,10 @@ export function SignalField({ className, mode, progress = 0, state = 0, active =
         if (cancelled || !canvasRef.current) return;
         const handle = mountSignalScene(canvasRef.current);
         if (!handle) return;
-        handle.setMode(mode);
-        handle.setProgress(progress);
-        handle.setState(state);
+        const latest = latestRef.current;
+        handle.setMode(latest.mode);
+        handle.setProgress(latest.progress);
+        handle.setState(latest.state);
         handleRef.current = handle;
       })
       .catch((error) => {

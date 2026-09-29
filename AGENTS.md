@@ -1,0 +1,90 @@
+# AGENTS.md — Contrato operativo del proyecto
+
+LEER ESTO PRIMERO. Cualquier sesión (humana o agente) que toque este repo trabaja bajo estas reglas.
+Este archivo es la referencia permanente del proyecto: no requiere contexto de chats anteriores.
+
+## Qué es este repo
+
+El sitio publicado de SENDER Chile: **ENGINEERING THE SIGNAL**.
+URL: https://cristianoleamiranda-dotcom.github.io/sender-immersive/
+Deploy automático: cada push a `main` dispara `.github/workflows/pages.yml` (~1 min).
+
+No lo rediseñes sin criterio. La experiencia ya está resuelta; los cambios son quirúrgicos.
+
+## DNA de la marca (innegociable)
+
+- **Paleta exacta:** `#FFFFFF`, `#1E73BE`, `#494949`, `#0085B2`. Prohibido: púrpura, violeta, rosa,
+  naranja, amarillo, dorado, verde, neón, degradados de color.
+- **Tipografía:** Instrument Sans (interfaz), IBM Plex Mono (solo metadatos).
+- **Tono:** editorial-técnico. Dibujo técnico, cine, 3D abstracto. El scroll mueve una cámara.
+- **Anti-patrones:** SaaS, startup de IA, plantilla, telecom genérica, cyberpunk, juego.
+  Hairlines en vez de cajas. Pin con propósito. Nada rebota.
+- **Una sola paleta, un solo SignalField, un contexto WebGL** (escritorio con puntero fino y sin
+  `prefers-reduced-motion`; móvil y reduced motion usan canvas 2D). WebGL y Lenis fallan en silencio.
+
+## Regla de oro: no inventar
+
+Fuente de verdad: [cristianoleamiranda-dotcom/sender](https://github.com/cristianoleamiranda-dotcom/sender)
+y [sender.cl](https://www.sender.cl/). Inventario completo y justificación de cada ausencia:
+`docs/CONTENT-INVENTORY.md`. Detalle histórico de skills y referencias: `docs/SKILLS.md`.
+
+- Contacto (único válido): +56 9 8386 4148 · sender@sender.cl · bis.ltda@gmail.com ·
+  Blanco Viel 1108, 2º piso, San Miguel, Santiago · WhatsApp 56983864148. Sin redes sociales.
+- Prohibido inventar: año de fundación, conteo de proyectos, premios, precios, datasheets,
+  clientes, certificaciones, telemetría "en vivo".
+- AM-2500SS: 2000 W, como está publicado.
+- Sin stock ni imágenes generadas de equipos, instalaciones o personas. La IA solo anima fotos reales.
+
+## Arquitectura y rutas
+
+- `src/sections/` Hero → Signal → About → Engineering → Products → Projects → Contact (una narrativa continua)
+- `src/three/scenes/` SignalScene (WebGL), `src/components/motion/` Lenis + canvas 2D
+- `src/i18n/{es,en}` — ES en `/`, EN en `/en`. No mezclar idiomas.
+- Rutas: `/`, `/en`, `/productos`, `/en/productos`, `/productos/:slug`, `/producto/:slug` + espejos EN.
+  `/soluciones` → redirect (ruta SPA + `404.html` estático).
+- El build genera 49 shells estáticas en `dist/` vía `scripts/seo.mjs` (ES + EN). GitHub Pages es
+  hosting estático: **toda ruta nueva necesita su shell** — agrégala a `seo.mjs`.
+
+## Comandos reales
+
+```bash
+npm ci
+npm run dev        # 0.0.0.0:5173
+npm run build      # tsc --noEmit && vite build && node scripts/seo.mjs
+node qa/check.mjs  # QA real (npm run qa es el alias)
+```
+
+QA obligatorio antes de push: `npx tsc --noEmit` + `node qa/check.mjs` + `npm run build` sin errores.
+Para probar el build local como Pages: `VITE_BASE_PATH=/sender-immersive/ npm run build`.
+
+## Cómo publicar (sesiones de agente sin conexión permanente al repo)
+
+1. Clonar este repo, trabajar en rama o directo según el alcance.
+2. Commit claro + push con un PAT fine-grained de duración corta (Contents: Read/Write, solo este repo).
+3. Revocar el PAT al terminar. Pages despliega solo.
+4. Verificar en vivo: home + una ruta profunda ES y una EN.
+
+## Referencias de movimiento (los 4 videos de YouTube)
+
+Estudiados como **principios, no como copia** (véase `docs/SKILLS.md`):
+
+| Video | Principio que aporta | Dónde vive en el sitio |
+|---|---|---|
+| youtu.be/Da7ZuhyWACg | la cámara avanza con el scroll | Hero: clip-path + escala + `progress` del SignalField |
+| youtu.be/y1pM7bS6IY8 | transición = cambio de estado | Signal → About: la señal cambia de trabajo |
+| youtu.be/3yQttz-UKjA | profundidad por capas | Engineering: pin + paneles con dibujo técnico |
+| youtu.be/3eExfC63uSc | convergencia editorial | Projects/Contact: archivo fotográfico a escena |
+
+Regla: la imagen no se deforma, cada transición tiene un trabajo distinto.
+
+## Pendientes conocidos
+
+- ~~SignalField puede perder el primer push de progreso~~ → **resuelto** (se aplican los últimos valores al montar).
+- ~~aria-labelledby de Ingeniería apuntaba al título de escritorio~~ → **resuelto** (`aria-label` con el título).
+- ~~El catálogo de inicio repite 01 por categoría~~ → **resuelto** (numeración secuencial en la home).
+- El error "Tira error" nunca se reprodujo en un navegador real; mantener WebGL/Lenis a prueba de fallos.
+
+## Historial de publicación
+
+- `673a5d8` — sitio íntegro desde `scroll-craft@arena/01a0e48e-scroll-craft` (LICENSE Unlicense, README documentado).
+- `cad1327` — shells EN + `404.html` con base del repo (requisito de hosting estático).

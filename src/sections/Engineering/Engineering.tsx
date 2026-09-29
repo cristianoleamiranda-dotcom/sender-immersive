@@ -53,7 +53,7 @@ export function Engineering() {
   }, []);
 
   return (
-    <section id="ingenieria" className="eng" aria-labelledby="eng-title" data-eng>
+    <section id="ingenieria" className="eng" aria-label={copy.title} data-eng>
       <div className="eng-desktop">
         <div className="eng-pin">
           <div className="eng-index">
