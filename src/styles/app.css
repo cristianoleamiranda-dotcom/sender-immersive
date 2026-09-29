@@ -1587,3 +1587,22 @@ html.is-ready .hero-photo {
     padding-right: 6.5rem;
   }
 }
+
+/* legibilidad WCAG AA sobre fondos oscuros:
+   los azules de marca (--signal, --cyan) no alcanzan contraste sobre
+   --field (#494949); en contexto oscuro los rótulos mono pasan a blanco. */
+[data-theme="dark"] .kicker,
+.contact address strong {
+  color: var(--paper);
+}
+
+[data-theme="dark"] .note,
+[data-theme="dark"] .figcap {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* la figcap vive dentro de la figura .depth (fondo --field) aunque la
+   sección que la contiene sea clara */
+.depth .figcap {
+  color: rgba(255, 255, 255, 0.92);
+}
