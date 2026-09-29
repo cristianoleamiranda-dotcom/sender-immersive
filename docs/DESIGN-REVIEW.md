@@ -24,6 +24,17 @@ del blanco editorial (mantener vs. mundo oscuro) — ver FLUJO-OPTIMIZADO G5.
 
 ---
 
+## LOOP 12 — PRESENCIA DEL FILM DEL HÉROE («no se ve el video de fondo»)
+
+Reporte de la persona. Verificación en producción: el video SIEMPRE estuvo reproduciéndose
+en modo normal (medido). Causas reales de la percepción: (a) modo reducido = bloqueado por
+diseño (loop 11, botón ▶ — contrato, no bug); (b) opacidad 0.8 + film nocturno sutil;
+(c) en móvil, object-position centrado recortaba la parte viva (torre/luces fuera de cuadro).
+
+**Acciones:** opacity 0.8→1 + realce brightness(1.16) saturate(1.14) contrast(1.04);
+en ≤719px object-position 64% 42% (torre y sus luces parpadeando en el cuadro vertical).
+Verificado en render móvil: torre en escena, luces visibles, ⏸ Pausar film activo.
+
 ## LOOP 11 — CONTRATO DE COHERENCIA DEL MODO REDUCIDO (regla de la persona)
 
 «Si bloquea, bloquearía todo; nada debe quedar de fondo sólido a fondo sólido gris».

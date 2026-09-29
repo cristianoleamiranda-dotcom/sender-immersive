@@ -316,7 +316,8 @@ html.is-ready .hero-photo {
 }
 
 .hero-video.is-on {
-  opacity: 0.8;
+  opacity: 1; /* presencia plena del film: la persona debe verlo vivo sin esfuerzo */
+  filter: brightness(1.16) saturate(1.14) contrast(1.04);
 }
 
 .hero-gl,
@@ -1565,6 +1566,10 @@ html.is-ready .hero-photo {
 }
 
 @media (max-width: 719px) {
+  /* encuadre vertical: la torre (luces vivas del film) dentro del cuadro móvil */
+  .hero-video {
+    object-position: 64% 42%;
+  }
   .signal-stages li {
     grid-template-columns: 2rem 1fr;
   }
