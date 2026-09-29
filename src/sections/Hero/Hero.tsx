@@ -9,6 +9,25 @@ export function Hero() {
   const { ui } = useI18n();
   const [progress, setProgress] = useState(0);
   const [videoOn, setVideoOn] = useState(false);
+  // Secuencia de entrada (DNA §9 / brief §17): señal → campo → SENDER → líneas.
+  // Estado natural "done" = secuencia ya ocurrida; solo se anima cuando el
+  // dispositivo no pide reduced-motion. El primer scroll la salta.
+  const [intro, setIntro] = useState<"play" | "done">(() =>
+    typeof window !== "undefined" && !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "play"
+      : "done",
+  );
+
+  useEffect(() => {
+    if (intro !== "play") return;
+    const done = () => setIntro("done");
+    const timer = window.setTimeout(done, 2900);
+    window.addEventListener("scroll", done, { once: true, passive: true });
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", done);
+    };
+  }, [intro]);
 
   useEffect(() => {
     const root = document.querySelector("[data-hero]");
@@ -47,7 +66,7 @@ export function Hero() {
   }, []);
 
   return (
-    <section id="inicio" className="hero" data-theme="dark" data-hero>
+    <section id="inicio" className="hero" data-theme="dark" data-hero data-intro={intro}>
       <div className="hero-pin">
         <img
           data-hero-photo
@@ -76,6 +95,20 @@ export function Hero() {
         <SignalCanvas className="hero-canvas" variant="hero" progress={progress} />
         <SignalField className="hero-gl" mode="hero" progress={progress} active />
         <div className="hero-veil" />
+        <svg
+          className="hero-signalpath"
+          viewBox="0 0 1440 520"
+          preserveAspectRatio="xMidYMid slice"
+          aria-hidden="true"
+        >
+          <path
+            className="sp-trace"
+            pathLength={1000}
+            d="M -40 260 H 340 L 400 214 L 460 306 L 520 184 L 580 328 L 640 244 L 700 280 L 860 260 H 1480"
+          />
+          <circle cx="150" cy="260" r="3" />
+          <circle cx="1290" cy="260" r="3" />
+        </svg>
         <div className="hero-copy">
           <p className="hero-disciplines">
             {ui.hero.disciplines.map((item) => (
