@@ -82,7 +82,13 @@ Regla: la imagen no se deforma, cada transición tiene un trabajo distinto.
 - ~~SignalField puede perder el primer push de progreso~~ → **resuelto** (se aplican los últimos valores al montar).
 - ~~aria-labelledby de Ingeniería apuntaba al título de escritorio~~ → **resuelto** (`aria-label` con el título).
 - ~~El catálogo de inicio repite 01 por categoría~~ → **resuelto** (numeración secuencial en la home).
-- El error "Tira error" nunca se reprodujo en un navegador real; mantener WebGL/Lenis a prueba de fallos.
+- ~~Contraste AA en contextos oscuros~~ → **resuelto** (`83e3d4f`; re-auditoría: 0 muestras bajo mínimo).
+- El error "Tira error" nunca se reprodujo en un navegador real (Chromium headless incluido); mantener WebGL/Lenis a prueba de fallos.
+
+## Auditoría
+
+Auditoría renderizada completa (Chromium, tres contextos, WCAG AA con el evaluador de `sender/qa`,
+hechos cruzados contra el repo fuente): ver **`docs/AUDITORIA-INMERSIVA.md`**.
 
 ## Historial de publicación
 
