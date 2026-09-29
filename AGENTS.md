@@ -99,10 +99,11 @@ El único video del sitio es `sender-hero.mp4`, real y preexistente de SENDER.
 - ~~Contraste AA en contextos oscuros~~ → **resuelto** (`83e3d4f`; re-auditoría: 0 muestras bajo mínimo).
 - El error "Tira error" nunca se reprodujo en un navegador real (Chromium headless incluido); mantener WebGL/Lenis a prueba de fallos.
 
-## Auditoría
+## Autoridad de diseño y loops
 
-Auditoría renderizada completa (Chromium, tres contextos, WCAG AA con el evaluador de `sender/qa`,
-hechos cruzados contra el repo fuente): ver **`docs/AUDITORIA-INMERSIVA.md`**.
+- **`docs/SENDER-DESIGN-DNA.md`** — la autoridad de diseño: color, tipografía, grid, ratios, layouts nombrados, imagen, motion, 3D, transiciones, copy, SEO, anti-slop. Toda pieza se justifica desde ahí.
+- **`docs/DESIGN-REVIEW.md`** — registro vivo del Design Loop por escena: qué funciona, qué no, qué debe cambiar.
+- Auditoría renderizada completa (Chromium, tres contextos, WCAG AA con el evaluador de `sender/qa`, hechos cruzados contra el repo fuente): ver **`docs/AUDITORIA-INMERSIVA.md`**.
 
 ## Historial de publicación
 

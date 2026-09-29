@@ -308,7 +308,7 @@ html.is-ready .hero-photo {
 }
 
 .hero-video.is-on {
-  opacity: 0.72;
+  opacity: 0.8;
 }
 
 .hero-gl,
@@ -1605,4 +1605,92 @@ html.is-ready .hero-photo {
    sección que la contiene sea clara */
 .depth .figcap {
   color: rgba(255, 255, 255, 0.92);
+}
+
+/* secuencia de entrada del hero — DNA §9 (brief §17):
+   la señal entra → se propaga → forma el campo → SENDER → ENGINEERING THE SIGNAL.
+   Solo actúa bajo data-intro="play"; el estado natural es la secuencia ya ocurrida.
+   El primer scroll la salta y reduced-motion nunca la ve. */
+.hero-signalpath {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.hero-signalpath path {
+  stroke: var(--paper);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.hero-signalpath circle {
+  fill: var(--signal);
+}
+
+[data-intro="play"] .hero-signalpath {
+  animation: sp-visible 2.5s var(--ease) both;
+}
+
+[data-intro="play"] .hero-signalpath .sp-trace {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: sp-draw 1.5s var(--ease-out) 0.15s forwards;
+}
+
+[data-intro="play"] .hero-signalpath circle {
+  animation: sp-fade 0.5s var(--ease) 0.5s both;
+}
+
+[data-intro="play"] .hero-photo {
+  animation: sp-fade 0.9s var(--ease-out) both;
+}
+
+[data-intro="play"] .hero-gl,
+[data-intro="play"] .hero-canvas {
+  animation: sp-fade 1.3s var(--ease) 0.6s both;
+}
+
+[data-intro="play"] .wordmark {
+  animation: sp-rise 0.9s var(--ease-out) 1.15s both;
+}
+
+[data-intro="play"] .hero-lines {
+  animation: sp-rise 0.9s var(--ease-out) 1.55s both;
+}
+
+[data-intro="play"] .hero-disciplines {
+  animation: sp-fade 0.7s var(--ease) 1.9s both;
+}
+
+[data-intro="play"] .hero-place {
+  animation: sp-fade 0.7s var(--ease) 2.05s both;
+}
+
+[data-intro="play"] .hero-foot {
+  animation: sp-fade 0.7s var(--ease) 2.2s both;
+}
+
+@keyframes sp-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sp-visible {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  72% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes sp-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sp-rise {
+  from { opacity: 0; transform: translateY(0.4em); }
+  to { opacity: 1; transform: none; }
 }
