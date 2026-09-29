@@ -21,7 +21,7 @@ export function Products() {
       <p className="lede">{copy.intro}</p>
 
       <div>
-        {featured.map((product) => {
+        {featured.map((product, featuredIndex) => {
           const spec = product.specs[0]?.rows.slice(0, 4) ?? [];
           return (
             <article key={product.slug} className="object">
@@ -30,7 +30,9 @@ export function Products() {
               </div>
               <div>
                 <p className="object-meta">
-                  <span>{tx(product.index, lang)}</span>
+                  {/* Numeración secuencial en la home: los índices del catálogo
+                      se reinician por categoría y aquí repetirían "01". */}
+                  <span>{String(featuredIndex + 1).padStart(2, "0")}</span>
                   <span>{categories.find((item) => item.id === product.categoryId)?.name[lang]}</span>
                 </p>
                 <h3>{tx(product.name, lang)}</h3>
