@@ -6,6 +6,29 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 02 — VIDEO COMO ENTORNO (corrección de la persona, captura S24)
+
+**Hallazgo.** En el S24 real nunca había video: el código solo lo montaba en escritorio y
+tras el 42 % del scroll — exactamente lo que la captura de la persona evidenció. Violaba
+§28 (móvil: video/fallback, «no simplemente desactivar todo») y el efecto de las
+referencias (el entorno cinematográfico visible de entrada).
+
+**Qué se construyó.** El film real `sender-hero.mp4` pasa a ser el fondo del entorno de
+transmisión en **todos** los viewports desde la carga (autoPlay muted loop playsInline,
+`preload="auto"`, fade-in en `canplay`), detrás de la fotografía real; la foto se abre con
+el scroll como la evidencia dentro del entorno. Reduced-motion: solo fotografía, sin
+reproducción. Ahorro de datos / autoplay bloqueado: degrada al poster real (misma
+composición).
+
+**Verificación dura (loop renderizado).** Escritorio y móvil: readyState 4, opacidad 0.8,
+`currentTime` avanzando (3.19→4.7 / 3.24→4.27), sin pausa, loop 12 s, 0 errores. Capturas
+en `auditoria/video-*.png`. **Aprobado en ambos contextos.**
+
+**DNA.** Sin violaciones: video real preexistente (§11/§13/§14 — sin IA generando
+contenido), velos en alfa de gris, paleta intacta.
+
+---
+
 ## LOOP 01 — HERO (secuencia de entrada §17)
 
 **Qué se construyó.** Secuencia canónica de entrada: la señal entra (trazo SVG que se

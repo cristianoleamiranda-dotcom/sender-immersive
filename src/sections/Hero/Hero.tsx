@@ -8,7 +8,13 @@ import { SignalField } from "@/three/components/SignalField";
 export function Hero() {
   const { ui } = useI18n();
   const [progress, setProgress] = useState(0);
-  const [videoOn, setVideoOn] = useState(false);
+  // El film real de SENDER es el fondo del entorno de transmisión en todos los
+  // viewports (brief §28: en móvil, video nativo en vez de desactivar todo).
+  // Reduced-motion: solo fotografía, sin reproducción.
+  const [videoOn] = useState(
+    () => typeof window === "undefined" || !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const [videoReady, setVideoReady] = useState(false);
   // Secuencia de entrada (DNA §9 / brief §17): señal → campo → SENDER → líneas.
   // Estado natural "done" = secuencia ya ocurrida; solo se anima cuando el
   // dispositivo no pide reduced-motion. El primer scroll la salta.
@@ -33,7 +39,6 @@ export function Hero() {
     const root = document.querySelector("[data-hero]");
     if (!root) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const narrow = window.matchMedia("(max-width: 1099px)").matches;
     let raf = 0;
 
     const measure = () => {
@@ -48,7 +53,6 @@ export function Hero() {
         photo.style.clipPath = `inset(${inset}% ${side}% ${inset}% ${side}%)`;
         photo.style.transform = `scale(${1.08 - p * 0.08})`;
       }
-      if (!reduced && !narrow && p > 0.42) setVideoOn(true);
     };
 
     const onScroll = () => {
@@ -68,6 +72,21 @@ export function Hero() {
   return (
     <section id="inicio" className="hero" data-theme="dark" data-hero data-intro={intro}>
       <div className="hero-pin">
+        {videoOn ? (
+          <video
+            className={`hero-video${videoReady ? " is-on" : ""}`}
+            poster={posters.lg}
+            autoPlay
+            muted
+            playsInline
+            loop
+            preload="auto"
+            onCanPlay={() => setVideoReady(true)}
+            aria-label={ui.hero.videoLabel}
+          >
+            <source src={images.heroVideo} type="video/mp4" />
+          </video>
+        ) : null}
         <img
           data-hero-photo
           className="hero-photo"
@@ -78,20 +97,6 @@ export function Hero() {
           fetchPriority="high"
           decoding="async"
         />
-        {videoOn ? (
-          <video
-            className="hero-video is-on"
-            poster={posters.lg}
-            autoPlay
-            muted
-            playsInline
-            loop
-            preload="metadata"
-            aria-label={ui.hero.videoLabel}
-          >
-            <source src={images.heroVideo} type="video/mp4" />
-          </video>
-        ) : null}
         <SignalCanvas className="hero-canvas" variant="hero" progress={progress} />
         <SignalField className="hero-gl" mode="hero" progress={progress} active />
         <div className="hero-veil" />
