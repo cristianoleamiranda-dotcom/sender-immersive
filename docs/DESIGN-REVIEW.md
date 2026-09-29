@@ -6,6 +6,27 @@ qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DN
 
 ---
 
+## LOOP 06 — FILM ROBUSTO EN TÁCTIL (hallazgo de la persona: "no se ve video, solo animación")
+
+**Causa.** En táctil, Chrome Android degrada `preload="auto"` en datos móviles y bloquea
+el autoplay: el video nunca emitía `canplay`, así que el control condicional a ese evento
+no aparecía jamás y el film quedaba en opacidad 0 — "solo animación".
+
+**Qué se construyó.** Control del film **siempre visible en táctil** (`pointer: coarse`) y
+bajo reduced-motion; en escritorio normal sigue sin botón (autoplay). Red de seguridad
+temporal (1.6 s): si el film sigue pausado, aparece el control y se hace visible el
+elemento aunque no haya cargado. `preload` según contexto (`none` bajo reduced-motion —
+carga bajo demanda al pulsar). El tap reproduce con fade-in; etiqueta conmutada
+Reproducir/Pausar.
+
+**Verificado en loop.** Táctil normal: autoplay + control visible («Pausar film») ·
+táctil reduced: pausa + «Reproducir film» → tap → reproduce (t avanza, opacidad 0.8) ·
+escritorio: autoplay sin control · QA verde. Captura `auditoria/film-movil-reduced-play.png`.
+Nota de despliegue: el fix de texto-size-adjust del loop 05 ya estaba en el CSS servido;
+la captura de la persona (10:48) era caché de Pages (max-age 600 s) — forzar recarga.
+
+---
+
 ## LOOP 05 — MÓVIL REAL (hallazgos de la persona: capturas S24 10:20/10:32)
 
 **Tres hallazgos de las capturas.**

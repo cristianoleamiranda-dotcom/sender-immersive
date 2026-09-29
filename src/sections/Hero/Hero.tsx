@@ -17,7 +17,13 @@ export function Hero() {
   );
   const [videoReady, setVideoReady] = useState(false);
   const [filmPlaying, setFilmPlaying] = useState(false);
-  const [showFilmToggle, setShowFilmToggle] = useState(reducedMotion);
+  // En táctil el control va SIEMPRE: los navegadores móviles degradan
+  // preload="auto" en datos móviles y bloquean el autoplay — un botón
+  // condicional a onCanPlay nunca llegaría a verse.
+  const [coarse] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches,
+  );
+  const [showFilmToggle, setShowFilmToggle] = useState(reducedMotion || coarse);
   // Secuencia de entrada (DNA §9 / brief §17): señal → campo → SENDER → líneas.
   // Estado natural "done" = secuencia ya ocurrida; solo se anima cuando el
   // dispositivo no pide reduced-motion. El primer scroll la salta.
@@ -26,6 +32,19 @@ export function Hero() {
       ? "play"
       : "done",
   );
+
+  // Red de seguridad: si a los 1.6 s el film sigue pausado (autoplay
+  // bloqueado) o el video no cargó, asegurar control y elemento visibles.
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      const video = document.querySelector<HTMLVideoElement>(".hero-video");
+      if (video && video.paused && !reducedMotion) setShowFilmToggle(true);
+      setVideoReady(true);
+    }, 1600);
+    return () => window.clearTimeout(timer);
+    // una sola vez al montar
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (intro !== "play") return;
@@ -82,7 +101,7 @@ export function Hero() {
           muted
           playsInline
           loop
-          preload="auto"
+          preload={reducedMotion ? "none" : "auto"}
           onCanPlay={(event) => {
             setVideoReady(true);
             const video = event.currentTarget;
@@ -104,6 +123,7 @@ export function Hero() {
             onClick={() => {
               const video = document.querySelector<HTMLVideoElement>(".hero-video");
               if (!video) return;
+              setVideoReady(true);
               if (video.paused) void video.play().catch(() => {});
               else video.pause();
             }}
