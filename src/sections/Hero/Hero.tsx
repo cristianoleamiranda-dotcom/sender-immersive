@@ -74,6 +74,7 @@ export function Hero() {
         const side = 6 * (1 - p);
         photo.style.clipPath = `inset(${inset}% ${side}% ${inset}% ${side}%)`;
         photo.style.transform = `scale(${1.08 - p * 0.08})`;
+        photo.style.opacity = String(0.42 + p * 0.58);
       }
     };
 

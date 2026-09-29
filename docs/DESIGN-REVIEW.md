@@ -24,6 +24,27 @@ del blanco editorial (mantener vs. mundo oscuro) — ver FLUJO-OPTIMIZADO G5.
 
 ---
 
+## LOOP 10 — MUNDO NOCTURNO (referencia DREAMFRAME de la persona)
+
+Entrada: grabación YouTube (tmpfiles) mostrando el efecto objetivo: sitio entero dentro
+de un mundo cinematográfico oscuro; blanco eliminado del flujo. Diagnóstico previo con
+freezedetect sobre la grabación S24: films NUNCA se congelaron; la ruptura era el papel
+blanco de las secciones.
+
+**Acciones.**
+1. Swap semántico de tokens: --paper→#494949, --ink→blanco, --field/rule/soft re-tintados;
+   --muted (blanco 74%) para los 17 textos que eran gris-sobre-blanco; azul reservado a
+   líneas/botones/tints (marca). Reparaciones puntuales: kicker/links/facts/crumb a blanco,
+   form/selection/placeholders al mundo.
+2. Firma del hero integrada: banda de revelación descansa tenue (op .42) y el scroll la
+   abre a foto plena (op →1); reduced = foto completa.
+3. Nav: velo denso + blur permanente (legible sobre cielo brillante de Proyectos).
+4. (Loop 09) films en 4 proyectos + contenedores sin blanco + preload metadata.
+Verificado: tsc/QA/build + renders (hero reposo/revelación/proyectos/contacto/footer).
+Pendiente S24 de la persona (?v=12): percepción del mundo completo.
+
+---
+
 ## VALIDACIÓN EXTERNA — Grabación real del S24 de la persona (11:27, post ?v=11)
 
 Grabación de pantalla (10.6 s, frames en `auditoria/grab/`) analizada frame a frame:

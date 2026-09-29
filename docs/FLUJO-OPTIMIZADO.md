@@ -26,7 +26,11 @@ este sitio — y el molde para cualquier otro del portafolio.
 
 ```
 G0 BRIEF/ASSETS    pedido + capturas/activos reales → se registra en DESIGN-REVIEW
-G1 REFERENCIA      videos/repos de método → principios, jamás copia
+G1 REFERENCIA      videos/repos de método → principios, jamás copia.
+                   Referencias de la persona por link temporal (litterbox/tmpfiles/
+                   onlyfiles): descargar YA (expiran), extraer frames con ffmpeg,
+                   analizar (freezedetect para.motion, composición, paleta) y anotar
+                   los principios en DESIGN-REVIEW antes de tocar código.
 G2 DNA CHECK       toda pieza se justifica contra SENDER-DESIGN-DNA (anti-slop incluido)
 G3 PROTOTIPO       el cambio mínimo que demuestra la idea (rama/commit por hito)
 G4 DESIGN LOOP     render → inspección con datos duros (no capturas sueltas) → fix → re-render
