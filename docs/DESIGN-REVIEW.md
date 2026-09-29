@@ -24,6 +24,23 @@ del blanco editorial (mantener vs. mundo oscuro) — ver FLUJO-OPTIMIZADO G5.
 
 ---
 
+## LOOP 11 — CONTRATO DE COHERENCIA DEL MODO REDUCIDO (regla de la persona)
+
+«Si bloquea, bloquearía todo; nada debe quedar de fondo sólido a fondo sólido gris».
+Estado previo inconsistente: el hero respetaba reduced (sin autoplay, botón a demanda)
+pero los films de escena IGUAL se auto-reproducían por IO (sin control).
+
+**Contrato unificado (verificado en ambos modos):**
+- Modo normal: films autoplay + botón Pausar (héroe y escenas, mismo comportamiento).
+- Reducido: TODO lo automático bloqueado (films en pausa en todo el sitio), la FOTO
+  real sostiene cada escena (nunca un bloque gris muerto) y cada film queda a un toque
+  (botón «Reproducir film» = ui.hero.playFilm reutilizado, ES/EN).
+- Data-saver: si el navegador frena el play(), el botón queda en ▶ y el toque arranca
+  (el estado del botón refleja el <video> real vía onPlay/onPause).
+
+Verificado con emulación reducedMotion en Chromium móvil: bloqueado ✓ foto visible ✓
+botón ✓ tras toque reproduce y funde ✓ / modo normal: autoplay ✓.
+
 ## LOOP 10 — MUNDO NOCTURNO (referencia DREAMFRAME de la persona)
 
 Entrada: grabación YouTube (tmpfiles) mostrando el efecto objetivo: sitio entero dentro

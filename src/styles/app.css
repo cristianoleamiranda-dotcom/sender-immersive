@@ -1813,6 +1813,12 @@ html.is-ready .hero-photo {
   cursor: pointer;
 }
 
+.film-toggle--scene {
+  right: 1rem;
+  bottom: 1rem;
+  padding: 0.4rem 0.7rem;
+}
+
 .film-toggle::before {
   content: "";
   width: 0;

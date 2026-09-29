@@ -1,6 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import { srcset } from "@/data/images";
+import { useI18n } from "@/i18n/context";
 
 interface ImageProps {
   src: string;
@@ -39,9 +40,11 @@ export function ImmersiveImage(props: ImageProps) {
  * Pipeline imagen→cine (DNA §6/§9, brief §13/§11): fotografía real de SENDER
  * + separación de profundidad + movimiento de cámara lento + barrido de luz.
  * La cámara vive en el wrapper para no pelear con transforms de contexto.
- * Fuera de pantalla la animación se apaga (is-live); reduced-motion nunca ve
- * movimiento (kill global). Si existe un micro-video real de la imagen,
- * pásalo por `video` y el componente lo monta como el film del hero.
+ * Fuera de pantalla la animación se apaga (is-live). Contrato de coherencia
+ * (regla de la persona: «si bloquea, bloquea todo; nada queda en fondo
+ * sólido»): reduced-motion arranca BLOQUEADO pero con el film a un toque
+ * (botón como el del hero) — la foto real sostiene la escena mientras.
+ * Si existe un micro-video real de la imagen, pásalo por `video`.
  */
 export function CinematicImage({
   src,
@@ -55,6 +58,12 @@ export function CinematicImage({
   video,
 }: ImageProps & { drift?: "pan" | "zoom" | "none"; depth?: boolean; video?: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const { ui } = useI18n();
+  const [armed, setArmed] = useState(
+    () => typeof window === "undefined" || !window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+  const [userHold, setUserHold] = useState(false);
+  const [playing, setPlaying] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -64,14 +73,27 @@ export function CinematicImage({
         el.classList.toggle("is-live", entry.isIntersecting);
         const film = el.querySelector("video");
         if (!film) return;
-        if (entry.isIntersecting) void film.play().catch(() => {});
+        if (entry.isIntersecting && armed && !userHold) void film.play().catch(() => {});
         else film.pause();
       },
       { threshold: 0.22 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [armed, userHold]);
+
+  const toggleFilm = () => {
+    const film = ref.current?.querySelector("video");
+    if (!film) return;
+    if (film.paused) {
+      setUserHold(false);
+      setArmed(true);
+      void film.play().catch(() => {});
+    } else {
+      setUserHold(true);
+      film.pause();
+    }
+  };
 
   // Parallax al scroll: la imagen se desplaza verticalmente (hasta ±4%) según
   // su posición en el viewport — cine perceptible, ligado al gesto. Reduced
@@ -140,10 +162,22 @@ export function CinematicImage({
           loop
           playsInline
           preload="metadata"
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
           onPlaying={(event) => event.currentTarget.classList.add("is-on")}
           aria-hidden="true"
           style={{ objectPosition: position }}
         />
+      )}
+      {video && (
+        <button
+          type="button"
+          className={`film-toggle film-toggle--scene${playing ? " is-playing" : ""}`}
+          aria-pressed={playing}
+          onClick={toggleFilm}
+        >
+          {playing ? ui.hero.pauseFilm : ui.hero.playFilm}
+        </button>
       )}
       <span className="cine-light" aria-hidden="true" />
     </div>
