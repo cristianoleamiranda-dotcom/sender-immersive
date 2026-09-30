@@ -1,0 +1,314 @@
+.productos {
+  position: relative;
+  background: var(--bg);
+  padding: var(--sp-2xl) var(--margen) var(--sp-xl);
+}
+
+.prod__cabecera { margin-bottom: var(--sp-xl); }
+.prod__titulo { color: var(--paper); margin-bottom: 0; }
+.prod__titulo-linea { display: block; }
+.prod__titulo-linea:last-child { color: var(--azul-alto); }
+
+/* ── Las siete estaciones ────────────────────────────────────────────── */
+
+.prod__estaciones {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  border-top: var(--hairline) solid var(--acero);
+  border-bottom: var(--hairline) solid var(--acero);
+  margin-bottom: var(--sp-xl);
+  scrollbar-width: thin;
+}
+
+.prod__estacion {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-xs);
+  padding: var(--sp-s) var(--sp-m) var(--sp-s) 0;
+  margin-right: var(--sp-m);
+  color: var(--texto-3);
+  white-space: nowrap;
+  transition: color var(--t-micro) var(--e-micro);
+}
+
+.prod__estacion:hover, .prod__estacion:focus-visible { color: var(--texto-2); }
+.prod__estacion[data-activa="true"] { color: var(--paper); }
+
+.prod__estacion-n { font-size: 0.625rem; color: var(--ceniza); }
+.prod__estacion[data-activa="true"] .prod__estacion-n { color: var(--cian-claro); }
+
+.prod__estacion-nombre {
+  font-size: var(--cuerpo-s);
+  font-weight: var(--peso-medio);
+}
+
+/**
+ * ── MÓVIL: las siete categorías, a la vista ──────────────────────────────
+ *
+ * El selector es un raíl horizontal con `overflow-x: auto`. En escritorio cabe
+ * entero. En un teléfono de 390 px mide más de 1000: las categorías 03 a 07
+ * quedan fuera de la pantalla y sólo se descubren arrastrando en horizontal,
+ * algo que nadie hace sobre una fila de pestañas sin ninguna señal de que se
+ * pueda. Medido: «03 STL / Enlaces» empezaba en x=446, fuera de un viewport de
+ * 390.
+ *
+ * Se envuelve en varias líneas. Cuesta unas décimas de altura y a cambio el
+ * catálogo entero es visible sin gestos ocultos. El diseño no se resiente
+ * porque el elemento ya es una lista numerada: en dos columnas se lee como un
+ * índice, que es justo lo que es.
+ */
+@media (max-width: 899px) {
+  .prod__estaciones {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    padding-bottom: var(--sp-xs);
+  }
+
+  .prod__estacion {
+    flex: 1 1 calc(50% - var(--sp-s));
+    margin-right: 0;
+    padding-right: var(--sp-s);
+    /* Área de toque cómoda: la fila entera responde. */
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .prod__estacion-nombre { white-space: normal; }
+}
+
+.prod__estacion-cuenta { font-size: 0.625rem; color: var(--ceniza); }
+
+.prod__estacion::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: 2px;
+  width: 0;
+  background: var(--cian);
+  transition: width var(--t-trans) var(--e-entrada);
+}
+
+.prod__estacion[data-activa="true"]::after { width: calc(100% - var(--sp-m)); }
+
+/* ── Panel ───────────────────────────────────────────────────────────── */
+
+.prod__panel { align-items: start; }
+.prod__contexto { position: sticky; top: var(--sp-xl); }
+
+.prod__cat-nombre { color: var(--paper); margin-bottom: var(--sp-xs); }
+.prod__cat-kicker { color: var(--azul-claro); margin-bottom: var(--sp-s); }
+.prod__cat-desc { color: var(--plata); margin-bottom: var(--sp-m); }
+
+.prod__alcance { display: grid; gap: var(--sp-xs); }
+
+.prod__alcance-item {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-xs);
+  color: var(--texto-3);
+}
+
+.prod__alcance-marca {
+  flex: 0 0 auto;
+  width: 12px;
+  height: var(--hairline);
+  background: var(--cian);
+  transform: translateY(-3px);
+}
+
+.prod__cat-figura { margin-top: var(--sp-m); }
+
+/* ── Lista de productos ──────────────────────────────────────────────── */
+
+.prod__barra {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--sp-xs);
+  border-bottom: var(--hairline) solid var(--acero);
+  color: var(--texto-3);
+}
+
+.prod__lista { display: grid; }
+
+.prod__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr) auto;
+  gap: var(--sp-2xs) var(--sp-s);
+  align-items: baseline;
+  width: 100%;
+  text-align: left;
+  padding: var(--sp-m) 0;
+  border-bottom: var(--hairline) solid var(--acero);
+  transition: padding-left var(--t-micro) var(--e-micro);
+}
+
+.prod__item:hover, .prod__item:focus-visible { padding-left: var(--sp-xs); }
+
+.prod__item-n { font-size: 0.625rem; color: var(--cian-claro); }
+
+.prod__item-nombre {
+  color: var(--paper);
+  font-size: var(--titulo);
+  font-weight: var(--peso-ligero);
+  letter-spacing: var(--tracking-titulo);
+  line-height: 1.2;
+}
+
+.prod__item-resumen {
+  grid-column: 2;
+  color: var(--texto-3);
+  max-width: 52ch;
+}
+
+.prod__item-abrir {
+  grid-column: 3;
+  grid-row: 1;
+  color: var(--ceniza);
+  transition: color var(--t-micro) var(--e-micro);
+}
+
+.prod__item:hover .prod__item-abrir { color: var(--azul-claro); }
+
+/* ── Ficha ───────────────────────────────────────────────────────────── */
+
+.ficha {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: var(--sp-s);
+}
+
+.ficha__velo {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--noche) 88%, transparent);
+}
+
+.ficha__marco {
+  position: relative;
+  z-index: 1;
+  width: min(1180px, 100%);
+  max-height: 92svh;
+  overflow-y: auto;
+  background: var(--pozo);
+  border: var(--hairline) solid var(--acero);
+  padding: var(--sp-m);
+  animation: ficha-entra var(--t-trans) var(--e-entrada);
+}
+
+@keyframes ficha-entra {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha__marco { animation: none; }
+}
+
+.ficha__cabecera {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--sp-m);
+  padding-bottom: var(--sp-s);
+  border-bottom: var(--hairline) solid var(--acero);
+}
+
+.ficha__cat { color: var(--ceniza); margin-bottom: var(--sp-xs); }
+.ficha__nombre { color: var(--paper); }
+
+.ficha__cerrar {
+  flex: 0 0 auto;
+  color: var(--texto-2);
+  padding: var(--sp-2xs) var(--sp-xs);
+  border: var(--hairline) solid var(--linea);
+  transition: color var(--t-micro) var(--e-micro), border-color var(--t-micro) var(--e-micro);
+}
+
+.ficha__cerrar:hover, .ficha__cerrar:focus-visible {
+  color: var(--paper);
+  border-color: var(--azul-claro);
+}
+
+.ficha__cuerpo {
+  display: grid;
+  gap: var(--sp-m);
+  padding-block: var(--sp-m);
+}
+
+@media (min-width: 900px) {
+  .ficha__cuerpo { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--sp-l); }
+}
+
+.ficha__col { display: flex; flex-direction: column; gap: var(--sp-s); }
+.ficha__resumen { color: var(--plata); }
+
+.ficha__subt {
+  color: var(--cian-claro);
+  padding-bottom: var(--sp-2xs);
+  border-bottom: var(--hairline) solid var(--acero);
+  margin-top: var(--sp-s);
+}
+
+.ficha__grupo { display: grid; gap: var(--sp-xs); }
+
+.ficha__grupo-titulo { color: var(--azul-claro); font-size: 0.75rem; }
+
+.ficha__specs { display: grid; }
+
+.ficha__spec {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: var(--sp-s);
+  padding-block: var(--sp-xs);
+  border-bottom: var(--hairline) solid color-mix(in srgb, var(--acero) 60%, transparent);
+}
+
+.ficha__spec-k { color: var(--texto-3); font-size: 0.8125rem; }
+.ficha__spec-v { color: var(--texto); }
+
+.ficha__variantes { display: grid; gap: 0; }
+.ficha__variante {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--sp-2xs) var(--sp-s);
+  padding-block: var(--sp-xs);
+  border-bottom: var(--hairline) solid color-mix(in srgb, var(--acero) 60%, transparent);
+}
+.ficha__variante-modelo { color: var(--paper); }
+.ficha__variante-pot { color: var(--cian-claro); }
+.ficha__variante-det { grid-column: 1 / -1; color: var(--texto-3); }
+
+.ficha__puntos { display: grid; gap: var(--sp-xs); }
+.ficha__puntos li {
+  position: relative;
+  padding-left: var(--sp-s);
+  color: var(--texto-2);
+}
+.ficha__puntos li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.66em;
+  width: 8px; height: var(--hairline);
+  background: var(--azul);
+}
+
+.ficha__pie {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-m);
+  padding-top: var(--sp-s);
+  border-top: var(--hairline) solid var(--acero);
+}
+
+.ficha__nota { color: var(--ceniza); max-width: 46ch; }
+.ficha__acciones { display: flex; flex-wrap: wrap; gap: var(--sp-s); }
