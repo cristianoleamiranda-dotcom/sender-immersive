@@ -1,253 +1,148 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.sender.cl/</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en"/>
+    <loc>https://www.sender.cl/es/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en"/>
+    <loc>https://www.sender.cl/en/</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos"/>
+    <loc>https://www.sender.cl/es/#senal</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#senal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#senal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#senal"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos"/>
+    <loc>https://www.sender.cl/en/#senal</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#senal"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#senal"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#senal"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/transmisores-am</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/transmisores-am"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/transmisores-am"/>
+    <loc>https://www.sender.cl/es/#empresa</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#empresa"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#empresa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#empresa"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/transmisores-am</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/transmisores-am"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/transmisores-am"/>
+    <loc>https://www.sender.cl/en/#empresa</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#empresa"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#empresa"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#empresa"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/transmisores-fm</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/transmisores-fm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/transmisores-fm"/>
+    <loc>https://www.sender.cl/es/#ingenieria</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#ingenieria"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#ingenieria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#ingenieria"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/transmisores-fm</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/transmisores-fm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/transmisores-fm"/>
+    <loc>https://www.sender.cl/en/#ingenieria</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#ingenieria"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#ingenieria"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#ingenieria"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/stl-enlaces</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/stl-enlaces"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/stl-enlaces"/>
+    <loc>https://www.sender.cl/es/#transmision</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#transmision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#transmision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#transmision"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/stl-enlaces</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/stl-enlaces"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/stl-enlaces"/>
+    <loc>https://www.sender.cl/en/#transmision</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#transmision"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#transmision"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#transmision"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/procesamiento-de-audio</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/procesamiento-de-audio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/procesamiento-de-audio"/>
+    <loc>https://www.sender.cl/es/#proyectos</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proyectos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proyectos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proyectos"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/procesamiento-de-audio</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/procesamiento-de-audio"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/procesamiento-de-audio"/>
+    <loc>https://www.sender.cl/en/#proyectos</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proyectos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proyectos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proyectos"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/automatizacion</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/automatizacion"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/automatizacion"/>
+    <loc>https://www.sender.cl/es/#productos</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#productos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#productos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#productos"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/automatizacion</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/automatizacion"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/automatizacion"/>
+    <loc>https://www.sender.cl/en/#productos</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#productos"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#productos"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#productos"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/rf-y-componentes</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/rf-y-componentes"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/rf-y-componentes"/>
+    <loc>https://www.sender.cl/es/#proceso</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proceso"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proceso"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proceso"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/rf-y-componentes</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/rf-y-componentes"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/rf-y-componentes"/>
+    <loc>https://www.sender.cl/en/#proceso</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proceso"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proceso"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proceso"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/productos/soluciones-especiales</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/soluciones-especiales"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/soluciones-especiales"/>
+    <loc>https://www.sender.cl/es/#contacto</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#contacto"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/productos/soluciones-especiales</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/productos/soluciones-especiales"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/productos/soluciones-especiales"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/serie-sender-ss</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/serie-sender-ss"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/serie-sender-ss"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/serie-sender-ss</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/serie-sender-ss"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/serie-sender-ss"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/amplificador-mf-1000w</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/amplificador-mf-1000w"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/amplificador-mf-1000w"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/amplificador-mf-1000w</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/amplificador-mf-1000w"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/amplificador-mf-1000w"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/serie-fm</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/serie-fm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/serie-fm"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/serie-fm</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/serie-fm"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/serie-fm"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/stl-stal-200</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/stl-stal-200"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/stl-stal-200"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/stl-stal-200</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/stl-stal-200"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/stl-stal-200"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/stl-al-100</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/stl-al-100"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/stl-al-100"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/stl-al-100</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/stl-al-100"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/stl-al-100"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/yagi-134-174</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/yagi-134-174"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/yagi-134-174"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/yagi-134-174</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/yagi-134-174"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/yagi-134-174"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/bis-ap735</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/bis-ap735"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/bis-ap735"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/bis-ap735</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/bis-ap735"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/bis-ap735"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/automatizacion-navtex</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/automatizacion-navtex"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/automatizacion-navtex"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/automatizacion-navtex</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/automatizacion-navtex"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/automatizacion-navtex"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/monitoreo-control-remoto</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/monitoreo-control-remoto"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/monitoreo-control-remoto"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/monitoreo-control-remoto</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/monitoreo-control-remoto"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/monitoreo-control-remoto"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/antena-hf-2-30</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/antena-hf-2-30"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/antena-hf-2-30"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/antena-hf-2-30</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/antena-hf-2-30"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/antena-hf-2-30"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/antenas-monopolo-am</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/antenas-monopolo-am"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/antenas-monopolo-am"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/antenas-monopolo-am</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/antenas-monopolo-am"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/antenas-monopolo-am"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/torres-contraventadas</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/torres-contraventadas"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/torres-contraventadas"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/torres-contraventadas</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/torres-contraventadas"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/torres-contraventadas"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/cable-coaxial</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/cable-coaxial"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/cable-coaxial"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/cable-coaxial</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/cable-coaxial"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/cable-coaxial"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/condensadores-alta-potencia</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/condensadores-alta-potencia"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/condensadores-alta-potencia"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/condensadores-alta-potencia</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/condensadores-alta-potencia"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/condensadores-alta-potencia"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/circuitos-integrados-rf</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/circuitos-integrados-rf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/circuitos-integrados-rf"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/circuitos-integrados-rf</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/circuitos-integrados-rf"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/circuitos-integrados-rf"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/producto/sistema-navtex-490-518</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/sistema-navtex-490-518"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/sistema-navtex-490-518"/>
-  </url>
-  <url>
-    <loc>https://www.sender.cl/en/producto/sistema-navtex-490-518</loc>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/producto/sistema-navtex-490-518"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/producto/sistema-navtex-490-518"/>
+    <loc>https://www.sender.cl/en/#contacto</loc>
+    <lastmod>2026-09-30</lastmod>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#contacto"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#contacto"/>
   </url>
 </urlset>
