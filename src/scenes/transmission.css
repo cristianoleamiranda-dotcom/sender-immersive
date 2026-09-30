@@ -1,0 +1,197 @@
+.transmision {
+  position: relative;
+  background: var(--azul-noche);
+  /* El recorrido necesita altura: la cadena tiene seis estaciones. */
+  padding: var(--sp-2xl) 0 var(--sp-xl);
+}
+
+.trans__cabecera {
+  padding-inline: var(--margen);
+  margin-bottom: var(--sp-xl);
+}
+
+.trans__titulo { color: var(--paper); margin-bottom: 0; }
+.trans__titulo-linea { display: block; }
+
+.trans__ventana {
+  overflow: hidden;
+  padding-inline: var(--margen);
+}
+
+/* El riel se desplaza en horizontal; el scroll sigue siendo vertical. */
+.trans__riel {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  will-change: transform;
+}
+
+.trans__etapa {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(78vw, 300px);
+  padding: var(--sp-m) var(--sp-m) var(--sp-l) 0;
+  border-top: var(--hairline) solid var(--acero);
+  opacity: 0.34;
+  transition: opacity var(--t-trans) var(--e-entrada);
+}
+
+@media (min-width: 900px) {
+  .trans__etapa { width: 320px; padding-right: var(--sp-l); }
+}
+
+.trans__etapa[data-activa="true"],
+.trans__etapa[data-pasada="true"] { opacity: 1; }
+
+.trans__etapa-n {
+  display: block;
+  font-size: var(--cuerpo-s);
+  color: var(--ceniza);
+  margin-bottom: var(--sp-l);
+  transition: color var(--t-trans) var(--e-entrada);
+}
+
+.trans__etapa[data-activa="true"] .trans__etapa-n { color: var(--cian-claro); }
+
+.trans__etapa-titulo { color: var(--texto-3); margin-bottom: var(--sp-xs); transition: color var(--t-trans) var(--e-entrada); }
+.trans__etapa[data-activa="true"] .trans__etapa-titulo { color: var(--azul-alto); }
+
+.trans__etapa-texto { color: var(--texto-2); max-width: 30ch; }
+
+.trans__etapa-regla {
+  position: absolute;
+  top: -1px; left: 0;
+  height: var(--hairline);
+  width: 0;
+  background: var(--cian);
+  transition: width var(--t-escena) var(--e-entrada);
+}
+.trans__etapa[data-activa="true"] .trans__etapa-regla,
+.trans__etapa[data-pasada="true"] .trans__etapa-regla { width: calc(100% - var(--sp-l)); }
+.trans__etapa[data-pasada="true"] .trans__etapa-regla { background: var(--azul-hondo); }
+
+/* ── Progreso ────────────────────────────────────────────────────────── */
+
+.trans__progreso {
+  height: var(--hairline);
+  background: var(--acero);
+  margin: var(--sp-l) var(--margen) 0;
+}
+
+.trans__progreso-barra {
+  display: block;
+  height: 100%;
+  background: var(--cian);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ── Materia ─────────────────────────────────────────────────────────── */
+
+.trans__materia {
+  padding: var(--sp-2xl) var(--margen) 0;
+  align-items: center;
+}
+
+.trans__pie {
+  color: var(--ceniza);
+  margin-top: var(--sp-s);
+}
+
+.trans__cierre { display: grid; align-content: center; }
+.trans__cierre-texto { color: var(--niebla); }
+
+/**
+ * Con movimiento reducido el raíl no se puede desplazar, pero la escena trata
+ * de una CADENA: apilar las etapas sin más destruye la idea. Se conserva la
+ * conexión con una línea continua y los números alineados en columna.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .trans__riel { flex-direction: column; width: auto; }
+  .trans__ventana { padding-inline: var(--margen); }
+
+  .trans__etapa {
+    width: 100%;
+    opacity: 1;
+    padding-left: var(--sp-m);
+    border-top: none;
+    border-left: var(--hairline) solid var(--acero);
+    padding-bottom: var(--sp-m);
+  }
+
+  /* El remate de la cadena: la línea no queda abierta. */
+  .trans__etapa:last-child { border-left-color: var(--cian-hondo); }
+
+  .trans__etapa-n { margin-bottom: var(--sp-s); }
+
+  /* El nodo de cada etapa sobre la línea: la cadena se sigue leyendo. */
+  .trans__etapa::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--sp-m) * -1 - 3px);
+    top: calc(var(--sp-m) + 0.45em);
+    width: 5px;
+    height: 5px;
+    background: var(--azul);
+  }
+
+  .trans__etapa[data-activa="true"]::before { background: var(--cian); }
+
+  .trans__etapa-regla { display: none; }
+  .trans__progreso { display: none; }
+}
+
+/**
+ * ── MÓVIL: la cadena se lee de arriba abajo ──────────────────────────────
+ *
+ * En escritorio la escena es un raíl horizontal que el scroll desplaza, y
+ * funciona: hay 1200 px de ancho para cuatro estaciones de 320 px.
+ *
+ * En un teléfono de 390 px ese raíl mide 1200 px dentro de una ventana de
+ * 390 con `overflow: hidden`. Resultado medido: las estaciones 03 y 04 quedan
+ * fuera de la pantalla y sólo aparecen si el scroll vertical las arrastra, así
+ * que la mitad de la cadena es inalcanzable y los rótulos se leen cortados
+ * («PROCESAM…», «AGC, contr…»).
+ *
+ * Además el patrón es malo en sí: en un teléfono, bajar debe hacer bajar.
+ *
+ * Se reutiliza la composición que este archivo ya define para movimiento
+ * reducido, y por la misma razón que allí: la escena trata de una CADENA, y
+ * apilar las etapas sin más rompería la idea. Se conserva con una línea
+ * continua y los nodos alineados en columna.
+ */
+@media (max-width: 899px) {
+  .trans__riel {
+    flex-direction: column;
+    width: auto;
+  }
+
+  .trans__etapa {
+    width: 100%;
+    opacity: 1;
+    padding: var(--sp-m) 0 var(--sp-m) var(--sp-m);
+    border-top: none;
+    border-left: var(--hairline) solid var(--acero);
+  }
+
+  /* El remate de la cadena: la línea no queda abierta. */
+  .trans__etapa:last-child { border-left-color: var(--cian-hondo); }
+
+  .trans__etapa-n { margin-bottom: var(--sp-s); }
+
+  /* El nodo de cada estación sobre la línea: la cadena se sigue leyendo. */
+  .trans__etapa::before {
+    content: "";
+    position: absolute;
+    left: calc(var(--sp-m) * -1 - 3px);
+    top: calc(var(--sp-m) + 0.45em);
+    width: 5px;
+    height: 5px;
+    background: var(--azul);
+  }
+
+  .trans__etapa[data-activa="true"]::before { background: var(--cian); }
+
+  .trans__ventana { padding-inline: var(--margen); }
+  .trans__cabecera { margin-bottom: var(--sp-l); }
+}
