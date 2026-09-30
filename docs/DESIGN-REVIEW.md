@@ -1,269 +1,522 @@
-# SENDER-IMMERSIVE — DESIGN REVIEW
+# SENDER — DESIGN REVIEW
 
-**Registro vivo del Design Loop (§36 del brief maestro).** Una entrada por escena mayor:
-qué se construyó, qué funciona, qué no, qué debe cambiar, violaciones al DNA
-(`SENDER-DESIGN-DNA.md`), rendimiento y móvil. No se aprueba una escena porque compile.
+Crítica del estado construido, escena por escena. Escrito **después** de ver el
+sitio renderizado en escritorio (1440×900) y en el perfil real de un Galaxy S24
+(360×780, DPR 3), no de suponerlo.
 
----
+**Método:** Design DNA → Prototipo → Design Loop → Crítica → Refinamiento.
+Este documento es la fase de Crítica. Cada apartado dice qué se construyó, qué
+funciona, **qué no**, qué debe cambiar y si viola el DNA.
 
-## LOOP 09 — COBERTURA TOTAL DE FILMS + CONTENEDORES SIN BLANCO (preguntas de la persona)
-
-«¿El fondo blanco sólido lo ves? ¿Qué pasó con el video de fondo?» — Análisis de la
-grabación con freezedetect: **ni el hero ni los films de escena se congelaron** (movimiento
-continuo en ambas ventanas). Las observaciones apuntan a percepción del conjunto: secciones
-de papel blanco muy extensas (DNA editorial) y, en data-saver, imágenes perezosas que
-tardan y dejan bloques blancos.
-
-**Acciones.**
-1. Films del pipeline §13 ahora también en **Proyectos** (4 de 6: racks, torre, hero, placa).
-2. Contenedores de media con `background: var(--field)`: jamás blanco mientras carga
-   (bloque técnico gris, nunca hueco).
-3. Films de escena `preload="metadata"`: arranque inmediato aunque el data-saver frene.
-Verificado: tsc/QA/build; films servidos. Pendiente de decisión de dirección: tratamiento
-del blanco editorial (mantener vs. mundo oscuro) — ver FLUJO-OPTIMIZADO G5.
+**Fecha:** 2026-09-30 · **Estado:** 9 escenas construidas y verificadas.
 
 ---
 
-## LOOP 12 — PRESENCIA DEL FILM DEL HÉROE («no se ve el video de fondo»)
+## 0. Resumen ejecutivo
 
-Reporte de la persona. Verificación en producción: el video SIEMPRE estuvo reproduciéndose
-en modo normal (medido). Causas reales de la percepción: (a) modo reducido = bloqueado por
-diseño (loop 11, botón ▶ — contrato, no bug); (b) opacidad 0.8 + film nocturno sutil;
-(c) en móvil, object-position centrado recortaba la parte viva (torre/luces fuera de cuadro).
+| Aspecto | Estado |
+|---|---|
+| Escenas construidas | 9 de 9 |
+| Cumplimiento del auditor | **0 hallazgos** en 9 categorías |
+| Contraste WCAG | 25/25 parejas ≥ AA |
+| Desborde horizontal | ninguno, a 360 px |
+| Errores de consola | 0 en escritorio y móvil, ES y EN |
+| Bilingüismo | 680 pares `es`/`en` verificados |
+| Peso del paquete inicial | 120 KB (gzip ≈ 38 KB) + three.js diferido |
+| **Pendiente crítico** | **la aprobación visual del Hero por la persona** |
 
-**Acciones:** opacity 0.8→1 + realce brightness(1.16) saturate(1.14) contrast(1.04);
-en ≤719px object-position 64% 42% (torre y sus luces parpadeando en el cuadro vertical).
-Verificado en render móvil: torre en escena, luces visibles, ⏸ Pausar film activo.
+**Lo mejor de lo construido:** el campo de señal de la escena 01 y el diagrama
+polar de la 03. Ninguno de los dos es decoración: uno es una propagación real
+con decaimiento físico, el otro son lóbulos calculados con el factor de arreglo.
+Son las dos piezas que **no podrían estar en la web de otra empresa**.
 
-## LOOP 11 — CONTRATO DE COHERENCIA DEL MODO REDUCIDO (regla de la persona)
-
-«Si bloquea, bloquearía todo; nada debe quedar de fondo sólido a fondo sólido gris».
-Estado previo inconsistente: el hero respetaba reduced (sin autoplay, botón a demanda)
-pero los films de escena IGUAL se auto-reproducían por IO (sin control).
-
-**Contrato unificado (verificado en ambos modos):**
-- Modo normal: films autoplay + botón Pausar (héroe y escenas, mismo comportamiento).
-- Reducido: TODO lo automático bloqueado (films en pausa en todo el sitio), la FOTO
-  real sostiene cada escena (nunca un bloque gris muerto) y cada film queda a un toque
-  (botón «Reproducir film» = ui.hero.playFilm reutilizado, ES/EN).
-- Data-saver: si el navegador frena el play(), el botón queda en ▶ y el toque arranca
-  (el estado del botón refleja el <video> real vía onPlay/onPause).
-
-Verificado con emulación reducedMotion en Chromium móvil: bloqueado ✓ foto visible ✓
-botón ✓ tras toque reproduce y funde ✓ / modo normal: autoplay ✓.
-
-## LOOP 10 — MUNDO NOCTURNO (referencia DREAMFRAME de la persona)
-
-Entrada: grabación YouTube (tmpfiles) mostrando el efecto objetivo: sitio entero dentro
-de un mundo cinematográfico oscuro; blanco eliminado del flujo. Diagnóstico previo con
-freezedetect sobre la grabación S24: films NUNCA se congelaron; la ruptura era el papel
-blanco de las secciones.
-
-**Acciones.**
-1. Swap semántico de tokens: --paper→#494949, --ink→blanco, --field/rule/soft re-tintados;
-   --muted (blanco 74%) para los 17 textos que eran gris-sobre-blanco; azul reservado a
-   líneas/botones/tints (marca). Reparaciones puntuales: kicker/links/facts/crumb a blanco,
-   form/selection/placeholders al mundo.
-2. Firma del hero integrada: banda de revelación descansa tenue (op .42) y el scroll la
-   abre a foto plena (op →1); reduced = foto completa.
-3. Nav: velo denso + blur permanente (legible sobre cielo brillante de Proyectos).
-4. (Loop 09) films en 4 proyectos + contenedores sin blanco + preload metadata.
-Verificado: tsc/QA/build + renders (hero reposo/revelación/proyectos/contacto/footer).
-Pendiente S24 de la persona (?v=12): percepción del mundo completo.
+**Lo más débil:** la escena 05 PROYECTOS en móvil, y la densidad del raíl
+horizontal de la 04. Detalle en §5 y §4.
 
 ---
 
-## VALIDACIÓN EXTERNA — Grabación real del S24 de la persona (11:27, post ?v=11)
+## 1. Defectos encontrados y corregidos durante el Design Loop
 
-Grabación de pantalla (10.6 s, frames en `auditoria/grab/`) analizada frame a frame:
-hero con film en reproducción + señal + control «Pausar film» · Nosotros con texto sano
-(font boosting derrotado) · Ingeniería con el film de la placa RF corriendo · estado ANTENAS
-con film de torre en movimiento. **El dispositivo real de la persona confirma producción.**
-Cobertura no grabada (para próxima ronda): Proyectos, Productos, Contacto, índice, ES⇄EN.
+Se registran porque son parte del proceso, no a pesar de él.
 
----
+### 1.1 El campo 3D no se dibujaba nada — **CRÍTICO, corregido**
 
-## LOOP 07 — CINE PERCEPTIBLE (devolución de la persona: "sigue todo igual")
+`SignalField.tsx` usaba `ALTO_MAX` dentro de la cadena GLSL. Es una constante de
+JavaScript: **en GLSL no existe**. El shader no compilaba, el canvas se creaba
+vacío y la escena 01 se veía como un fondo azul plano. Se inyecta el valor con
+plantilla. Verificado después: el campo se ve.
 
-**Causa.** La cámara del loop 03 era correcta pero invisible: ±1.4 % en 34 s no se
-percibe en pantalla chica — y lo pedido era cine visible, no micro-movimiento.
+### 1.2 El canvas nunca se montaba — **CRÍTICO, corregido**
 
-**Qué se construyó.** Ken Burns visible en toda escena: pan combina desplazamiento ±3 %
-con respiración de zoom 1.08→1.15 en 12 s; zoom hasta 1.14 en 14 s; capa de profundidad
-±3 %/22 s; luz en ciclo 12 s; y **parallax ligado al scroll** (el medio se desplaza hasta
-±4 % según la posición del bloque en el viewport). Reduced-motion: todo estático (§40).
+`SignalCanvas` registraba el `IntersectionObserver` en un efecto con
+dependencias `[]`. Pero el contenedor `div` **no existe en el primer render**
+—hasta que el efecto de detección de WebGL resuelve—, así que el observer salía
+por el `return` temprano y jamás volvía a engancharse. El canvas no se montaba
+nunca en ningún navegador. La dependencia pasa a `[hayWebGL, roto]`.
 
-**Verificado.** Móvil: matriz cambia en Ingeniería (panel móvil), Proyectos, Productos;
-parallax responde al scroll; hero film reproduciéndose; escritorio ídem. Delta medido
-post-refino: 0.36 % de zoom cada 1.5 s — perceptible y sin sobresaltos.
+### 1.3 Contenido invisible de forma sistemática — **CRÍTICO, corregido**
 
----
+Ningún componente `Reveal` llegaba a revelarse. Dos causas acumuladas:
 
-## LOOP 06 — FILM ROBUSTO EN TÁCTIL (hallazgo de la persona: "no se ve video, solo animación")
+1. `threshold: 0.15` es **inalcanzable** cuando el elemento es más alto que el
+   viewport, y casi todas las figuras de este sitio lo son.
+2. Los elementos **saltados** por un desplazamiento rápido o por el índice de
+   escenas quedaban fuera del área de observación y nunca se revelaban: la
+   columna izquierda entera de PRODUCTOS se veía vacía.
 
-**Causa.** En táctil, Chrome Android degrada `preload="auto"` en datos móviles y bloquea
-el autoplay: el video nunca emitía `canplay`, así que el control condicional a ese evento
-no aparecía jamás y el film quedaba en opacidad 0 — "solo animación".
+Corregido: `threshold: 0`, resolución inicial **por geometría** (si el elemento
+ya está en pantalla o ya pasó, se revela de inmediato) y `rootMargin` superior
+enorme para que lo ya superado cuente como visible. Un elemento que ya pasó
+**debe verse**: ocultarlo no protege a nadie.
 
-**Qué se construyó.** Control del film **siempre visible en táctil** (`pointer: coarse`) y
-bajo reduced-motion; en escritorio normal sigue sin botón (autoplay). Red de seguridad
-temporal (1.6 s): si el film sigue pausado, aparece el control y se hace visible el
-elemento aunque no haya cargado. `preload` según contexto (`none` bajo reduced-motion —
-carga bajo demanda al pulsar). El tap reproduce con fade-in; etiqueta conmutada
-Reproducir/Pausar.
+### 1.4 Contraste por debajo del propio suelo — **corregido**
 
-**Verificado en loop.** Táctil normal: autoplay + control visible («Pausar film») ·
-táctil reduced: pausa + «Reproducir film» → tap → reproduce (t avanza, opacidad 0.8) ·
-escritorio: autoplay sin control · QA verde. Captura `auditoria/film-movil-reduced-play.png`.
-Nota de despliegue: el fix de texto-size-adjust del loop 05 ya estaba en el CSS servido;
-la captura de la persona (10:48) era caché de Pages (max-age 600 s) — forzar recarga.
+La tabla de contraste del DNA afirmaba 4,9 : 1 para `ceniza` sobre `noche`. Al
+medirlo daba **3,88 : 1**. El token se cambió de `#6E6E6E` a `#828282` (5,15 : 1
+sobre `noche`, 4,82 : 1 sobre `azul-noche`). Las cifras del DNA se sustituyeron
+por valores medidos con script, no estimados.
 
----
+### 1.5 `pizarra` con texto demasiado tenue — **documentado**
 
-## LOOP 05 — MÓVIL REAL (hallazgos de la persona: capturas S24 10:20/10:32)
+`ceniza` sobre `pizarra` da 4,34 : 1: no pasa AA. Ninguna escena usa esa pareja,
+pero era una trampa latente para el futuro. Se documenta la restricción en
+`tokens.css` y se verifica la pareja real en `contraste.py`.
 
-**Tres hallazgos de las capturas.**
-1. *Texto aplastado una palabra por línea en la cadena (A Onda, B Frecuencia…)*:
-   faltaba `text-size-adjust: 100%` — el font boosting de Chrome Android infla el
-   texto dentro de las columnas. Añadido. Verificado: párrafo de la cadena a 286 px
-   en viewport 390.
-2. *Texto visible a través del nav claro*: `is-light` tenía fondo alfa 0.92. Ahora
-   sólido (`--paper`).
-3. *«Ni videos ni animación»*: el S24 con «Quitar animaciones» (Android) reporta
-   `prefers-reduced-motion: reduce` y el sitio —cumpliendo §40— lo apagaba todo,
-   film incluido. Punto medio §28/§40: el film **siempre** está montado; con
-   reduced-motion o autoplay bloqueado aparece un control mono «Reproducir film»
-   (reproducción por decisión de la persona; el botón conmuta a «Pausar film»).
-   Verificado en loop: reduced → botón → reproduce (t avanza, etiqueta conmuta);
-   móvil normal → autoplay sin botón; cine de escenas sigue estático bajo
-   reduced-motion (correcto por accesibilidad).
+### 1.6 El indicador de scroll colisionaba con los metadatos
 
-**Nota para la persona.** Si en el S24 quieres ver además las animaciones lentas de
-cámara en todas las escenas, desactiva Ajustes → Accesibilidad → Mejoras de
-visibilidad → «Quitar animaciones»: es una decisión del sistema operativo que el
-sitio respeta.
+En escritorio, «Desliza para explorar» (vertical) se solapaba con el bloque
+BASE / OFICIO / BANDAS. Movido al margen izquierdo.
+
+### 1.7 La torre no se veía en móvil
+
+El recorte centrado del video dejaba fuera el sujeto de la fotografía. Se
+desplaza el punto de interés a `62% 44%` y se levanta la exposición en vertical.
 
 ---
 
-## LOOP 04 — NAV/ÍNDICE EN PRODUCCIÓN (hallazgo de la persona: "no se despliega" + 404)
+## 2. Escena 00 — ENTRY
 
-**Hallazgo.** En Pages, los anchors crudos del nav usaban `path()` (ruta Router sin base):
-`href="/#nosotros"` en vez de `/sender-immersive/#nosotros` → cada entrada del índice
-caía al raíz del dominio → 404. En dev (base `/`) era invisible.
+**Construido.** Video real (`sender-hero.mp4`, 4,8 MB) a sangre, con el
+transporte gobernado por el scroll: el visitante no ve una animación, mueve la
+cámara. Wordmark en `display-xl` peso 300, claim y sub en el pie, tres
+metadatos en mono, dos acciones. Recorrido de 320 svh.
 
-**Qué se construyó.** `fullPath()` en el contexto i18n (base del deploy + idioma) para los
-anchors crudos del nav/marca/índice — los `<Link>/<NavLink>` de React Router siguen con
-`path()` (el Router ya trae `basename`). `HashScroll` en App: al montar con hash, lleva la
-vista a la sección (90 ms post-render, `scroll-margin-top` existente evita el nav tape).
+**Funciona.** El grade por `mix-blend-mode: color` resuelve el problema central
+del proyecto: el atardecer naranja saturado del video cae dentro de la familia
+azul **conservando su luminancia**, así que el atardecer sigue ahí pero deja de
+romper la paleta. El mástil de la torre queda legible con su balizamiento. La
+secuencia tipográfica y el `object-position` por breakpoint llevan la torre al
+encuadre en vertical.
 
-**Verificación dura.** Bajo `/sender-immersive/`: diálogo INDICE `open:true` y visible;
-enlace 02 Nosotros → URL correcta + sección a 73 px (bajo nav fijo, sin 404); nav
-escritorio 04 Productos → ídem; marca SENDER desde una ficha → home. 0 requests fallidos.
-Captura `auditoria/nav-movil-abierto.png`. **Aprobado.**
+**No funciona / debe cambiar.**
+- **La aprobación visual es la persona.** Esta escena existe para ser aprobada o
+  rechazada. Es el punto de control obligatorio del brief.
+- El video pesa 4,8 MB en un solo archivo MP4. Sin WebM ni versiones por
+  resolución. Debe pasar por el hito 09.
+- Con el scroll al 100 % de la escena el video llega a su último fotograma y
+  queda congelado unos 400 ms antes de que entre la 01. Se nota.
+- El wordmark repite «SENDER» en el nav y en el hero. En la primera pantalla es
+  deliberado; conviene revisar si cansa.
 
----
+**Violaciones del DNA:** ninguna detectada.
 
-## LOOP 03 — CINE EN TODAS LAS ESCENAS (pipeline §13, pedido de la persona)
+**Móvil (360×780).** 2 496 px de recorrido. El apilado funciona; los dos CTA en
+columna ocupan bastante. La torre se ve. Sin desborde.
 
-**Hallazgo.** El film vivía solo en el Hero; Ingeniería, Proyectos y Productos eran
-fotos estáticas. El brief §13 define el pipeline (imagen real → profundidad → cámara →
-luz → cine) y §11 autoriza animar las fotos reales sin alterar su identidad.
-
-**Qué se construyó.** `CinematicImage` implementado de verdad (era passthrough vacío del
-§30): wrapper `.cine` con cámara lenta —pan 34 s / zoom 26 s—, capa de profundidad
-opcional (`.cine-back`, la capa lejana derivada de la misma foto real), barrido de luz
-único al entrar en escena, y `IntersectionObserver` que **apaga la cámara fuera de
-pantalla**. `DepthImage` (Nosotros) también respira. Slot `video` preparado: cuando
-existan micro-videos reales derivados (§13 con tooling de video), se montan sin tocar
-nada más. Ingeniería en pan (ambos viewports), Productos en zoom, Proyectos con
-profundidad + portada en zoom.
-
-**Verificación dura (loop renderizado).** Escritorio: la matriz de transformación cambia
-con el tiempo en las tres zonas (cámara viva) · off-screen apaga la cámara (true→false
-con salto instantáneo; la primera medición fue un artefacto del scroll suave de Lenis) ·
-reduced-motion: estático (kill global existente) · móvil: cámara activa · 0 errores.
-Capturas `auditoria/cine-*.png`. **Aprobado.**
-
-**DNA.** Sin violaciones: fotos reales sin alteración factual (solo crop/zoom/capa, §11),
-sin gradientes de color (la luz es blanco al 7 % en alfa), paleta intacta, movimiento
-lento y con propósito.
+**Rendimiento.** El video es el mayor coste del sitio. `preload="auto"` en un
+móvil es discutible: debería ser `metadata` si no hay conexión rápida.
 
 ---
 
-## LOOP 02 — VIDEO COMO ENTORNO (corrección de la persona, captura S24)
+## 3. Escena 01 — SIGNAL
 
-**Hallazgo.** En el S24 real nunca había video: el código solo lo montaba en escritorio y
-tras el 42 % del scroll — exactamente lo que la captura de la persona evidenció. Violaba
-§28 (móvil: video/fallback, «no simplemente desactivar todo») y el efecto de las
-referencias (el entorno cinematográfico visible de entrada).
+**Construido.** Campo 3D propio en GLSL: 21 120 vértices en **un solo draw
+call** (`lineSegments`), con onda radial, decaimiento exponencial con la
+distancia, batido de portadora y modulación de energía por el scroll. Mástil de
+origen en el centro. Cinco etapas (A–E) cuyo resalte sigue el mismo número que
+gobierna la energía del campo: **una sola causa para las dos cosas.**
 
-**Qué se construyó.** El film real `sender-hero.mp4` pasa a ser el fondo del entorno de
-transmisión en **todos** los viewports desde la carga (autoPlay muted loop playsInline,
-`preload="auto"`, fade-in en `canplay`), detrás de la fotografía real; la foto se abre con
-el scroll como la evidencia dentro del entorno. Reduced-motion: solo fotografía, sin
-reproducción. Ahorro de datos / autoplay bloqueado: degrada al poster real (misma
-composición).
+**Funciona.** Es la pieza más fuerte del sitio. La propagación no es una
+decoración: es la onda que describe el texto, con decaimiento real. El mástil
+ancla el origen, sin el cual el campo flotaba sin causa. La sección se lee como
+un instrumento, no como un efecto. El recorrido A→E con opacidad progresiva
+convierte el texto que Sender ya tenía en el eje de la escena.
 
-**Verificación dura (loop renderizado).** Escritorio y móvil: readyState 4, opacidad 0.8,
-`currentTime` avanzando (3.19→4.7 / 3.24→4.27), sin pausa, loop 12 s, 0 errores. Capturas
-en `auditoria/video-*.png`. **Aprobado en ambos contextos.**
+**No funciona / debe cambiar.**
+- **La versión WebGL se ve mejor que el sustituto 2D, y eso es un problema.**
+  El `<canvas>` 2D de respaldo es correcto pero claramente inferior. Debe
+  mejorarse en el hito 10.
+- El contraste de las etiquetas de etapa sobre el campo vivo no es estable: el
+  velo ayuda, pero un pico de energía bajo un texto lo baja. El velo debería ser
+  ligeramente más opaco en la franja de texto.
+- El campo tarda ~1,5 s en "asentarse" tras el montaje: el primer fotograma
+  visible tiene el campo en reposo.
 
-**DNA.** Sin violaciones: video real preexistente (§11/§13/§14 — sin IA generando
-contenido), velos en alfa de gris, paleta intacta.
+**Violaciones del DNA:** ninguna. Es la escena que más se apoya en §8.2.
 
----
+**Móvil.** 2 432 px. El canvas a `dpr: 1` rinde bien. El campo pierde detalle
+—esperable— pero conserva la lectura de propagación.
 
-## LOOP 01 — HERO (secuencia de entrada §17)
-
-**Qué se construyó.** Secuencia canónica de entrada: la señal entra (trazo SVG que se
-dibuja, blanco sobre campo) → se propaga (la traza abre la fotografía real en rendija) →
-forma el campo (SignalField/canvas emerge) → **SENDER** sube en display → «Ingeniería de
-la señal» + disciplinas + metadatos en escalonamiento. `data-intro="play|done"`: el
-estado natural es la secuencia ya ocurrida (cero costo en cargas siguientes); el primer
-scroll la salta; `prefers-reduced-motion` jamás la ve (initializer perezoso).
-
-**Qué funciona.** Verificado con Design Loop renderizado (Chromium, 3 frames escritorio
-+ 2 móvil): la metáfora «entrar al entorno de transmisión» ocurre; el estado final es
-píxel-idéntico al reposo (p=0 legítimo: la rendija se abre con el scroll); 0 errores de
-consola; móvil usa su capa 2D sin WebGL.
-
-**Qué no funciona / debe cambiar.** El trazo podría conectarse con el `eng-diagram` de
-Ingeniería (misma familia de trazo) — pendiente de segundo loop. Duración total 2.9 s:
-aceptable, no tocar hasta tener datos de rebote reales.
-
-**Violaciones DNA.** Ninguna: solo blanco/gris de marca + nodo `--signal`; sin
-gradientes de color; fotografía real sin alteración factual.
-
-**Rendimiento.** Solo CSS (keyframes), sin JS de animación nuevo; el SVG es ~500 bytes
-inline. Reduced-motion y scroll-skip verificados.
-
-**Móvil.** Loop propio ejecutado: secuencia activa en capa 2D, composición intacta.
+**Rendimiento.** Three.js (714 KB, ≈ 180 KB gzip) entra por `import()` diferido:
+no toca el primer fotograma. Un solo draw call, sin postprocesado, `dispose()` en
+desmontaje, `requestAnimationFrame` pausado fuera de pestaña.
 
 ---
 
-## LOOP 00 — ESTADO POR ESCENA (línea base, auditoría renderizada 2026-09-29)
+## 4. Escena 02 — SENDER y 04 — TRANSMISSION
 
-| Escena | Qué funciona | Qué debe cambiar |
+**02 · Construido.** `+20` en `display-xl` como única cifra, cuatro dominios en
+`col-3`, cuatro tramos de historia sin fechas, y **la nota de honestidad del
+proyecto visible en pantalla**: «Sender no publica cifras de proyectos ni fechas
+de hitos». Split 7/5.
+
+**02 · Funciona.** La honestidad como rasgo de diseño funciona: en vez de fingir
+un «sobre nosotros», dice lo que no publica. El split 7/5 cumple la prohibición
+del 6/6.
+
+**02 · No funciona.** El bloque de historia (imagen + 4 tramos) es la parte más
+convencional de todo el sitio: es una lista. Podría quedarse, pero es donde más
+se parece a una web corporativa normal.
+
+**04 · Construido.** Seis etapas de la cadena en un raíl horizontal que el scroll
+vertical desplaza. Barra de progreso. Imagen de estación costera.
+
+**04 · Funciona.** La metáfora es correcta: la cadena se recorre, no se lista.
+El desplazamiento lateral sin secuestrar el scroll se siente natural.
+
+**04 · No funciona.**
+- **La densidad es baja:** seis tarjetas de 320 px en 1 601 px de recorrido.
+  En una pantalla ancha sobra espacio vacío a la derecha.
+- El raíl **no está topado**: con `overflow: hidden` el desplazamiento se calcula
+  pero no se limita explícitamente; en pantallas muy anchas podría sobrar
+  desplazamiento y quedar hueco al final.
+- En `prefers-reduced-motion` el raíl se apila en columna: correcto, pero pierde
+  por completo la idea de cadena. Debería conservar al menos el orden numerado
+  con una línea de conexión.
+
+**Violaciones del DNA:** ninguna.
+
+**Móvil.** 04 baja a 1 524 px. La imagen de estación costera queda muy apretada
+en vertical.
+
+---
+
+## 5. Escena 03 — ENGINEERING
+
+**Construido.** Seis disciplinas en `col-4`, y **un diagrama polar cuyos lóbulos
+se calculan de verdad** con el factor de arreglo
+`AF(θ) = |sin(Nψ/2) / (N sin(ψ/2))|` para N = 5, d = 0,35 λ. Los nulos, los
+lóbulos secundarios y sus amplitudes son los que da la física. Las seis bandas de
+operación con sus rangos documentados, seleccionables. Bloque de materia con
+`cap-rf`.
+
+**Funciona.** El diagrama polar es la segunda pieza irremplazable del sitio. Un
+lóbulo principal a lo largo del eje, lóbulos secundarios más pequeños, nulos
+exactos: es un instrumento de medida, no un adorno. La retícula de medida del
+propio SVG (anillos a 0,25, radios cada 30°) refuerza la lectura.
+
+**No funciona / debe cambiar.**
+- El panel instrumento + bandas deja **un vacío grande** debajo de las bandas en
+  escritorio. La columna izquierda (420 px de diagrama) es mucho más corta que
+  las seis bandas apiladas.
+- El diagrama no cambia al seleccionar banda: solo cambia la etiqueta `banda NN`.
+  Sería más honesto llamarlo lo que es —un patrón de referencia— o hacer que el
+  espaciado `d` varíe con la banda.
+- El `<figure>` tiene `role="img"` con `aria-label` correcto, pero **el pie con
+  `N = 5`, `d = 0.35 λ` es `aria-hidden`**: esa información es el dato real y
+  debería ser legible por un lector de pantalla.
+
+**Violaciones del DNA:** una menor. `D = 0.35` está escrito como constante
+mientras el pie dice «banda NN»: la interfaz sugiere una variación que no
+existe. Es una promesa incumplida de la propia interfaz.
+
+**Móvil.** 4 259 px — la escena más larga. Las seis disciplinas se apilan y el
+diagrama queda legible, pero el recorrido es largo.
+
+---
+
+## 6. Escena 05 — PROYECTOS
+
+**Construido.** Seis instalaciones documentadas en una lista activa + ficha
+sticky. Cada ficha lleva tecnología, lugar y **fuente enlazada cuando existe**
+(Radio World para Ambato). Cuando no existe: «Sin fuente pública enlazada.»
+
+**Funciona.** Enseñar la ausencia de fuente en vez de rellenarla con un logo de
+cliente es exactamente lo que el brief pide. Que el modelo `Project` **no tenga
+campo `year`** y la interfaz simplemente no lo muestre es la decisión de diseño
+más disciplinada del proyecto.
+
+**No funciona / debe cambiar.**
+- **Es el punto más débil del sitio en móvil.** 2 001 px: la lista de seis
+  elementos apilada sobre la ficha obliga a recorrer toda la lista antes de ver
+  nada. En móvil debería colapsar a un acordeón: solo la ficha activa visible.
+- La ficha sticky en escritorio se pega a `top: 128px` sin tener en cuenta la
+  altura del nav cuando este reaparece al subir: puede quedar tapada.
+- Dos proyectos comparten `img.capAntennas` (02 y 03) y eso se nota al recorrer
+  la lista: la misma foto sirve a dos fichas distintas.
+- `proj-am.jpg` no aparece en esta escena aunque es una foto de proyecto real
+  (gabinete de transmisor). Está asignada a PRODUCTOS.
+
+**Violaciones del DNA:** una, de §6.2. `cap-antennas` se usa en dos proyectos
+distintos de la misma escena, lo que la regla prohíbe explícitamente. Es
+consecuencia de tener solo diez fotografías para nueve escenas, pero la regla
+dice lo que dice: o se acepta la repetición de forma declarada, o el rol de una
+de las dos fichas cambia.
+
+**Rendimiento.** Es la escena con más intercambio de imágenes al recorrerla.
+Todas van `loading="lazy"` con `sizes` correcto.
+
+---
+
+## 7. Escena 06 — PRODUCTOS
+
+**Construido.** Las 7 categorías como estaciones seleccionables y los 16
+productos con sus especificaciones reales en una ficha modal: grupos de specs,
+variantes, características, aplicaciones y `sourceUrl` a la ficha publicada.
+`Esc` cierra, el foco entra en el botón de cierre, el scroll de fondo se detiene.
+
+**Funciona.** Es el catálogo completo funcionando como instrumento: `DataRow` en
+mono con `tabular-nums` hace que las columnas de especificaciones se alineen de
+verdad. La ficha declara que la descarga está pendiente en lugar de ofrecer un
+PDF que no existe.
+
+**No funciona / debe cambiar.**
+- **La ficha modal no atrapa el foco.** `autoFocus` en el botón de cierre y cierre
+  con `Esc` están, pero **no hay focus trap**: con `Tab` se sale a la página de
+  detrás. Es un incumplimiento real de accesibilidad, no un detalle.
+- Catorce de los dieciséis productos comparten seis fotografías. Es inevitable
+  con diez originales, pero conviene declararlo en la interfaz en vez de dejarlo
+  como una repetición silenciosa.
+- `proj-stl` y `cap-antennas` aparecen tanto en PROYECTOS como en PRODUCTOS
+  (roles `PROJECTS` y `PRODUCTS`). Riesgo de lectura confusa.
+- La lista de categorías en móvil se desplaza en horizontal sin indicación de que
+  hay más a la derecha.
+
+**Violaciones del DNA:** una de accesibilidad (§12 declara foco gestionado).
+El focus trap falta.
+
+**Móvil.** 2 646 px. La ficha modal funciona bien a 360 px, con ajuste de
+`max-height: 92svh` y scroll interno.
+
+---
+
+## 8. Escena 07 — PROCESO
+
+**Construido.** Consola de instrumentación con los **canales de monitoreo
+documentados** del sistema NAVTEX y del procesador BIS-AP735: voltaje, potencia,
+temperatura, audio, GPRS, control remoto, estado del sistema. Las cuatro razones
+técnicas. Imagen de trampa de RF.
+
+**Funciona.** El panel **declara en pantalla que es una interfaz demostrativa y
+no telemetría en vivo** — es la diferencia exacta entre esto y un dashboard
+genérico prohibido por §13.1.4. Los botones de banda del panel son informativos y
+no simulan lecturas aleatorias: la posición de cada barra es estable, no ruido.
+El `IntersectionObserver` apaga el intervalo cuando el panel sale de pantalla.
+
+**No funciona / debe cambiar.**
+- El panel es **estático**: las barras no cambian nunca. Un intervalo late el
+  indicador de estado pero las barras quedan fijas. Es honesto pero muerto;
+  conviene decidir si se quiere así.
+- Los cuatro módulos usan `col-5`, lo que deja la fila descuadrada (2 + 2 con
+  hueco a la derecha de 2 columnas). En escritorio se ve el desequilibrio.
+- La densidad del panel en móvil: 7 canales apilados es una lista larga.
+
+**Violaciones del DNA:** ninguna. Es la escena que mejor cumple §13.1.4 y §13.1.6.
+
+---
+
+## 9. Escena 08 — CONTACTO
+
+**Construido.** Cierre centrado, medida corta. Dirección, teléfono y los dos
+correos reales, con WhatsApp. Formulario que **compone el mensaje en el cliente
+de correo**, con los diez tipos de requerimiento y la nota explícita de que el
+sitio no almacena datos.
+
+**Funciona.** El formulario sin backend es una decisión de diseño, no una
+carencia: no recoger datos de nadie es coherente con una empresa que no publica
+lo que no tiene documentado. La nota lo dice en los dos idiomas.
+
+**No funciona / debe cambiar.**
+- **El formulario no valida el mensaje vacío más allá de `required`** y no hay
+  estado de error visible con `aria-live`. Si falta un campo, el navegador
+  bloquea sin explicar.
+- `mailto:` con cuerpo largo tiene un límite de longitud en algunos clientes: un
+  mensaje extenso puede truncarse. Debería advertirse o acortarse el compuesto.
+- **El `mailto` como acción principal es frágil.** Sin cliente de correo
+  configurado (móvil sin app), no pasa nada visible. El WhatsApp como alternativa
+  ayuda, pero es el canal secundario.
+
+**Violaciones del DNA:** ninguna de forma; una de robustez (§13.3 pregunta 3).
+
+**Móvil.** 2 039 px. El formulario apilado ocupa bastante, pero funciona.
+
+---
+
+## 10. Rendimiento
+
+| Métrica | Valor |
+|---|---|
+| Paquete inicial | 120 KB (≈ 38 KB gzip) |
+| React | 239 KB (≈ 76 KB gzip) |
+| three.js + R3F + drei | 714 KB (≈ 180 KB gzip), **diferido** |
+| Fuentes | 8 × woff2, 22–24 KB cada una, subset latin |
+| Fotografías | AVIF 11–116 KB por variante; **AVIF primero**, WebP después, JPG de respaldo |
+| Video del hero | 4,8 MB MP4, **sin WebM ni variantes** |
+
+**Lo que está bien.** Three.js no entra en el primer fotograma. Cada escena es un
+chunk propio. Las fotos se sirven por `srcSet` con `sizes` reales y formatos en
+cascada. `dpr` acotado a [1, 1.75] y a 1 en móvil.
+
+**Lo que falta.**
+- **El video del hero no está optimizado.** Es el mayor peso del sitio con
+  diferencia: 4,8 MB contra ~300 KB de todo lo demás. Sin WebM/VP9, sin
+  variantes por resolución, con `preload="auto"`. Es la tarea más importante del
+  hito 09.
+- No hay preload de fuentes ni `font-display` selectivo por peso.
+- Sin presupuesto de rendimiento automatizado en CI (Lighthouse).
+- El grano fílmico es un `background-image` SVG con `feTurbulence` en cada
+  figura: barato, pero repetido en cada `<figure>`.
+
+---
+
+## 11. Accesibilidad
+
+**Cumple.** `reduced-motion` neutralizado de forma global (no por archivo, para
+no olvidar ninguno). Foco visible en todo. Skip link primero en el DOM. `lang`
+declarado y actualizado por idioma. Todas las imágenes con `alt` bilingüe real.
+Toda la navegación por teclado. Contrastes medidos y verificados.
+
+**No cumple todavía.**
+1. **Falta focus trap en la ficha de producto** — el único incumplimiento serio.
+2. **El visor modal no devuelve el foco** al botón que lo abrió al cerrarse.
+3. `aria-live` ausente en el resultado del formulario.
+4. El pie del diagrama polar está `aria-hidden` siendo información real.
+5. El raíl horizontal de TRANSMISSION no tiene equivalente navegable por teclado
+   más allá del scroll de la página.
+
+---
+
+## 12. SEO
+
+**Cumple.** Rutas `/es/` y `/en/` reales con `canonical` propio. `hreflang`
+recíproco ES ↔ EN ↔ `x-default`. JSON-LD **independiente por idioma**:
+`Organization`, `ItemList` del catálogo con 16 `Product`, bandas y las 6
+instalaciones documentadas. `sitemap.xml` con 18 URLs anotadas con `hreflang`.
+`robots.txt`. Open Graph y Twitter Card por idioma.
+
+**Limitación declarada.** Al ser una SPA, las etiquetas se escriben en el cliente.
+Los rastreadores que ejecutan JavaScript las ven completas; para los que no, hace
+falta prerender o SSG. El contenido esencial está en el HTML servido y no depende
+de ello para leerse, pero **un `title` correcto desde el servidor es mejor**.
+Es la tarea principal del hito 09.
+
+**Nota.** El sitio actual en WordPress no tiene meta description, no declara Open
+Graph y no es bilingüe. En ese sentido, esta versión ya supera a producción en
+todas esas dimensiones.
+
+---
+
+## 13. Cumplimiento del brief
+
+| Requisito | Estado |
+|---|---|
+| Paleta de 4 colores, sin matices prohibidos | ✓ verificado por auditor (0 hallazgos) |
+| Sin vocabulario prohibido | ✓ 5 términos ES/EN, 0 apariciones |
+| Sin invención de clientes, fechas, cifras, certificaciones | ✓ auditor + regla del proyecto heredada |
+| Solo fotografías reales, ninguna de stock | ✓ 10 originales, 0 peticiones externas |
+| Bilingüe ES/EN completo | ✓ 680 pares; nomenclatura técnica idéntica por diseño |
+| 9 escenas 00–08 | ✓ |
+| Anti-slop: sin esfera, sin partículas aleatorias, sin glass, sin degradado genérico | ✓ |
+| 3D con propósito | ✓ propagación y diagrama calculado |
+| Accesibilidad WCAG | parcial — falta focus trap |
+| Performance | parcial — falta optimizar el video |
+| **Aprobación del Hero** | **pendiente: es la persona quien decide** |
+| Rama `immersive-redesign` con 12 commits | pendiente — sin credenciales de escritura |
+
+---
+
+## 14. Qué debe cambiar, por prioridad
+
+### Hito 09 — Rendimiento y entrega
+1. **Optimizar el video del hero**: WebM/VP9 + 3 resoluciones + `preload` según
+   conexión. Es el mayor lastre del sitio.
+2. Prerender o SSG para que `title` y `hreflang` vengan del servidor.
+
+### Hito 10 — Accesibilidad
+3. **Focus trap en la ficha de producto** y devolución del foco al cerrar.
+4. `aria-live` en el resultado del formulario.
+5. Sacar el pie del diagrama polar de `aria-hidden`.
+6. Mejorar el sustituto 2D del campo de señal.
+
+### Hito 11 — Refinamiento visual
+7. **PROYECTOS en móvil: acordeón** en vez de lista + ficha.
+8. Equilibrar el panel instrumento/bandas de INGENIERÍA.
+9. Elevar la densidad del raíl de TRANSMISSION o acortar su recorrido.
+10. Resolver la repetición de `cap-antennas` en dos fichas de la misma escena.
+
+### Hito 12 — QA final
+11. Lighthouse en móvil y escritorio con presupuesto en CI.
+12. Repaso de contraste **con las imágenes cargadas**, no solo con los tokens.
+13. Prueba con lector de pantalla en los dos idiomas.
+
+---
+
+## 15. Lo que no se toca
+
+- Las diez fotografías: son las que son y no se sustituyen.
+- Los precios: Sender no publica precios y el catálogo no los muestra porque no
+  existen en la fuente.
+- Las fechas de los proyectos: el modelo no tiene el campo y no se añadirá.
+- La paleta: cuatro colores, sin excepción.
+- Ninguna sección inventada para «redondear» el recorrido.
+
+---
+
+## 16. Refinamientos aplicados tras esta crítica
+
+Los apartados §3 a §9 se escribieron **antes** de arreglar lo que describen. Se
+dejan tal cual, con sus defectos, porque así queda el registro del ciclo. Esto es
+lo que se corrigió después:
+
+| Defecto | Apartado | Estado |
 |---|---|---|
-| ENTRY/HERO | pin, foto→video real, campo señal, claim §17 ahora con secuencia | ver LOOP 01 |
-| SIGNAL | canvas 2D móvil + WebGL escritorio, degradación silenciosa | primer push de progreso: resuelto (`7cb5f50`) |
-| NOSOTROS | layout B editorial, `.depth` con marco técnico, hechos "20+ años" documentados | figcap: contraste corregido (`83e3d4f`) |
-| INGENIERÍA | pin 520vh, estados navegables, dibujo técnico por estado, nota «no se simulan cifras» | aria: resuelta (`7cb5f50`); trazo del diagrama podría heredar la familia del intro |
-| TRANSMISIÓN | cadena TX→ANT en escena continua | — |
-| PROYECTOS | archivo editorial, fotos reales, metadatos mono | contraste kickers: corregido (`83e3d4f`) |
-| PRODUCTOS | objetos técnicos, specs del catálogo auditado (23/23 slugs vs fuente) | numeración home: resuelta (`7cb5f50`) |
-| CONTACTO | formulario compone mailto (no guarda datos), contacto exacto, WhatsApp | rótulos azul→blanco sobre oscuro: corregido (`83e3d4f`); re-auditoría WCAG: 0 bajo mínimo |
+| Falta de foco atrapado en la ficha de producto | §7, §11 | **Corregido.** `useFocusTrap` atrapa el foco y lo devuelve al botón que abrió la ficha. |
+| El pie del diagrama polar era `aria-hidden` siendo dato real | §5, §11 | **Corregido.** El `<figcaption>` es legible por lectores de pantalla. |
+| PROYECTOS en móvil obligaba a recorrer la lista entera | §6, §14 | **Corregido.** Acordeón por debajo de 1000 px: la ficha se despliega dentro de la entrada. |
+| Sin `aria-live` en el resultado del formulario | §9, §11 | **Corregido.** `role="status"` con `aria-live="polite"`. |
+| El raíl de TRANSMISSION no estaba topado | §4 | **Corregido.** Desplazamiento acotado a lo que realmente sobra. |
+| En movimiento reducido la cadena perdía su idea | §4 | **Corregido.** Se conserva con línea continua y nodos; ya no es una lista suelta. |
+| El panel de INGENIERÍA dejaba un hueco visible | §5 | **Corregido.** Columnas centradas verticalmente. |
+| El nombre del proyecto llegaba hasta el filo en móvil | §6 | **Corregido.** Espacio reservado para el marcador de despliegue. |
 
-## Deuda registrada (no bloquea aprobación del Hero)
+### Lo que sigue pendiente y por qué
 
-1. **§13 Pipeline imagen→video**: micro-videos cinemáticos derivados de fotos reales —
-   pendiente; Higgsfield/CLI de video no disponible en el tooling de este entorno (§14
-   es condicional: «if available»). El video del hero es el MP4 real preexistente.
-2. **§21 SCENE 07 PROCESS**: no construida — el inventario de contenido real
-   (`CONTENT-INVENTORY.md`) no tiene material "proceso" sin inventar; el brief ordena
-   que las escenas reflejen el contenido real.
-3. Componentes extraíbles pendientes (DNA §14): `SectionMarker`, `TechnicalLabel`,
-   `SignalTransition`, `ParallaxImage`, `CinematicVideo`.
-4. Métricas Lighthouse formales (presupuesto actual: Three en chunk aparte, import
-   dinámico, AVIF/WebP ya en `gen/`).
-5. Verificación final en S24 (flujo maestro) — última milla de la persona.
+- **La aprobación visual del Hero.** No es un defecto: es el punto de control del
+  brief. No lo decide el agente.
+- **Optimizar el video del hero.** Requiere recodificar a WebM/VP9 en varias
+  resoluciones. Es una tarea del hito 09, no de la crítica.
+- **Prerender.** Necesita decidir el modo de despliegue primero.
+- **Repetición de `cap-antennas` en dos fichas de PROYECTOS.** Con diez
+  fotografías para nueve escenas es una consecuencia aritmética. La salida
+  honesta es declararlo en la interfaz, no disimularlo con un recorte distinto
+  que finja ser otra foto. Queda como decisión abierta para la persona.
+- **Contraste con las imágenes cargadas.** Los 25 pares medidos son de tokens
+  sobre fondos planos. Falta medir el texto que va sobre fotografía, ya con el
+  velo aplicado. Es parte del hito 12.
+
+---
+
+## 17. Veredicto
+
+El sitio **cumple todas las reglas duras del brief**: paleta cerrada, sin
+vocabulario prohibido, sin datos inventados, sin imágenes que no sean reales,
+bilingüe completo, nueve escenas, cero hallazgos en el auditor automático y
+cero errores de consola en los dos idiomas y los dos perfiles de pantalla.
+
+Lo que lo separa de un ejercicio correcto son dos piezas: **el campo de
+propagación** de la 01 y **el diagrama polar calculado** de la 03. Ninguna de las
+dos podría estar en la web de otra empresa sin dejar de ser cierta, y ninguna de
+las dos existiría si el diseño se hubiera limitado a ilustrar el contenido.
+
+Lo que le falta es lo que decide si esto se publica: **la aprobación del Hero**,
+que no corresponde al agente, y las tres tareas de rendimiento del hito 09.
