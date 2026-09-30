@@ -1,8 +1,7 @@
-node_modules
-dist
+node_modules/
+dist/
+shots/
+reference/
+*.tsbuildinfo
+*.local
 .DS_Store
-*.log
-.vite
-coverage
-playwright-report
-test-results

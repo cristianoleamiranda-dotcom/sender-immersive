@@ -1,69 +1,62 @@
 <!doctype html>
-<html lang="es-CL">
+<html lang="__LANG__">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#494949" />
-    <meta name="color-scheme" content="light" />
-    <title>SENDER Chile | Ingeniería RF, Radiodifusión y Sistemas de Transmisión</title>
-    <meta
-      name="description"
-      content="Sender es una empresa chilena con más de 20 años en ingeniería de radiofrecuencia, radiodifusión y sistemas de transmisión. Transmisores AM y FM, antenas, enlaces STL, procesamiento de audio, automatización y comunicaciones críticas. Santiago, Chile."
-    />
-    <link rel="canonical" href="https://www.sender.cl/" />
-    <link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/" />
-    <link rel="alternate" hreflang="en" href="https://www.sender.cl/en" />
-    <link rel="alternate" hreflang="x-default" href="https://www.sender.cl/" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0A0A0A" />
+
+    <!--
+      El bilingüismo es de URL, no de cliente: /es/ y /en/ son documentos
+      distintos. Este archivo raíz sólo decide a cuál mandar.
+    -->
+    <title>__TITULO__</title>
+    <meta name="description" content="__DESCRIPCION__" />
+    <!--
+      Metadatos de rastreo. Los marcadores los sustituye `scripts/postbuild.mjs`
+      por idioma: el HTML que se sirve lleva la canónica correcta ESCRITA, sin
+      depender de que el rastreador ejecute JavaScript.
+    -->
+    <link rel="canonical" href="__CANONICA__" />
+    <link rel="alternate" hreflang="es-CL" href="__URL_ES__" />
+    <link rel="alternate" hreflang="en" href="__URL_EN__" />
+    <link rel="alternate" hreflang="x-default" href="__URL_ES__" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_CL" />
-    <meta property="og:locale:alternate" content="en_US" />
-    <meta property="og:site_name" content="SENDER" />
-    <meta property="og:title" content="SENDER Chile | Ingeniería RF, Radiodifusión y Sistemas de Transmisión" />
-    <meta
-      property="og:description"
-      content="Ingeniería RF, radiodifusión y sistemas de transmisión. Diseño, fabricación, implementación y soporte desde Santiago de Chile."
-    />
-    <meta property="og:url" content="https://www.sender.cl/" />
-    <meta property="og:image" content="https://www.sender.cl/media/gen/poster-1280.webp" />
-    <meta property="og:image:alt" content="Torre contraventada y caseta de transmisión en un sitio costero, archivo visual de Sender" />
+    <meta property="og:site_name" content="Sender" />
+    <meta property="og:url" content="__CANONICA__" />
+    <meta property="og:locale" content="__OG_LOCALE__" />
+    <meta property="og:locale:alternate" content="__OG_LOCALE_ALT__" />
+    <meta property="og:title" content="__TITULO__" />
+    <meta property="og:description" content="__DESCRIPCION__" />
+    <meta property="og:image" content="__SITIO__/og/__IDIOMA__.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="__TITULO__" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="SENDER Chile | Ingeniería RF, Radiodifusión y Sistemas de Transmisión" />
-    <meta
-      name="twitter:description"
-      content="Ingeniería RF, radiodifusión y sistemas de transmisión. Diseño, fabricación, implementación y soporte desde Santiago de Chile."
-    />
-    <meta name="twitter:image" content="https://www.sender.cl/media/gen/poster-1280.webp" />
+
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Sender",
-        "url": "https://www.sender.cl/",
-        "email": "sender@sender.cl",
-        "telephone": "+56983864148",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Blanco Viel 1108, 2º piso",
-          "addressLocality": "San Miguel",
-          "addressRegion": "Región Metropolitana",
-          "addressCountry": "CL"
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+
+    <script>
+      // Redirección de raíz: respeta la preferencia del navegador, sin parpadeo.
+      // Respeta la BASE para que funcione igual en la raíz de un dominio que
+      // bajo un subdirectorio ("/sender-immersive/"). Vite sustituye %BASE_URL%.
+      (function () {
+        var BASE = "%BASE_URL%";
+        var ruta = window.location.pathname;
+        var rel = BASE !== "/" && ruta.indexOf(BASE) === 0 ? "/" + ruta.slice(BASE.length) : ruta;
+        rel = rel.replace(/\/+$/, "");
+        if (rel === "" || rel === "/" || rel === "/index.html") {
+          var nav = (navigator.language || "es").toLowerCase();
+          var lang = nav.indexOf("es") === 0 ? "es" : nav.indexOf("en") === 0 ? "en" : "es";
+          window.location.replace(BASE + lang + "/" + window.location.hash);
         }
-      }
+      })();
     </script>
   </head>
   <body>
-    <div id="root"></div>
-    <noscript>
-      <main lang="es-CL" style="font-family: sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1.2rem; color: #494949">
-        <h1>SENDER — Ingeniería de la señal</h1>
-        <p>
-          Empresa chilena con más de 20 años en ingeniería de radiofrecuencia, radiodifusión y sistemas de transmisión.
-          Santiago, Chile.
-        </p>
-        <p>Blanco Viel 1108, 2º piso, San Miguel. +56 9 8386 4148 · sender@sender.cl</p>
-      </main>
-    </noscript>
+    <div id="raiz"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
