@@ -1,0 +1,126 @@
+/**
+ * 01 — SIGNAL
+ *
+ * «La señal no se ve. Se experimenta.» Es el texto que Sender ya tenía, y es
+ * literalmente la tesis del sitio: por eso la escena no *describe* una onda,
+ * la pone delante. El campo 3D es la propagación; el recorrido A–E es el viaje
+ * de la señal desde que nace hasta que se irradia.
+ *
+ * Plantilla L3 (rail lateral) + fondo a sangre. DNA §5, §8.
+ */
+
+import { useEffect, useMemo, useRef, useState } from "react";
+import { Lead, Kicker, Reveal } from "@/ui/Primitives";
+import { useLang } from "@/i18n/language";
+import { useReducedMotion } from "@/lib/hooks";
+import SignalCanvas from "@/three/SignalCanvas";
+import "./signal.css";
+
+export default function Signal() {
+  const { t } = useLang();
+  const reduced = useReducedMotion();
+  const seccion = useRef<HTMLElement>(null);
+  const [progreso, setProgreso] = useState(0);
+  const [etapa, setEtapa] = useState(0);
+
+  const etapas = t.signal.stages as unknown as {
+    index: string;
+    name: string;
+    text: string;
+  }[];
+
+  /**
+   * El progreso dentro de la escena gobierna la energía del campo y la etapa
+   * activa. Es el mismo número para las dos cosas: una sola causa.
+   */
+  useEffect(() => {
+    const el = seccion.current;
+    if (!el) return;
+    let raf = 0;
+    const medir = () => {
+      raf = 0;
+      const r = el.getBoundingClientRect();
+      const total = r.height - window.innerHeight;
+      if (total <= 0) return;
+      const p = Math.min(1, Math.max(0, -r.top / total));
+      setProgreso(p);
+      setEtapa(Math.min(etapas.length - 1, Math.floor(p * etapas.length * 0.999)));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(medir);
+    };
+    medir();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [etapas.length]);
+
+  const lineas = useMemo(() => t.signal.title as unknown as string[], [t]);
+
+  return (
+    <section
+      className="senal"
+      id="senal"
+      data-escena="senal"
+      ref={seccion}
+      aria-label={t.signal.kicker}
+    >
+      <div className="senal__lienzo">
+        <SignalCanvas energia={reduced ? 0.4 : progreso} activo />
+      </div>
+
+      <div className="senal__intro">
+        <div className="reticula">
+          <div className="col-7">
+            <Kicker>{t.signal.kicker}</Kicker>
+            <h2 className="senal__titulo display-l">
+              {lineas.map((l, i) => (
+                <span key={i} className="senal__titulo-linea">
+                  {l}
+                </span>
+              ))}
+            </h2>
+          </div>
+          <div className="col-5">
+            <div className="senal__cuerpo">
+              {t.signal.body.map((p, i) => (
+                <p key={i} className="senal__parrafo cuerpo-l medida">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* El recorrido de la señal: cinco etapas, un solo trayecto. */}
+      <ol className="senal__etapas" aria-label={t.signal.kicker}>
+        {etapas.map((e, i) => (
+          <li
+            key={e.index}
+            className="senal__etapa"
+            data-activa={!reduced && i === etapa}
+            data-cumplida={!reduced && i < etapa}
+          >
+            <span className="senal__etapa-indice mono">{e.index}</span>
+            <div className="senal__etapa-texto">
+              <h3 className="senal__etapa-nombre etiqueta">{e.name}</h3>
+              <p className="senal__etapa-dicho cuerpo-l">{e.text}</p>
+            </div>
+            <span className="senal__etapa-regla" aria-hidden="true" />
+          </li>
+        ))}
+      </ol>
+
+      <div className="senal__cierre">
+        <Reveal>
+          <Lead className="senal__nota">{t.experience.note}</Lead>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
