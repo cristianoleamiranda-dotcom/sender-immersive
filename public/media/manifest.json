@@ -1,0 +1,266 @@
+{
+  "hero": {
+    "src": "hero.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 155828,
+      "delivered": 396254
+    }
+  },
+  "hero-wide": {
+    "src": "hero-wide.jpg",
+    "width": 1792,
+    "height": 1008,
+    "aspect": 1.7778,
+    "variants": {
+      "avif": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "webp": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "jpg": [
+        640,
+        960,
+        1280,
+        1600
+      ]
+    },
+    "bytes": {
+      "original": 156105,
+      "delivered": 652352
+    }
+  },
+  "about": {
+    "src": "about.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 233912,
+      "delivered": 702172
+    }
+  },
+  "cap-broadcast": {
+    "src": "cap-broadcast.jpg",
+    "width": 1600,
+    "height": 1200,
+    "aspect": 1.3333,
+    "variants": {
+      "avif": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "webp": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "jpg": [
+        640,
+        960,
+        1280,
+        1600
+      ]
+    },
+    "bytes": {
+      "original": 257385,
+      "delivered": 1331854
+    }
+  },
+  "cap-transmission": {
+    "src": "cap-transmission.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 378937,
+      "delivered": 1142143
+    }
+  },
+  "cap-antennas": {
+    "src": "cap-antennas.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 242808,
+      "delivered": 735390
+    }
+  },
+  "cap-rf": {
+    "src": "cap-rf.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 330442,
+      "delivered": 1001484
+    }
+  },
+  "cap-critical": {
+    "src": "cap-critical.jpg",
+    "width": 1792,
+    "height": 1008,
+    "aspect": 1.7778,
+    "variants": {
+      "avif": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "webp": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "jpg": [
+        640,
+        960,
+        1280,
+        1600
+      ]
+    },
+    "bytes": {
+      "original": 196938,
+      "delivered": 854947
+    }
+  },
+  "proj-am": {
+    "src": "proj-am.jpg",
+    "width": 1200,
+    "height": 1600,
+    "aspect": 0.75,
+    "variants": {
+      "avif": [
+        640,
+        960
+      ],
+      "webp": [
+        640,
+        960
+      ],
+      "jpg": [
+        640,
+        960
+      ]
+    },
+    "bytes": {
+      "original": 201701,
+      "delivered": 557700
+    }
+  },
+  "proj-stl": {
+    "src": "proj-stl.jpg",
+    "width": 1728,
+    "height": 1152,
+    "aspect": 1.5,
+    "variants": {
+      "avif": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "webp": [
+        640,
+        960,
+        1280,
+        1600
+      ],
+      "jpg": [
+        640,
+        960,
+        1280,
+        1600
+      ]
+    },
+    "bytes": {
+      "original": 229160,
+      "delivered": 1134924
+    }
+  }
+}
