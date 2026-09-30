@@ -1,0 +1,222 @@
+/**
+ * 00 — ENTRY
+ * Plantilla L1: medio a sangre, texto anclado abajo. DNA §5.
+ */
+
+.entrada {
+  position: relative;
+  /* El recorrido del scroll es el soporte del transporte del video. */
+  height: 320svh;
+}
+
+.entrada__medio {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--azul-noche);
+}
+
+.entrada__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
+  opacity: 0;
+  /* Grade base; la capa de color lo lleva al sistema (DNA §6.3). */
+  filter: saturate(0.8) contrast(1.06) brightness(0.94);
+  transition: opacity var(--t-escena) var(--e-entrada);
+}
+
+.entrada__video[data-listo="true"] {
+  opacity: 1;
+}
+
+/* Duotono hacia la familia azul conservando la luminancia real del plano. */
+.entrada__grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    var(--azul-hondo) 0%,
+    var(--azul-profundo) 45%,
+    var(--azul-noche) 100%
+  );
+  mix-blend-mode: color;
+  opacity: 0.82;
+}
+
+/* Velo inferior: garantiza el contraste del texto, sin depender de la foto. */
+.entrada__velo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, var(--noche) 2%, color-mix(in srgb, var(--noche) 78%, transparent) 26%, transparent 58%),
+    linear-gradient(to right, color-mix(in srgb, var(--azul-noche) 62%, transparent) 0%, transparent 45%);
+}
+
+.entrada__grano {
+  position: absolute;
+  inset: -30%;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+.entrada__contenido {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  margin-top: -100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--sp-l) var(--margen) var(--sp-l);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.entrada__contenido > * {
+  pointer-events: auto;
+}
+
+/* ── Wordmark ────────────────────────────────────────────────────────── */
+
+.entrada__marca {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.entrada__wordmark {
+  /* El nombre de la empresa, en el tamaño que le corresponde. */
+  font-weight: var(--peso-ligero);
+  letter-spacing: 0.02em;
+  text-indent: -0.02em;
+  color: var(--paper);
+}
+
+/* ── Pie ─────────────────────────────────────────────────────────────── */
+
+.entrada__pie {
+  display: grid;
+  gap: var(--sp-m);
+  align-items: end;
+}
+
+.entrada__claim {
+  color: var(--paper);
+  margin-bottom: var(--sp-xs);
+  max-width: 22ch;
+}
+
+.entrada__sub {
+  color: var(--plata);
+  max-width: 46ch;
+}
+
+.entrada__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-m);
+  border-top: var(--hairline) solid color-mix(in srgb, var(--acero) 70%, transparent);
+  padding-top: var(--sp-s);
+}
+
+.entrada__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2xs);
+}
+
+.entrada__meta-item dt {
+  color: var(--ceniza);
+}
+
+.entrada__meta-item dd {
+  color: var(--niebla);
+}
+
+.entrada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-s);
+}
+
+@media (min-width: 1000px) {
+  .entrada__pie {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "dicho meta"
+      "acciones meta";
+    gap: var(--sp-m) var(--sp-xl);
+  }
+  .entrada__dicho { grid-area: dicho; }
+  .entrada__meta { grid-area: meta; flex-direction: column; border-top: none; border-left: var(--hairline) solid color-mix(in srgb, var(--acero) 70%, transparent); padding-top: 0; padding-left: var(--sp-m); gap: var(--sp-s); }
+  .entrada__acciones { grid-area: acciones; }
+}
+
+/* ── Indicación de scroll ────────────────────────────────────────────── */
+
+.entrada__scroll {
+  position: absolute;
+  /* En el margen EXTERIOR, no dentro de la columna de texto.
+   *
+   * Dentro de la columna chocaba con el bloque inferior: el rótulo se ancla
+   * abajo y el texto también, así que compartían carril y las letras verticales
+   * se cruzaban con el titular. Cualquier arreglo que dependiera de la altura
+   * del bloque inferior sería frágil —al acortar la ventana, el bloque ocupa
+   * proporcionalmente más y vuelve a chocar—. En el margen exterior no puede
+   * chocar a ninguna altura. Es un rótulo aria-hidden: decorativo, como una
+   * nota al margen. */
+  left: calc(var(--margen) / 2 - 6px);
+  bottom: var(--sp-l);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  color: var(--ceniza);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+.entrada__scroll-regla {
+  display: block;
+  width: var(--hairline);
+  height: 48px;
+  background: linear-gradient(to bottom, var(--cian), transparent);
+  animation: regla 2.4s var(--e-entrada) infinite;
+}
+
+@keyframes regla {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@media (max-width: 999px) {
+  .entrada__scroll { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada__scroll-regla { animation: none; }
+  .entrada { height: 100svh; }
+}
+
+/**
+ * En vertical el recorte del video deja la torre fuera del encuadre centrado.
+ * Se desplaza el punto de interés y se levanta un poco la exposición: la torre
+ * es el sujeto de la foto, no el cielo.
+ */
+@media (max-width: 820px) {
+  .entrada__video {
+    object-position: 62% 44%;
+    filter: saturate(0.8) contrast(1.06) brightness(1.06);
+  }
+  .entrada__velo {
+    background:
+      linear-gradient(to top, var(--noche) 2%, color-mix(in srgb, var(--noche) 76%, transparent) 30%, transparent 62%);
+  }
+}
