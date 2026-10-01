@@ -1,0 +1,101 @@
+.ingenieria {
+  position: relative;
+  background: var(--bg);
+  padding: var(--sp-2xl) var(--margen) var(--sp-xl);
+}
+
+.ing__cabecera { margin-bottom: var(--sp-2xl); }
+.ing__titulo { color: var(--paper); margin-bottom: 0; }
+.ing__titulo-linea { display: block; }
+.ing__titulo-linea:last-child { color: var(--azul-alto); }
+
+/* ── Disciplinas ─────────────────────────────────────────────────────── */
+
+.ing__disciplinas {
+  border-top: var(--hairline) solid var(--acero);
+  margin-bottom: var(--sp-2xl);
+}
+
+.ing__disciplina {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+  padding: var(--sp-m) 0;
+  border-bottom: var(--hairline) solid var(--acero);
+}
+
+@media (min-width: 900px) {
+  .ing__disciplina:nth-child(-n + 3) { border-bottom: none; }
+  .ing__disciplina { border-right: var(--hairline) solid var(--acero); padding-right: var(--sp-s); }
+  .ing__disciplina:nth-child(3n) { border-right: none; }
+}
+
+.ing__disc-n { font-size: 0.625rem; color: var(--cian-claro); }
+.ing__disc-nombre { color: var(--texto-2); }
+.ing__disc-texto { color: var(--texto-3); max-width: 32ch; }
+
+/* ── Instrumento ─────────────────────────────────────────────────────── */
+
+.ing__panel {
+  /* Centrado vertical: la columna del instrumento es más corta que la
+     lista de bandas, y alinearlas arriba dejaba un hueco visible. */
+  align-items: center;
+  margin-bottom: var(--sp-2xl);
+}
+
+.ing__instrumento-marco {
+  border: var(--hairline) solid var(--acero);
+  background: var(--pozo);
+  padding: var(--sp-s);
+  display: grid;
+  place-items: center;
+}
+
+.ing__instrumento-pie {
+  color: var(--ceniza);
+  margin-top: var(--sp-s);
+  max-width: 54ch;
+}
+
+.ing__bandas-titulo { color: var(--texto-3); margin-bottom: var(--sp-s); }
+
+.ing__bandas { display: grid; gap: 0; border-top: var(--hairline) solid var(--acero); }
+
+.ing__banda {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--sp-2xs) var(--sp-s);
+  width: 100%;
+  text-align: left;
+  padding: var(--sp-s) 0;
+  border-bottom: var(--hairline) solid var(--acero);
+  color: var(--texto-2);
+  transition: color var(--t-micro) var(--e-micro), padding-left var(--t-micro) var(--e-micro);
+}
+
+.ing__banda:hover, .ing__banda:focus-visible { padding-left: var(--sp-xs); }
+
+.ing__banda[data-activa="true"] { color: var(--paper); }
+
+.ing__banda-code { font-weight: var(--peso-semi); }
+.ing__banda[data-activa="true"] .ing__banda-code { color: var(--cian-claro); }
+
+.ing__banda-range { color: inherit; }
+
+.ing__banda-uso {
+  grid-column: 2;
+  color: var(--texto-3);
+  font-size: 0.8125rem;
+}
+
+.ing__nota {
+  color: var(--ceniza);
+  margin-top: var(--sp-s);
+  font-size: 0.8125rem;
+}
+
+/* ── Materia ─────────────────────────────────────────────────────────── */
+
+.ing__materia { align-items: center; }
+.ing__materia-texto { display: flex; flex-direction: column; gap: var(--sp-m); }
+.ing__materia-titulo { color: var(--paper); max-width: 18ch; }

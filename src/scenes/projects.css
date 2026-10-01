@@ -1,0 +1,143 @@
+.proyectos {
+  position: relative;
+  background: var(--bg);
+  padding: var(--sp-2xl) var(--margen) var(--sp-xl);
+}
+
+.proy__cabecera { margin-bottom: var(--sp-2xl); }
+.proy__titulo { color: var(--paper); margin-bottom: 0; }
+.proy__titulo-linea { display: block; }
+.proy__titulo-linea:last-child { color: var(--azul-alto); }
+
+.proy__cuerpo { align-items: start; }
+
+/* ── Lista ───────────────────────────────────────────────────────────── */
+
+.proy__lista { border-top: var(--hairline) solid var(--acero); }
+
+.proy__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  gap: var(--sp-s);
+  width: 100%;
+  text-align: left;
+  padding: var(--sp-s) 0;
+  border-bottom: var(--hairline) solid var(--acero);
+  color: var(--texto-3);
+  transition: color var(--t-micro) var(--e-micro), padding-left var(--t-micro) var(--e-micro);
+}
+
+.proy__item:hover, .proy__item:focus-visible { padding-left: var(--sp-xs); color: var(--texto-2); }
+.proy__item[data-activo="true"] { color: var(--paper); }
+
+.proy__item-n { font-size: 0.625rem; color: var(--ceniza); }
+.proy__item[data-activo="true"] .proy__item-n { color: var(--cian-claro); }
+
+.proy__item-cuerpo { display: flex; flex-direction: column; gap: var(--sp-2xs); }
+
+.proy__item-nombre {
+  font-size: var(--cuerpo-s);
+  line-height: 1.4;
+}
+
+.proy__item-cat { color: var(--ceniza); font-size: 0.625rem; }
+
+.proy__item-regla {
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: var(--hairline);
+  width: 0;
+  background: var(--cian);
+  transition: width var(--t-trans) var(--e-entrada);
+}
+
+.proy__item[data-activo="true"] .proy__item-regla { width: 100%; }
+
+/* ── Ficha ───────────────────────────────────────────────────────────── */
+
+.proy__ficha-texto { padding-top: var(--sp-m); }
+
+.proy__ficha-nombre { color: var(--paper); margin-bottom: var(--sp-s); }
+
+.proy__ficha-resumen {
+  color: var(--platino, var(--plata));
+  margin-bottom: var(--sp-m);
+}
+
+.proy__datos {
+  display: grid;
+  gap: var(--sp-s);
+  padding-block: var(--sp-s);
+  border-top: var(--hairline) solid var(--acero);
+  border-bottom: var(--hairline) solid var(--acero);
+  margin-bottom: var(--sp-m);
+}
+
+.proy__dato { display: grid; gap: var(--sp-2xs); }
+.proy__dato dt { color: var(--texto-3); }
+.proy__dato dd { color: var(--texto-2); }
+
+.proy__fuente {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-s);
+  padding: var(--sp-xs) 0;
+  border-bottom: var(--hairline) solid var(--azul-claro);
+  color: var(--azul-tenue);
+  transition: color var(--t-micro) var(--e-micro), gap var(--t-micro) var(--e-micro);
+}
+
+.proy__fuente:hover, .proy__fuente:focus-visible { color: var(--paper); gap: var(--sp-m); }
+.proy__fuente .etiqueta { color: var(--ceniza); }
+.proy__fuente-nombre { font-weight: var(--peso-medio); }
+.proy__fuente-flecha { font-size: 0.875rem; }
+
+.proy__sinfuente { color: var(--ceniza); font-style: normal; }
+
+@media (min-width: 1000px) {
+  .proy__ficha { position: sticky; top: var(--sp-xl); }
+}
+
+/* ── Acordeón en móvil ───────────────────────────────────────────────────
+   A menos de 1000 px la ficha se despliega dentro de la propia entrada, en
+   lugar de obligar a recorrer las seis antes de ver algo. */
+
+.proy__entrada { display: contents; }
+
+@media (max-width: 999px) {
+  .proy__entrada { display: block; }
+
+  .proy__desplegable {
+    display: grid;
+    gap: var(--sp-m);
+    padding: 0 0 var(--sp-m);
+    animation: despliega var(--t-trans) var(--e-entrada);
+  }
+
+  .proy__item[aria-expanded="true"] .proy__item-nombre { color: var(--paper); }
+
+  /* El marcador vive en el borde derecho: hay que reservarle su espacio o el
+     nombre del proyecto llega hasta el filo y se lee apretado. */
+  .proy__item { padding-right: var(--sp-m); }
+  .proy__item-nombre { overflow-wrap: anywhere; }
+
+  /* Marca de que la entrada se despliega. */
+  .proy__item::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: calc(var(--sp-s) + 0.4em);
+    width: 10px;
+    height: var(--hairline);
+    background: var(--ceniza);
+    transition: background-color var(--t-micro) var(--e-micro);
+  }
+
+  .proy__item[aria-expanded="true"]::after { background: var(--cian-claro); }
+}
+
+@keyframes despliega {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}

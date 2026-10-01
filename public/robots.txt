@@ -1,4 +1,7 @@
+# Sender — https://www.sender.cl
 User-agent: *
 Allow: /
+Disallow: /shots/
+Disallow: /*?*
 
 Sitemap: https://www.sender.cl/sitemap.xml

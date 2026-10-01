@@ -1,92 +1,85 @@
-import { Component, useEffect, type ReactNode } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { I18nProvider } from "@/i18n/context";
-import { Nav } from "@/components/navigation/Nav";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
-import { Footer } from "@/sections/Contact/Contact";
-import { Seo } from "@/seo/Seo";
-import { Home } from "@/pages/Home";
-import { CatalogPage, CategoryPage, NotFoundPage, ProductPage } from "@/pages/CatalogPages";
-import { useI18n } from "@/i18n/context";
+/**
+ * SENDER — composición del sitio.
+ *
+ * Nueve escenas, una sola línea de tiempo. El scroll es la cámara (DNA §7.1).
+ * El orden no es una lista de secciones: es el recorrido de la señal, desde que
+ * nace hasta que llega a la audiencia, y después el regreso a tierra: quién lo
+ * hace, con qué, dónde está y cómo se le habla.
+ */
 
-class Boundary extends Component<{ children: ReactNode }, { failed: boolean }> {
-  state = { failed: false };
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-  render() {
-    if (this.state.failed) {
-      return (
-        <main id="main" className="page">
-          <h1 className="page-title">La página no pudo completar esta vista.</h1>
-          <p className="lede">Recarga el sitio. El contenido sigue disponible en las otras secciones.</p>
-          <button type="button" className="btn" onClick={() => window.location.reload()}>
-            Recargar
-          </button>
-        </main>
-      );
-    }
-    return this.props.children;
-  }
-}
+import { lazy, Suspense } from "react";
+import { useIso } from "@/lib/hooks";
+import Entry from "@/scenes/Entry";
+import Nav from "@/ui/Nav";
+import { SkipLink } from "@/ui/SkipLink";
+import Footer from "@/ui/Footer";
+import { useSmoothScroll } from "@/lib/hooks";
+import { useLang } from "@/i18n/language";
+import { applyMeta } from "@/seo/meta";
 
-/** El SPA recibe hashes (/sender-immersive/#productos): al montar, llevar la
-    vista a la sección pedida (el navegador no puede hacerlo solo en un render asíncrono). */
-function HashScroll() {
-  const location = useLocation();
-  useEffect(() => {
-    if (!location.hash) return;
-    const id = decodeURIComponent(location.hash.slice(1));
-    const timer = window.setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "auto", block: "start" });
-    }, 90);
-    return () => window.clearTimeout(timer);
-  }, [location.pathname, location.hash]);
-  return null;
-}
+/**
+ * Las escenas que montan WebGL entran por `lazy`: el primer fotograma útil del
+ * sitio no puede esperar a three.js (DNA §8.3).
+ */
+const Signal = lazy(() => import("@/scenes/Signal"));
+const SenderScene = lazy(() => import("@/scenes/SenderScene"));
+const Engineering = lazy(() => import("@/scenes/Engineering"));
+const Transmission = lazy(() => import("@/scenes/Transmission"));
+const Projects = lazy(() => import("@/scenes/Projects"));
+const Products = lazy(() => import("@/scenes/Products"));
+const Process = lazy(() => import("@/scenes/Process"));
+const Contact = lazy(() => import("@/scenes/Contact"));
 
-function Skip() {
-  const { ui } = useI18n();
+/** Marcador de carga: nunca un hueco blanco, nunca un spinner genérico. */
+function Espera({ cual }: { cual: string }) {
   return (
-    <a className="skip" href="#main">
-      {ui.a11y.skip}
-    </a>
+    <div className="escena__espera" aria-hidden="true" data-escena={cual}>
+      <span className="escena__espera-regla" />
+    </div>
   );
 }
 
-function Shell() {
+export default function App() {
+  useSmoothScroll();
+  const { lang } = useLang();
+
+  // El documento declara su idioma, su título, su canónica y sus datos
+  // estructurados ANTES del primer pintado.
+  useIso(() => applyMeta(lang), [lang]);
+
   return (
     <>
-      <Seo />
-      <SmoothScroll />
-      <Skip />
+      <SkipLink />
       <Nav />
-      <Boundary>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/en" element={<Home />} />
-        <Route path="/productos" element={<CatalogPage />} />
-        <Route path="/en/productos" element={<CatalogPage />} />
-        <Route path="/productos/:slug" element={<CategoryPage />} />
-        <Route path="/en/productos/:slug" element={<CategoryPage />} />
-        <Route path="/producto/:slug" element={<ProductPage />} />
-        <Route path="/en/producto/:slug" element={<ProductPage />} />
-        <Route path="/soluciones" element={<Navigate to="/productos" replace />} />
-        <Route path="/en/soluciones" element={<Navigate to="/en/productos" replace />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      </Boundary>
-      <Footer />
+      <main id="contenido">
+        <Entry />
+        <Suspense fallback={<Espera cual="senal" />}>
+          <Signal />
+        </Suspense>
+        <Suspense fallback={<Espera cual="empresa" />}>
+          <SenderScene />
+        </Suspense>
+        <Suspense fallback={<Espera cual="ingenieria" />}>
+          <Engineering />
+        </Suspense>
+        <Suspense fallback={<Espera cual="transmision" />}>
+          <Transmission />
+        </Suspense>
+        <Suspense fallback={<Espera cual="proyectos" />}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={<Espera cual="productos" />}>
+          <Products />
+        </Suspense>
+        <Suspense fallback={<Espera cual="proceso" />}>
+          <Process />
+        </Suspense>
+        <Suspense fallback={<Espera cual="contacto" />}>
+          <Contact />
+        </Suspense>
+      </main>
+      {/* El pie declara el idioma del enlace de vuelta, no lo adivina. */}
+      <Footer lang={lang} />
     </>
-  );
-}
-
-export function App() {
-  return (
-    <I18nProvider>
-
-      <HashScroll />
-      <Shell />
-    </I18nProvider>
   );
 }

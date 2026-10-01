@@ -1,0 +1,107 @@
+.contacto {
+  position: relative;
+  background: var(--bg);
+  padding: var(--sp-2xl) var(--margen) var(--sp-xl);
+}
+
+.contacto__interior { max-width: var(--ancho-max); margin-inline: auto; }
+
+/* Cierre centrado, medida corta, mucho aire (L6). */
+.contacto__cabecera {
+  max-width: 34ch;
+  margin-bottom: var(--sp-2xl);
+}
+
+.contacto__titulo { color: var(--paper); margin-bottom: var(--sp-s); }
+.contacto__sub { color: var(--plata); }
+
+.contacto__cuerpo {
+  display: grid;
+  gap: var(--sp-2xl);
+}
+
+@media (min-width: 1000px) {
+  .contacto__cuerpo {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--sp-2xl);
+  }
+}
+
+/* ── Canales ─────────────────────────────────────────────────────────── */
+
+.contacto__datos { display: grid; border-top: var(--hairline) solid var(--acero); }
+
+.contacto__dato {
+  display: grid;
+  gap: var(--sp-2xs);
+  padding-block: var(--sp-s);
+  border-bottom: var(--hairline) solid var(--acero);
+}
+
+.contacto__dato dt { color: var(--texto-3); }
+
+.contacto__enlace {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--sp-xs);
+  color: var(--niebla);
+  transition: color var(--t-micro) var(--e-micro);
+}
+
+.contacto__enlace:hover, .contacto__enlace:focus-visible { color: var(--azul-tenue); }
+
+.contacto__flecha { color: var(--ceniza); font-size: 0.8125rem; }
+
+.contacto__acciones { margin-top: var(--sp-m); }
+
+/* ── Formulario ──────────────────────────────────────────────────────── */
+
+.contacto__form {
+  display: grid;
+  gap: var(--sp-s);
+  border: var(--hairline) solid var(--acero);
+  padding: var(--sp-m);
+  background: var(--pozo);
+}
+
+.contacto__form-titulo {
+  color: var(--cian-claro);
+  padding-bottom: var(--sp-xs);
+  border-bottom: var(--hairline) solid var(--acero);
+  margin-bottom: var(--sp-2xs);
+}
+
+.contacto__campo { display: grid; gap: var(--sp-2xs); }
+
+.contacto__fila { display: grid; gap: var(--sp-s); }
+
+@media (min-width: 620px) {
+  .contacto__fila { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.contacto__label { color: var(--texto-3); font-size: 0.8125rem; }
+
+.contacto__input {
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  background: var(--noche);
+  border: var(--hairline) solid var(--acero);
+  color: var(--paper);
+  font-size: var(--cuerpo-s);
+  transition: border-color var(--t-micro) var(--e-micro);
+}
+
+.contacto__input:hover { border-color: var(--grafito); }
+
+.contacto__input:focus-visible {
+  border-color: var(--azul-claro);
+  outline-offset: 1px;
+}
+
+.contacto__select { appearance: none; cursor: pointer; }
+
+.contacto__area { resize: vertical; min-height: 6rem; font-family: inherit; }
+
+.contacto__enviar { justify-content: center; margin-top: var(--sp-2xs); }
+
+.contacto__nota { color: var(--ceniza); font-size: 0.8125rem; }

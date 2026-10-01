@@ -1,0 +1,14 @@
+{
+  "es": {
+    "title": "Sender — Tecnología que transmite | Transmisores AM y FM, antenas HF y NAVTEX",
+    "description": "Más de 20 años diseñando, fabricando e instalando transmisores AM y FM de estado sólido, antenas HF, enlaces estudio–planta y sistemas NAVTEX 490 / 518 kHz desde Santiago de Chile.",
+    "ogLocale": "es_CL",
+    "ogLocaleAlt": "en_US"
+  },
+  "en": {
+    "title": "Sender — Technology that transmits | AM & FM transmitters, HF antennas, NAVTEX",
+    "description": "More than 20 years designing, manufacturing and commissioning solid-state AM and FM transmitters, HF antennas, studio–transmitter links and NAVTEX 490 / 518 kHz systems from Santiago, Chile.",
+    "ogLocale": "en_US",
+    "ogLocaleAlt": "es_CL"
+  }
+}

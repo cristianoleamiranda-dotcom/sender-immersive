@@ -1,0 +1,351 @@
+/**
+ * SENDER — estilos de los primitivos.
+ * Cada regla implementa una decisión del DESIGN DNA. Nada es ornamental.
+ */
+
+/* ── Escena ──────────────────────────────────────────────────────────── */
+
+.escena {
+  position: relative;
+  isolation: isolate;
+  padding-block: var(--sp-xl);
+  padding-inline: var(--margen);
+}
+
+.escena[data-tono="noche"] {
+  background: var(--bg);
+}
+.escena[data-tono="azul"] {
+  background: var(--bg-alt);
+}
+.escena[data-tono="papel"] {
+  background: var(--paper);
+  color: var(--texto-inverso);
+}
+
+/* El índice de escena se ancla al margen exterior (DNA §3.2). */
+.escena__indice {
+  position: absolute;
+  top: var(--sp-l);
+  left: var(--margen);
+  font-size: var(--dato);
+  color: var(--texto-3);
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
+
+@media (min-width: 1100px) {
+  .escena__indice {
+    writing-mode: vertical-rl;
+    left: calc(var(--margen) * 0.45);
+    top: var(--sp-xl);
+  }
+}
+
+/* ── Retícula interna ────────────────────────────────────────────────── */
+
+.reticula {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gutter);
+  max-width: var(--ancho-max);
+  margin-inline: auto;
+  width: 100%;
+}
+
+/* Prohibido el 6/6 (DNA §5). Estas son las proporciones autorizadas. */
+.col-5 { grid-column: span 12; }
+.col-7 { grid-column: span 12; }
+.col-4 { grid-column: span 12; }
+.col-8 { grid-column: span 12; }
+.col-3 { grid-column: span 12; }
+.col-9 { grid-column: span 12; }
+.col-12 { grid-column: span 12; }
+.col-6 { grid-column: span 12; }
+
+@media (min-width: 900px) {
+  .col-5 { grid-column: span 5; }
+  .col-7 { grid-column: span 7; }
+  .col-4 { grid-column: span 4; }
+  .col-8 { grid-column: span 8; }
+  .col-3 { grid-column: span 3; }
+  .col-9 { grid-column: span 9; }
+  .col-6 { grid-column: 3 / span 8; } /* nunca 1/span 6: la simetría perfecta sobra */
+  .col-12 { grid-column: span 12; }
+}
+
+/* ── Tipografía ──────────────────────────────────────────────────────── */
+
+.kicker {
+  color: var(--azul-claro);
+  margin-bottom: var(--sp-s);
+}
+
+.titular {
+  margin-bottom: var(--sp-m);
+}
+
+/* Cada línea del titular entra por separado: da ritmo de locución. */
+.titular__linea {
+  display: block;
+  overflow: hidden;
+}
+
+.titular__texto {
+  display: block;
+  transform: translateY(105%);
+  transition: transform var(--t-escena) var(--e-entrada);
+}
+
+[data-visible="true"] .titular__texto,
+.titular[data-visible="true"] .titular__texto {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .titular__texto {
+    transform: none;
+  }
+}
+
+.entradilla {
+  color: var(--texto-2);
+}
+
+/* ── Revelado ────────────────────────────────────────────────────────── */
+
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--t-trans) var(--e-entrada),
+    transform var(--t-trans) var(--e-entrada);
+}
+
+.revelar[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .revelar {
+    opacity: 1;
+    transform: none;
+    transition: opacity 200ms linear;
+  }
+}
+
+/* ── Filas de dato ───────────────────────────────────────────────────── */
+
+.lista-datos {
+  display: flex;
+  flex-direction: column;
+  border-top: var(--hairline) solid var(--linea);
+}
+
+.fila {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.9fr) 1.4fr;
+  gap: var(--sp-xs) var(--sp-s);
+  padding-block: var(--sp-s);
+  border-bottom: var(--hairline) solid var(--linea);
+}
+
+.fila__etiq {
+  color: var(--texto-3);
+  align-self: center;
+}
+
+.fila__val {
+  color: var(--texto);
+}
+
+.fila__nota {
+  grid-column: 2;
+  color: var(--texto-3);
+}
+
+@media (min-width: 700px) {
+  .fila {
+    grid-template-columns: minmax(9rem, 0.8fr) 1.6fr;
+  }
+}
+
+/* ── Figura ──────────────────────────────────────────────────────────── */
+
+.figura {
+  position: relative;
+  margin: 0;
+}
+
+.figura__marco {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--aspect, 1.5);
+  background: var(--pozo);
+}
+
+.figura__medio {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Grade base: la desaturación que pide el DNA §6.3. */
+  filter: saturate(0.8) contrast(1.05) brightness(0.97);
+}
+
+/**
+ * Capa de grade.
+ * `mix-blend-mode: color` toma el TONO de la capa y conserva la LUMINANCIA de la
+ * fotografía. Es exactamente un duotono cinematográfico: el atardecer naranja
+ * del video del hero cae dentro de la familia azul sin que el atardecer
+ * desaparezca, y sin tocar el archivo original.
+ */
+.figura__grade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    168deg,
+    var(--azul-hondo) 0%,
+    var(--azul-profundo) 48%,
+    var(--azul-noche) 100%
+  );
+  mix-blend-mode: color;
+  opacity: 0.88;
+}
+
+.figura--suave .figura__grade {
+  opacity: 0.5;
+}
+
+.figura--suave .figura__medio {
+  filter: saturate(0.88) contrast(1.03);
+}
+
+.figura--ninguno .figura__medio {
+  filter: none;
+}
+
+/* Grano: unifica cuatro resoluciones distintas y disuelve el banding. */
+.figura__grano {
+  position: absolute;
+  inset: -50%;
+  pointer-events: none;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+
+/* ── CTA ─────────────────────────────────────────────────────────────── */
+
+.cta {
+  --cta-bg: transparent;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-s);
+  padding: 0.95rem 1.6rem;
+  font-family: var(--fuente-mono);
+  font-size: var(--etiqueta);
+  font-weight: var(--peso-medio);
+  letter-spacing: var(--tracking-etiqueta);
+  text-transform: uppercase;
+  border-radius: var(--radio);
+  transition:
+    background-color var(--t-micro) var(--e-micro),
+    color var(--t-micro) var(--e-micro),
+    border-color var(--t-micro) var(--e-micro);
+}
+
+.cta__marca {
+  width: 18px;
+  height: var(--hairline);
+  background: currentColor;
+  transition: width var(--t-micro) var(--e-micro);
+}
+
+.cta:hover .cta__marca,
+.cta:focus-visible .cta__marca {
+  width: 30px;
+}
+
+.cta--solido {
+  background: var(--accion);
+  color: var(--paper);
+}
+
+.cta--solido:hover,
+.cta--solido:focus-visible {
+  background: var(--accion-hover);
+  color: var(--noche);
+}
+
+.cta--linea {
+  border: var(--hairline) solid var(--linea);
+  color: var(--texto);
+}
+
+.cta--linea:hover,
+.cta--linea:focus-visible {
+  border-color: var(--azul-claro);
+  color: var(--azul-tenue);
+}
+
+.cta--senal {
+  border: var(--hairline) solid var(--cian-hondo);
+  color: var(--cian-claro);
+}
+
+.cta--senal:hover,
+.cta--senal:focus-visible {
+  background: var(--cian);
+  border-color: var(--cian);
+  color: var(--noche);
+}
+
+/* ── Banda ───────────────────────────────────────────────────────────── */
+
+.banda {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-s);
+  padding-block: var(--sp-xs);
+  border-bottom: var(--hairline) solid var(--linea);
+}
+
+.banda__code {
+  font-size: var(--cuerpo-s);
+  font-weight: var(--peso-semi);
+  color: var(--texto-2);
+  min-width: 5.5rem;
+  transition: color var(--t-trans) var(--e-entrada);
+}
+
+.banda__range {
+  color: var(--texto-3);
+  transition: color var(--t-trans) var(--e-entrada);
+}
+
+.banda__pulso {
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  background: var(--acero);
+  transition: background-color var(--t-trans) var(--e-entrada);
+}
+
+.banda[data-activa="true"] .banda__code,
+.banda[data-activa="true"] .banda__range {
+  color: var(--cian-claro);
+}
+
+.banda[data-activa="true"] .banda__pulso {
+  background: var(--cian-claro);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cian) 22%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .banda[data-activa="true"] .banda__pulso {
+    box-shadow: none;
+  }
+}
