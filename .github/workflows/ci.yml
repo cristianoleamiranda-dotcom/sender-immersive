@@ -9,8 +9,6 @@ on:
 
 env:
   NODE_VERSION: '20'
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
   lint-and-typecheck:
@@ -19,7 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'npm' }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run lint
       - run: npx tsc --noEmit
@@ -30,9 +30,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
-        with: { python-version: '3.11' }
+        with:
+          python-version: '3.11'
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'npm' }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run audit:palette
 
@@ -42,7 +45,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'npm' }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - run: npm ci
       - run: npm test
 
@@ -53,7 +58,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'npm' }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - run: npm ci
       - run: npm run build
       - uses: actions/upload-artifact@v4
@@ -70,9 +77,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: { name: nextjs-build, path: dist/ }
+        with:
+          name: nextjs-build
+          path: dist/
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }} }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
       - run: npm install -g @lhci/cli@0.13.x
       - run: lhci autorun --upload.target=temporary-public-storage || true
         working-directory: ./dist
@@ -84,50 +94,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
-        with: { name: nextjs-build, path: dist/ }
+        with:
+          name: nextjs-build
+          path: dist/
       - uses: actions/setup-node@v4
-        with: { node-version: ${{ env.NODE_VERSION }}, cache: 'npm' }
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
       - run: node scripts/a11y-check.js
-
-  deploy-preview:
-    name: Deploy Preview (Netlify)
-    needs: [build, lighthouse, accessibility]
-    if: github.event_name == 'pull_request' && env.NETLIFY_AUTH_TOKEN != ''
-    env:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with: { name: nextjs-build, path: dist/ }
-      - uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "PR #${{ github.event.number }} preview"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overload-pull-request-comment: true
-
-  deploy-production:
-    name: Deploy Production (Netlify)
-    needs: [build, lighthouse, accessibility]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && env.NETLIFY_AUTH_TOKEN != ''
-    env:
-      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with: { name: nextjs-build, path: dist/ }
-      - uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './dist'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Production deploy ${{ github.sha }}"
