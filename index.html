@@ -4,19 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#0A0A0A" />
+    <meta name="theme-color" content="#494949" />
 
     <!--
-      El bilingüismo es de URL, no de cliente: /es/ y /en/ son documentos
-      distintos. Este archivo raíz sólo decide a cuál mandar.
+      El bilingüismo es de URL: ES vive en `/` y EN vive en `/en/`.
+      Los marcadores los sustituye el post-compilado (`scripts/seo.mjs` / `scripts/postbuild.mjs`)
+      en las 49 shells estáticas y en la raíz.
     -->
     <title>__TITULO__</title>
     <meta name="description" content="__DESCRIPCION__" />
-    <!--
-      Metadatos de rastreo. Los marcadores los sustituye `scripts/postbuild.mjs`
-      por idioma: el HTML que se sirve lleva la canónica correcta ESCRITA, sin
-      depender de que el rastreador ejecute JavaScript.
-    -->
     <link rel="canonical" href="__CANONICA__" />
     <link rel="alternate" hreflang="es-CL" href="__URL_ES__" />
     <link rel="alternate" hreflang="en" href="__URL_EN__" />
@@ -35,22 +31,22 @@
     <meta property="og:image:alt" content="__TITULO__" />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="icon" href="%BASE_URL%favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="%BASE_URL%apple-touch-icon.png" />
+    <link rel="manifest" href="%BASE_URL%manifest.json" />
 
     <script>
-      // Redirección de raíz: respeta la preferencia del navegador, sin parpadeo.
-      // Respeta la BASE para que funcione igual en la raíz de un dominio que
-      // bajo un subdirectorio ("/sender-immersive/"). Vite sustituye %BASE_URL%.
+      // Normalización de rutas legadas (/soluciones -> /productos, /en/soluciones -> /en/productos).
+      // ES se sirve directamente en `/` y EN en `/en/` (AGENTS.md).
       (function () {
         var BASE = "%BASE_URL%";
         var ruta = window.location.pathname;
         var rel = BASE !== "/" && ruta.indexOf(BASE) === 0 ? "/" + ruta.slice(BASE.length) : ruta;
-        rel = rel.replace(/\/+$/, "");
-        if (rel === "" || rel === "/" || rel === "/index.html") {
-          var nav = (navigator.language || "es").toLowerCase();
-          var lang = nav.indexOf("es") === 0 ? "es" : nav.indexOf("en") === 0 ? "en" : "es";
-          window.location.replace(BASE + lang + "/" + window.location.hash);
+        rel = rel.replace(/\/+$/, "") || "/";
+        if (rel === "/soluciones") {
+          window.location.replace(BASE + "productos/" + window.location.search + window.location.hash);
+        } else if (rel === "/en/soluciones") {
+          window.location.replace(BASE + "en/productos/" + window.location.search + window.location.hash);
         }
       })();
     </script>

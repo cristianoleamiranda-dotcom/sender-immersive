@@ -15,10 +15,49 @@ import { useFocusTrap } from "@/lib/hooks";
 import "./products.css";
 
 export default function Products() {
-  const { t, lang } = useLang();
+  const { t, lang, route } = useLang();
   const { categories, products } = useCatalog();
-  const [cat, setCat] = useState(0);
-  const [abierto, setAbierto] = useState<string | null>(null);
+  const [cat, setCat] = useState(() => {
+    const clean = route.path.replace(/\/+$/, "");
+    if (clean.startsWith("/productos/")) {
+      const slug = clean.slice("/productos/".length);
+      const idx = categories.findIndex((c) => c.slug === slug);
+      if (idx >= 0) return idx;
+    } else if (clean.startsWith("/producto/")) {
+      const slug = clean.slice("/producto/".length);
+      const prod = products.find((p) => p.slug === slug);
+      if (prod) {
+        const idx = categories.findIndex((c) => c.id === prod.categoryId);
+        if (idx >= 0) return idx;
+      }
+    }
+    return 0;
+  });
+  const [abierto, setAbierto] = useState<string | null>(() => {
+    const clean = route.path.replace(/\/+$/, "");
+    if (clean.startsWith("/producto/")) {
+      const slug = clean.slice("/producto/".length);
+      const prod = products.find((p) => p.slug === slug);
+      if (prod) return prod.slug;
+    }
+    return null;
+  });
+
+  // Cuando se entra por una ruta profunda (/productos, /productos/:slug, /producto/:slug),
+  // desplazar la cámara directamente a la estación de catálogo.
+  useEffect(() => {
+    const clean = route.path.replace(/\/+$/, "");
+    if (
+      clean === "/productos" ||
+      clean.startsWith("/productos/") ||
+      clean.startsWith("/producto/")
+    ) {
+      const timer = window.setTimeout(() => {
+        document.getElementById("productos")?.scrollIntoView({ behavior: "auto", block: "start" });
+      }, 120);
+      return () => window.clearTimeout(timer);
+    }
+  }, [route.path]);
 
   const categoria = categories[cat];
   const deLaCategoria = useMemo(

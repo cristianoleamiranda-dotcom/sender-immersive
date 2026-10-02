@@ -1,7 +1,12 @@
 node_modules/
 dist/
+out/
 shots/
 reference/
+.agents/
+.claude/
+agent/
+.lighthouseci/
 *.tsbuildinfo
 *.local
 .DS_Store

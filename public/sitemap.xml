@@ -2,147 +2,353 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.sender.cl/es/</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#senal</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#senal"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#senal"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#senal"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#senal</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#senal"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#senal"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#senal"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#empresa</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#empresa"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#empresa"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#empresa"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-am/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-am/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-am/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#empresa</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#empresa"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#empresa"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#empresa"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-am/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-am/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-am/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#ingenieria</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#ingenieria"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#ingenieria"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#ingenieria"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-fm/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-fm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-fm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-fm/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#ingenieria</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#ingenieria"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#ingenieria"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#ingenieria"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-fm/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-fm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/transmisores-fm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/transmisores-fm/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#transmision</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#transmision"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#transmision"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#transmision"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/stl-enlaces/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/stl-enlaces/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/stl-enlaces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/stl-enlaces/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#transmision</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#transmision"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#transmision"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#transmision"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/stl-enlaces/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/stl-enlaces/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/stl-enlaces/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/stl-enlaces/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#proyectos</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proyectos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proyectos"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proyectos"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/procesamiento-de-audio/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/procesamiento-de-audio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/procesamiento-de-audio/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/procesamiento-de-audio/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#proyectos</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proyectos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proyectos"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proyectos"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/procesamiento-de-audio/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/procesamiento-de-audio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/procesamiento-de-audio/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/procesamiento-de-audio/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#productos</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#productos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#productos"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#productos"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/automatizacion/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/automatizacion/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/automatizacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/automatizacion/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#productos</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#productos"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#productos"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#productos"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/automatizacion/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/automatizacion/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/automatizacion/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/automatizacion/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#proceso</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proceso"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proceso"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proceso"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/rf-y-componentes/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/rf-y-componentes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/rf-y-componentes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/rf-y-componentes/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#proceso</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#proceso"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#proceso"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#proceso"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/rf-y-componentes/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/rf-y-componentes/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/rf-y-componentes/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/rf-y-componentes/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/es/#contacto</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#contacto"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#contacto"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#contacto"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/soluciones-especiales/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/soluciones-especiales/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/soluciones-especiales/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/soluciones-especiales/"/>
   </url>
   <url>
-    <loc>https://www.sender.cl/en/#contacto</loc>
-    <lastmod>2026-09-30</lastmod>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="es-CL" href="https://www.sender.cl/es/#contacto"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sender.cl/en/#contacto"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sender.cl/es/#contacto"/>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/soluciones-especiales/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/soluciones-especiales/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/productos/soluciones-especiales/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/productos/soluciones-especiales/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-sender-ss/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-sender-ss/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-sender-ss/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-sender-ss/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-sender-ss/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-sender-ss/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-sender-ss/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-sender-ss/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/amplificador-mf-1000w/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/amplificador-mf-1000w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/amplificador-mf-1000w/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/amplificador-mf-1000w/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/amplificador-mf-1000w/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/amplificador-mf-1000w/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/amplificador-mf-1000w/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/amplificador-mf-1000w/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-fm/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-fm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-fm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-fm/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-fm/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-fm/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/serie-fm/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/serie-fm/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-stal-200/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-stal-200/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-stal-200/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-stal-200/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-stal-200/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-stal-200/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-stal-200/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-stal-200/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-al-100/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-al-100/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-al-100/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-al-100/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-al-100/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-al-100/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/stl-al-100/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/stl-al-100/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/yagi-134-174/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/yagi-134-174/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/yagi-134-174/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/yagi-134-174/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/yagi-134-174/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/yagi-134-174/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/yagi-134-174/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/yagi-134-174/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/bis-ap735/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/bis-ap735/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/bis-ap735/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/bis-ap735/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/bis-ap735/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/bis-ap735/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/bis-ap735/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/bis-ap735/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/automatizacion-navtex/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/automatizacion-navtex/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/automatizacion-navtex/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/automatizacion-navtex/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/automatizacion-navtex/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/automatizacion-navtex/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/automatizacion-navtex/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/automatizacion-navtex/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/monitoreo-control-remoto/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/monitoreo-control-remoto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/monitoreo-control-remoto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/monitoreo-control-remoto/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/monitoreo-control-remoto/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/monitoreo-control-remoto/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/monitoreo-control-remoto/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/monitoreo-control-remoto/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antena-hf-2-30/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antena-hf-2-30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antena-hf-2-30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antena-hf-2-30/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antena-hf-2-30/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antena-hf-2-30/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antena-hf-2-30/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antena-hf-2-30/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antenas-monopolo-am/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antenas-monopolo-am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antenas-monopolo-am/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antenas-monopolo-am/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antenas-monopolo-am/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antenas-monopolo-am/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/antenas-monopolo-am/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/antenas-monopolo-am/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/torres-contraventadas/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/torres-contraventadas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/torres-contraventadas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/torres-contraventadas/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/torres-contraventadas/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/torres-contraventadas/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/torres-contraventadas/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/torres-contraventadas/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/cable-coaxial/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/cable-coaxial/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/cable-coaxial/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/cable-coaxial/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/cable-coaxial/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/cable-coaxial/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/cable-coaxial/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/cable-coaxial/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/condensadores-alta-potencia/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/condensadores-alta-potencia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/condensadores-alta-potencia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/condensadores-alta-potencia/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/condensadores-alta-potencia/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/condensadores-alta-potencia/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/condensadores-alta-potencia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/condensadores-alta-potencia/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/circuitos-integrados-rf/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/circuitos-integrados-rf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/circuitos-integrados-rf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/circuitos-integrados-rf/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/circuitos-integrados-rf/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/circuitos-integrados-rf/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/circuitos-integrados-rf/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/circuitos-integrados-rf/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/sistema-navtex-490-518/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/sistema-navtex-490-518/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/sistema-navtex-490-518/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/sistema-navtex-490-518/"/>
+  </url>
+  <url>
+    <loc>https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/sistema-navtex-490-518/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <xhtml:link rel="alternate" hreflang="es-CL" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/sistema-navtex-490-518/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/en/producto/sistema-navtex-490-518/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cristianoleamiranda-dotcom.github.io/sender-immersive/producto/sistema-navtex-490-518/"/>
   </url>
 </urlset>

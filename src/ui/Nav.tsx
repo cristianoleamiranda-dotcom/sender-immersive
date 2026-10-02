@@ -27,7 +27,7 @@ const ESCENAS = [
 ] as const;
 
 export default function Nav() {
-  const { t, lang, other } = useLang();
+  const { t, lang, other, route } = useLang();
   const ids = useMemo(() => ESCENAS.map((e) => e.id), []);
   const activa = useActiveScene(ids);
   const etiquetas = resolve(navLabels, lang);
@@ -108,7 +108,7 @@ export default function Nav() {
         <div className="nav__acciones">
           <a
             className="nav__idioma etiqueta"
-            href={hrefFor(other)}
+            href={hrefFor(other, route.path, route.hash)}
             lang={LANG_META[other].htmlLang}
             hrefLang={LANG_META[other].code}
             aria-label={`${t.nav.language}: ${LANG_META[other].label}`}

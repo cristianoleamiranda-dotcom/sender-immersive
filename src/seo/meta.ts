@@ -79,9 +79,34 @@ const COPY: Record<Lang, { title: string; description: string }> = {
   en: { title: ESTATICO.en.title, description: ESTATICO.en.description },
 };
 
-export function buildMeta(lang: Lang): MetaDoc {
+export function buildMeta(lang: Lang, routePath = "/"): MetaDoc {
   const c = COPY[lang];
-  const canonical = absoluta(hrefFor(lang, "/"));
+  const cleanPath = routePath === "/" ? "/" : "/" + routePath.replace(/^\/+|\/+$/g, "");
+  const canonical = absoluta(hrefFor(lang, cleanPath));
+
+  let title = c.title;
+  let description = c.description;
+
+  if (cleanPath === "/productos") {
+    title =
+      lang === "es"
+        ? "SENDER Chile | Catálogo de Ingeniería RF y Radiodifusión"
+        : "SENDER Chile | RF Engineering & Broadcast Catalogue";
+  } else if (cleanPath.startsWith("/productos/")) {
+    const slug = cleanPath.slice("/productos/".length);
+    const cat = categories.find((item) => item.slug === slug);
+    if (cat) {
+      title = `SENDER Chile | ${resolve(cat.name, lang)}`;
+      description = resolve(cat.description, lang);
+    }
+  } else if (cleanPath.startsWith("/producto/")) {
+    const slug = cleanPath.slice("/producto/".length);
+    const prod = products.find((item) => item.slug === slug);
+    if (prod) {
+      title = `SENDER Chile | ${resolve(prod.name, lang)}`;
+      description = resolve(prod.summary, lang);
+    }
+  }
 
   const org = {
     "@type": "Organization",
@@ -173,8 +198,8 @@ export function buildMeta(lang: Lang): MetaDoc {
   };
 
   return {
-    title: c.title,
-    description: c.description,
+    title,
+    description,
     canonical,
     ogLocale: LANG_META[lang].htmlLang.replace("-", "_"),
     jsonLd: [
@@ -187,9 +212,10 @@ export function buildMeta(lang: Lang): MetaDoc {
 }
 
 /** Escribe el documento: título, descripción, canónicas, hreflang y JSON-LD. */
-export function applyMeta(lang: Lang): void {
+export function applyMeta(lang: Lang, routePath = "/"): void {
   if (typeof document === "undefined") return;
-  const meta = buildMeta(lang);
+  const cleanPath = routePath === "/" ? "/" : "/" + routePath.replace(/^\/+|\/+$/g, "");
+  const meta = buildMeta(lang, cleanPath);
   const head = document.head;
 
   document.title = meta.title;
@@ -224,9 +250,9 @@ export function applyMeta(lang: Lang): void {
    */
   head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((n) => n.remove());
   const alternos: [string, string][] = [
-    [LANG_META.es.htmlLang, absoluta(hrefFor("es", "/"))],
-    [LANG_META.en.htmlLang, absoluta(hrefFor("en", "/"))],
-    ["x-default", absoluta(hrefFor("es", "/"))],
+    [LANG_META.es.htmlLang, absoluta(hrefFor("es", cleanPath))],
+    [LANG_META.en.htmlLang, absoluta(hrefFor("en", cleanPath))],
+    ["x-default", absoluta(hrefFor("es", cleanPath))],
   ];
   for (const [hreflang, href] of alternos) {
     const link = document.createElement("link");

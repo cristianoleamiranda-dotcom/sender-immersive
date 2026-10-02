@@ -41,11 +41,11 @@ function Espera({ cual }: { cual: string }) {
 
 export default function App() {
   useSmoothScroll();
-  const { lang } = useLang();
+  const { lang, route } = useLang();
 
   // El documento declara su idioma, su título, su canónica y sus datos
   // estructurados ANTES del primer pintado.
-  useIso(() => applyMeta(lang), [lang]);
+  useIso(() => applyMeta(lang, route.path), [lang, route.path]);
 
   return (
     <>

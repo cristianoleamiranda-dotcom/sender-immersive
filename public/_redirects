@@ -1,0 +1,13 @@
+# Legacy redirects (si migras de sitio antiguo)
+/soluciones           /productos          301
+/en/soluciones        /en/productos       301
+/productos/am-1000ss  /productos/transmisores-am  301
+/productos/fm-1000    /productos/transmisores-fm  301
+/ingenieria-rf        /#ingenieria        301
+
+# i18n - Español por defecto
+/es/*  /:splat     200  Language=es
+/en/*  /en/:splat  200  Language=en
+
+# SPA Fallback
+/*     /index.html 200

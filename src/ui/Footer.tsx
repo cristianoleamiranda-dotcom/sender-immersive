@@ -12,7 +12,7 @@ import { resolve } from "@/content/resolve";
 import "./footer.css";
 
 export default function Footer({ lang }: { lang: "es" | "en" }) {
-  const { t, other } = useLang();
+  const { t, other, route } = useLang();
   const { company, categories } = useCatalog();
   const lista = resolve(escenas, lang);
 
@@ -43,7 +43,7 @@ export default function Footer({ lang }: { lang: "es" | "en" }) {
           <ul className="pie__lista">
             {categories.map((c) => (
               <li key={c.slug}>
-                <a className="pie__enlace cuerpo-s" href={`${hrefFor(lang)}#productos`}>
+                <a className="pie__enlace cuerpo-s" href={hrefFor(lang, `/productos/${c.slug}`)}>
                   {c.name}
                 </a>
               </li>
@@ -77,7 +77,7 @@ export default function Footer({ lang }: { lang: "es" | "en" }) {
           </ul>
           <a
             className="pie__idioma etiqueta"
-            href={hrefFor(other)}
+            href={hrefFor(other, route.path, route.hash)}
             hrefLang={LANG_META[other].code}
             lang={LANG_META[other].htmlLang}
           >

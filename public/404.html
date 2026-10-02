@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <title>SENDER Chile | Ingeniería RF, Radiodifusión y Sistemas de Transmisión</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      (function () {
+        var l = window.location;
+        var base = l.pathname.indexOf("/sender-immersive") === 0 ? "/sender-immersive" : "";
+        var rel = base ? l.pathname.slice(base.length) || "/" : l.pathname;
+        var clean = rel.replace(/\/+$/, "") || "/";
+        if (clean === "/soluciones") {
+          l.replace(base + "/productos/" + l.search + l.hash);
+          return;
+        }
+        if (clean === "/en/soluciones") {
+          l.replace(base + "/en/productos/" + l.search + l.hash);
+          return;
+        }
+        var isEn = /^\/en(\/|$)/.test(clean);
+        l.replace(base + (isEn ? "/en/" : "/") + l.search + l.hash);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -1,15 +1,13 @@
 /**
- * SENDER — IDIOMA
+ * SENDER — IDIOMA Y ENRUTAMIENTO (ES en `/` | EN en `/en`)
  *
  * Español e inglés completos y equivalentes. Cero mezcla.
  *
- * El idioma NO es un estado de React: es la URL. `/es/` y `/en/` son rutas
- * distintas, con su propio `<html lang>`, su `<title>`, su descripción y su
- * JSON-LD. Cambiar de idioma cambia de ruta, no de string. Eso es lo que hace
- * que el bilingüismo sea real y no un conmutador de cliente.
- *
- * Excepción única y explícita (DNA §10.2): la nomenclatura técnica
- * internacional viaja idéntica en los dos idiomas, porque es un código.
+ * Regla de AGENTS.md:
+ * - ES vive en `/`, `/productos`, `/productos/:slug`, `/producto/:slug`
+ * - EN vive en `/en`, `/en/productos`, `/en/productos/:slug`, `/en/producto/:slug`
+ * - `/soluciones` redirige a `/productos` (y `/en/soluciones` a `/en/productos`)
+ * - También acepta `/es/` como alias de `/` para compatibilidad hacia atrás.
  */
 
 import {
@@ -41,14 +39,15 @@ export const LANG_META: Record<Lang, { code: string; label: string; htmlLang: st
 export type Route = { lang: Lang; path: string; hash: string };
 
 /**
- * Lee la ruta actual quitando primero la base.
+ * Lee la ruta actual quitando primero la base (`/sender-immersive/`).
  *
- * Bajo `/sender-immersive/` la primera carpeta de la URL es el nombre del
- * proyecto, no el idioma: sin quitar la base, el sitio no reconocería `/es/` y
- * caería siempre al idioma por defecto.
- *
- *   /es/senal                    → { lang: "es", path: "/senal" }
- *   /sender-immersive/en/senal   → { lang: "en", path: "/senal" }
+ *   /                                      → { lang: "es", path: "/" }
+ *   /productos/transmisores-am             → { lang: "es", path: "/productos/transmisores-am" }
+ *   /producto/serie-sender-ss              → { lang: "es", path: "/producto/serie-sender-ss" }
+ *   /en                                    → { lang: "en", path: "/" }
+ *   /en/productos/transmisores-am          → { lang: "en", path: "/productos/transmisores-am" }
+ *   /en/producto/serie-sender-ss           → { lang: "en", path: "/producto/serie-sender-ss" }
+ *   /es/...                                → { lang: "es", path: "/..." } (alias compatible)
  */
 export function parseLocation(): Route {
   if (typeof window === "undefined") {
@@ -66,20 +65,29 @@ export function parseLocation(): Route {
     segments.shift();
   }
 
+  let internalPath = "/" + segments.join("/");
+  if (internalPath === "/soluciones") {
+    internalPath = "/productos";
+  }
+
   return {
     lang,
-    path: "/" + segments.join("/"),
+    path: internalPath,
     hash: window.location.hash,
   };
 }
 
 /**
  * Construye la ruta de un idioma, con la base aplicada.
- * La ruta interna es la misma en ambos idiomas; sólo cambia el prefijo.
+ * - ES (`/`): `/` o `/productos/...` o `/producto/...`
+ * - EN (`/en`): `/en/` o `/en/productos/...` o `/en/producto/...`
  */
 export function hrefFor(lang: Lang, path = "/", hash = ""): string {
-  const clean = path === "/" ? "" : path.replace(/\/$/, "");
-  return withBase(`/${lang}${clean}/${hash}`);
+  const clean = path === "/" ? "" : "/" + path.replace(/^\/+|\/+$/g, "");
+  if (lang === "en") {
+    return withBase(`/en${clean}/${hash}`);
+  }
+  return withBase(`${clean}/${hash}`);
 }
 
 interface LanguageValue {
@@ -138,11 +146,11 @@ export function useCatalog() {
   );
 }
 
-/** Navegación entre idiomas preservando la ruta interna. */
+/** Navegación entre idiomas preservando la ruta interna (`/productos/:slug`, `/producto/:slug`, etc.). */
 export function useLangSwitch() {
-  const { lang, other, route } = useLang();
+  const { other, route } = useLang();
   return useCallback(() => {
     const target = hrefFor(other, route.path, route.hash);
     window.location.assign(target);
-  }, [lang, other, route]);
+  }, [other, route]);
 }

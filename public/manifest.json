@@ -1,0 +1,50 @@
+{
+  "name": "SENDER | ENGINEERING THE SIGNAL",
+  "short_name": "SENDER",
+  "description": "Ingeniería RF, radiodifusión, transmisión, enlaces STL, procesamiento de audio, automatización. +20 años. Chile.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#1E73BE",
+  "orientation": "portrait-primary",
+  "scope": "./",
+  "lang": "es-CL",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "technology", "engineering"],
+  "shortcuts": [
+    {
+      "name": "Productos",
+      "short_name": "Productos",
+      "description": "Catálogo transmisores, antenas, STL",
+      "url": "./productos/",
+      "icons": [{ "src": "./apple-touch-icon.png", "sizes": "180x180" }]
+    },
+    {
+      "name": "Proyectos",
+      "short_name": "Proyectos",
+      "description": "Casos de ingeniería realizados",
+      "url": "./#proyectos",
+      "icons": [{ "src": "./apple-touch-icon.png", "sizes": "180x180" }]
+    },
+    {
+      "name": "Contacto",
+      "short_name": "Contacto",
+      "description": "Solicitar cotización o soporte",
+      "url": "./#contacto",
+      "icons": [{ "src": "./apple-touch-icon.png", "sizes": "180x180" }]
+    }
+  ]
+}
