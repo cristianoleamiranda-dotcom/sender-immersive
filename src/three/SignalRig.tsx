@@ -16,11 +16,21 @@ export default function SignalRig({
   track,
   energia = 0,
 }: {
+  /**
+   * El DOM lo crea React con useRef<HTMLDivElement>(null): llega como
+   * RefObject<HTMLDivElement | null>. ScrollScene (v8) declara
+   * MutableRefObject<HTMLElement>: mismo objeto en tiempo de ejecución
+   * (el ref del div), firma distinta en los tipos. El cast es local a
+   * esta frontera y no filtra al resto del sitio.
+   */
   track: RefObject<HTMLDivElement | null>;
   energia?: number;
 }) {
   return (
-    <ScrollScene track={track} inViewport>
+    <ScrollScene
+      track={track as unknown as React.MutableRefObject<HTMLElement>}
+      inViewport
+    >
       {() => <SignalField energia={energia} />}
     </ScrollScene>
   );
