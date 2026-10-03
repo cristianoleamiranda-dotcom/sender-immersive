@@ -2,10 +2,10 @@
 /**
  * SENDER — fetch de imágenes reales de producto desde sender.cl
  *
- * Regla (Real Image Policy, brief §11): solo fotografías reales publicadas por
- * SENDER. Este script descarga originales de la librería de medios de
- * sender.cl (WordPress REST) a public/assets/images/products/. No genera,
- * no renombra, no inventa correspondencias entre archivos.
+ * Real Image Policy (brief §11): solo fotografías reales publicadas por
+ * SENDER. Descarga originales de la librería de medios de sender.cl
+ * (WordPress REST) a public/assets/images/products/. No genera, no
+ * renombra, no inventa correspondencias entre archivos.
  *
  * Uso:  npm run assets:fetch  ·  Node >= 20 (fetch global).
  */
@@ -18,7 +18,7 @@ const DEST = path.resolve("public/assets/images/products");
 const UA = "sender-immersive-assets/1.0";
 
 /** Un original no lleva el sufijo de tamaño de WordPress (-1024x682). */
-const esOriginal = (url) => !/-\d+x\d+\.(png|jpe?g|webp|gif)$/i.test(url);
+const esOriginal = (url) => !/-\d+x\d+\.(png|jpe?|webp|gif)$/i.test(url);
 
 async function listar() {
   const urls = [];
@@ -38,7 +38,7 @@ async function listar() {
   return [...new Set(urls)];
 }
 
-/** Favicons, iconos y logos del sitio: no son material de producto. */
+/** Favicons y iconos del sitio: no son material de producto. */
 const ignorar = [/favicon|icon|logo|cropped-/i];
 
 async function descargar(url) {
@@ -57,8 +57,8 @@ async function main() {
   let ok = 0;
   for (const u of urls) {
     const r = await descargar(u).catch((e) => ({ url: u, ok: false, error: String(e) }));
-    if (r.ok) { ok++; console.log(`  + ${r.nombre} (${r.bytes} B)`); }
-    else console.warn(`  x ${u} — ${r.error ?? "HTTP " + r.estado}`);
+    if (r.ok) { ok++; console.log(`  ok ${r.nombre} (${r.bytes} B)`); }
+    else console.warn(`  fallo ${u} — ${r.error ?? "HTTP " + r.estado}`);
   }
   console.log(`Descargados ${ok}/${urls.length} en public/assets/images/products/`);
   if (ok === 0) process.exitCode = 1;
