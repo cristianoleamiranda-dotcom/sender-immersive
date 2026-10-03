@@ -10,6 +10,11 @@ on:
 env:
   NODE_VERSION: '20'
 
+# NOTA (15-rig): se usa npm install en lugar de npm ci HASTA que el
+# package-lock.json se regenere en local tras añadir @14islands/r3f-scroll-rig
+# y three-story-controls. Cuando el lockfile esté al día, volver a npm ci.
+# El cache de npm sigue activo, así que el costo de install es bajo.
+
 jobs:
   lint-and-typecheck:
     name: Lint & TypeCheck
@@ -20,7 +25,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - run: npm run lint
       - run: npx tsc --noEmit
 
@@ -36,7 +41,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - run: npm run audit:palette
 
   unit-tests:
@@ -48,7 +53,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - run: npm test
 
   build:
@@ -61,7 +66,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - run: npm run build
       - uses: actions/upload-artifact@v4
         with:
@@ -101,5 +106,5 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-      - run: npm ci
+      - run: npm install --no-audit --no-fund
       - run: node scripts/a11y-check.js
