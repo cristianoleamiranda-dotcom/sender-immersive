@@ -23,16 +23,19 @@
     "schema-check": "node scripts/schema-check.js",
     "shots": "node scripts/shots.mjs",
     "analyze": "vite build",
+    "assets:fetch": "node scripts/fetch_product_images.mjs",
     "build:pages": "VITE_BASE_PATH=/sender-immersive/ VITE_SITE_URL=https://cristianoleamiranda-dotcom.github.io/sender-immersive npm run build",
     "clean": "rm -rf .next out dist .turbo node_modules/.cache"
   },
   "dependencies": {
+    "@14islands/r3f-scroll-rig": "^2.0.0",
     "@react-three/drei": "^9.114.3",
     "@react-three/fiber": "^8.17.10",
     "gsap": "^3.12.5",
     "lenis": "^1.1.18",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "three-story-controls": "^1.0.0",
     "three": "^0.169.0"
   },
   "devDependencies": {
