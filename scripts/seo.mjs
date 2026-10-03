@@ -26,8 +26,20 @@ const products = slugs(prodPart);
 
 const esc = (t) => t.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-// 1. Construir las 50 rutas canónicas del sitemap (ES en `/`, EN en `/en`)
+// 1. Construir las rutas canónicas del sitemap (ES en `/`, EN en `/en`)
 const paths = ["/", "/en", "/productos", "/en/productos"];
+
+/** Escenas de la página única: deep links → shell 200 + scroll al ancla. */
+const ESCENAS = [
+  ["senal", "Señal", "Signal"],
+  ["ingenieria", "Ingeniería", "Engineering"],
+  ["proyectos", "Proyectos", "Projects"],
+  ["proceso", "Proceso", "Process"],
+  ["contacto", "Contacto", "Contact"],
+];
+ESCENAS.forEach(([slug]) => {
+  paths.push(`/${slug}`, `/en/${slug}`);
+});
 categories.forEach((slug) => {
   paths.push(`/productos/${slug}`, `/en/productos/${slug}`);
 });
@@ -139,6 +151,8 @@ const shells = [
   ["productos", "es", "SENDER Chile | Catálogo"],
   ["en", "en", ESTATICO.en.title],
   ["en/productos", "en", "SENDER Chile | RF Engineering, Broadcasting & Transmission Systems"],
+  ...ESCENAS.map(([slug, es]) => [slug, "es", `SENDER Chile | ${es}`]),
+  ...ESCENAS.map(([slug, , en]) => [`en/${slug}`, "en", `SENDER Chile | ${en}`]),
 ];
 
 shells.forEach(([route, idioma, title]) => {
@@ -146,6 +160,17 @@ shells.forEach(([route, idioma, title]) => {
   mkdirSync(dirname(file), { recursive: true });
   writeFileSync(file, renderHtml({ idioma, route, title }));
 });
+
+// 3b. Las escenas son anclas de la página única: cada shell mantiene su URL,
+// deja renderizar el SPA y desplaza al ancla (deep links funcionan en GH Pages).
+for (const [slug] of ESCENAS) {
+  for (const [route, baseRel] of [[slug, ""], [`en/${slug}`, "en/"]]) {
+    const file = join(DIST, route, "index.html");
+    const destino = JSON.stringify(BASE + baseRel);
+    const script = `<script>(function(){var id=${JSON.stringify(slug)};function ir(){var t=document.getElementById(id);if(t){t.scrollIntoView();history.replaceState(null,"",${destino}+"#"+id)}else{setTimeout(ir,200)}}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",ir)}else{ir()}})();</script>`;
+    writeFileSync(file, readFileSync(file, "utf8").replace("</head>", `  ${script}\n  </head>`));
+  }
+}
 
 // 4. Shell de compatibilidad `/es/` y redirects estáticos `/soluciones` + `/en/soluciones`
 mkdirSync(join(DIST, "es"), { recursive: true });
