@@ -8,7 +8,7 @@
  * Carga condicional: este módulo sólo se importa cuando el rig está activo.
  */
 
-import type { RefObject } from "react";
+import type { MutableRefObject, RefObject } from "react";
 import { ScrollScene } from "@14islands/r3f-scroll-rig";
 import SignalField from "./SignalField";
 
@@ -19,18 +19,17 @@ export default function SignalRig({
   /**
    * El DOM lo crea React con useRef<HTMLDivElement>(null): llega como
    * RefObject<HTMLDivElement | null>. ScrollScene (v8) declara
-   * MutableRefObject<HTMLElement>: mismo objeto en tiempo de ejecución
-   * (el ref del div), firma distinta en los tipos. El cast es local a
-   * esta frontera y no filtra al resto del sitio.
+   * MutableRefObject<HTMLElement>: es el mismo objeto en runtime (el ref
+   * del div), distinta firma en los tipos. El cast vive sólo en esta
+   * frontera y no filtra al resto del sitio.
    */
   track: RefObject<HTMLDivElement | null>;
   energia?: number;
 }) {
+  const tracked = track as unknown as MutableRefObject<HTMLElement>;
+
   return (
-    <ScrollScene
-      track={track as unknown as React.MutableRefObject<HTMLElement>}
-      inViewport
-    >
+    <ScrollScene track={tracked} inViewport>
       {() => <SignalField energia={energia} />}
     </ScrollScene>
   );
