@@ -7,7 +7,7 @@
  * 3. Activos reales (10 fotografías + sender-hero.mp4 + iconos)
  * 4. Alt text bilingüe en catálogo y proyectos
  * 5. Archivos de configuración de producción (`public/_headers`, `middleware.ts`, `public/404.html`, `robots.txt`, `sitemap.xml`)
- * 6. Shells estáticas de SEO (50 URLs en sitemap, 49 route shells en `dist/` cuando existe build)
+ * 6. Shells estáticas de SEO (60 URLs en sitemap, 59 route shells en `dist/` cuando existe build)
  */
 
 import { existsSync, readFileSync, readdirSync } from "node:fs";
@@ -132,8 +132,8 @@ if (existsSync("public/_headers")) {
 if (existsSync("public/sitemap.xml")) {
   const sitemap = readFileSync("public/sitemap.xml", "utf8");
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)];
-  if (locs.length !== 50) {
-    fail(`expected 50 URLs in public/sitemap.xml, found ${locs.length}`);
+  if (locs.length !== 60) {
+    fail(`expected 60 URLs in public/sitemap.xml, found ${locs.length}`);
   }
 }
 
