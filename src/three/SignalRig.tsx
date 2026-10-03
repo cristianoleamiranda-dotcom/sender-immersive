@@ -29,7 +29,7 @@ export default function SignalRig({
   const tracked = track as unknown as MutableRefObject<HTMLElement>;
 
   return (
-    <ScrollScene track={tracked} inViewport>
+    <ScrollScene track={tracked}>
       {() => <SignalField energia={energia} />}
     </ScrollScene>
   );
