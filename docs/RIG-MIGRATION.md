@@ -2,35 +2,53 @@
 
 Decisión aprobada por la persona (2026-10-02): instalar ambos.
 
-## Estado actual (lo que ya funciona)
+## Estado (2026-10-03) — paso 2 EJECUTADO
 
-- useSmoothScroll (Lenis) + useScrollProgress → scroll como timeline por escena.
-- Un <Canvas> POR escena (SignalCanvas), montado por IntersectionObserver,
-  con dpr acotado, fallback 2D y liberación de contexto. No hay contexto
-  WebGL compartido entre escenas.
+La escena 01 SIGNAL corre ya sobre el rig global tras el flag `VITE_RIG=r3f`:
 
-## Objetivo (brief §17: SCROLL = CAMERA)
+- `src/three/rig.ts` — `RIG_R3F` + `useRigDisponible()`: flag de entorno +
+  WebGL + puntero fino + no-móvil + no-reduced-motion. Si algo falla, el sitio
+  funciona como antes.
+- `src/three/GlobalRig.tsx` — `GlobalCanvas` único, fijo, carga diferida
+  (`import()`), con el encuadre y la niebla de `SignalCanvas` para que el
+  campo no cambie de aspecto al cambiar de host.
+- `src/three/SignalRig.tsx` — `ScrollScene` trackea el lienzo DOM
+  (`data-3d="signal-field"`). El GLSL de `SignalField` NO se tocó.
+- `src/scenes/Signal.tsx` — elige camino: rig (si disponible) o
+  `SignalCanvas` con su fallback 2D. Módulo del rig importado sólo si se usa.
+- `src/App.tsx` — monta `<GlobalRig />` una vez, en lazy.
 
-1. Un solo canvas WebGL fijo (position: fixed; inset: 0) vía GlobalCanvas
-   de @14islands/r3f-scroll-rig; el DOM editorial fluye encima.
-2. useTracker / ScrollScene sobre nodos DOM con data-3d → planos 3D
-   sincronizados (máscara, profundidad, distorsión de scroll).
-3. three-story-controls (ScrollControls / 3DOF) para los pasajes de cámara
-   entre escenas; el scroll interpola keyframes de posición/rotación/FoV.
-4. frameloop="demand" + invalidación en scroll: nada se renderiza sin cambio.
-5. Fallbacks intactos: sin WebGL / móvil / reduced-motion → canvas 2D / CSS
-   parallax (la narrativa se conserva, brief §26).
+## Decisiones registradas
+
+- **frameloop demand (§17.5) aplazado para el paso de cámaras.** El campo de
+  señal es animación continua (estado vivo, DNA §1.4): `useFrame` necesita el
+  loop. `frameloop="demand"` entra cuando las escenas estáticas usen el rig
+  (DOM-sync de imágenes, transiciones de cámara con three-story-controls).
+- **Lenis propio se conserva.** No se pasa `friction` al rig; el scroll
+  suave sigue siendo el de siempre (lerp 0.085, DNA §7). Si se detectara doble
+  suavizado en QA, se apaga el de r3f o el nuestro — se mide antes de tocar.
+- `three-story-controls` entra en el paso 3 (pasajes de cámara entre escenas),
+  no en este.
+
+## Cómo probarlo
+
+```bash
+VITE_RIG=r3f npm run dev     # rig activo
+npm run dev                  # camino por defecto (sin rig)
+```
+
+Verificar (Design Loop, §14): campo idéntico en 01 · 0 errores de consola
+ES/EN · bundle inicial sin el rig ≤ 120 KB gzip · 0 overflow 360px (móvil ni
+sabe que el rig existe).
 
 ## Orden de migración (no big-bang)
 
-1. Instalar deps (hecho en package.json).
-2. Escena 01 SIGNAL primero: reemplazar el SignalCanvas local por
-   GlobalCanvas + ScrollScene tras feature flag VITE_RIG=r3f. El GLSL de
-   SignalField no cambia.
-3. Verificar: bundle inicial ≤ 120 KB gzip, 0 errores de consola ES/EN,
-   0 overflow 360px, DPR acotado.
-4. Si 01 pasa el Design Loop, extender a 00 (Entry) y 03 (Engineering).
-5. Cada paso es un commit por hito (04-signal-system, 05-engineering...).
+1. ~~Instalar deps~~ (hecho).
+2. ~~Escena 01 SIGNAL sobre el rig~~ (hecho — este commit).
+3. QA del paso 2: lint + typecheck + qa + visual en escritorio real.
+4. Si 01 pasa el Design Loop: extender a 00 (Entry) y 03 (Engineering);
+   entonces `frameloop="demand"` y `three-story-controls` (pasajes de cámara).
+5. Cada paso es un commit por hito.
 
 ## Reglas innegociables
 

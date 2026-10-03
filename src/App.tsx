@@ -5,6 +5,10 @@
  * El orden no es una lista de secciones: es el recorrido de la señal, desde que
  * nace hasta que llega a la audiencia, y después el regreso a tierra: quién lo
  * hace, con qué, dónde está y cómo se le habla.
+ *
+ * El rig global (§17.1) es un único canvas WebGL fijo que se monta sólo en
+ * escritorio con puntero fino, WebGL y sin reduced-motion (VITE_RIG=r3f).
+ * En cualquier otro cliente no existe y cada escena usa su camino propio.
  */
 
 import { lazy, Suspense } from "react";
@@ -19,8 +23,10 @@ import { applyMeta } from "@/seo/meta";
 
 /**
  * Las escenas que montan WebGL entran por `lazy`: el primer fotograma útil del
- * sitio no puede esperar a three.js (DNA §8.3).
+ * sitio no puede esperar a three.js (DNA §8.3). El rig global también: si el
+ * cliente no puede sostenerlo, devuelve null sin costo alguno.
  */
+const GlobalRig = lazy(() => import("@/three/GlobalRig"));
 const Signal = lazy(() => import("@/scenes/Signal"));
 const SenderScene = lazy(() => import("@/scenes/SenderScene"));
 const Engineering = lazy(() => import("@/scenes/Engineering"));
@@ -51,6 +57,10 @@ export default function App() {
     <>
       <SkipLink />
       <Nav />
+      {/* El canvas global, detrás del DOM editorial. Fijo, sin eventos de puntero. */}
+      <Suspense fallback={null}>
+        <GlobalRig />
+      </Suspense>
       <main id="contenido">
         <Entry />
         <Suspense fallback={<Espera cual="senal" />}>
