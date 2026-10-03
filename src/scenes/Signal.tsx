@@ -57,7 +57,8 @@ export default function Signal() {
   }, [usaRig]);
 
   /**
-   * El progreso dentro de la escena gobierna la energía del campo y la etapa
+   * El progreso dentro de la escena gobierna la energía de
+l campo y la etapa
    * activa. Es el mismo número para las dos cosas: una sola causa.
    */
   useEffect(() => {
@@ -120,10 +121,11 @@ export default function Signal() {
                   {l}
                 </span>
               ))}
-            </ </h2>
+            </h2>
           </div>
           <div className="col-5">
-            <div className="senal__cuerpo">
+            <div className
+="senal__cuerpo">
               {t.signal.body.map((p, i) => (
                 <p key={i} className="senal__parrafo cuerpo-l medida">
                   {p}
